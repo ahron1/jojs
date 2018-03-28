@@ -1,0 +1,28 @@
+<html> 
+<header>
+	test form
+</header>
+<body>
+<p>
+This is a test form. It takes input from the user and sends it to the server. foo bar baz
+</p>
+<form action=http://localhost:8080/form_receive method="post">
+	Name: <br>
+	<input type="text" id="name" name="name"><br>
+	Email: <br>
+	<input type="email" name="email"><br>
+	<br>
+	I am writing as a: <br> 
+	<input type="radio" name="contact_type" id="contact_type" value="customer">Customer<br>
+	<input type="radio" name="contact_type" id="contact_type" value="investor">Potential Investor<br>
+	<input type="radio" name="contact_type" id="contact_type" value="employee">Potential employee<br>
+	My message:<br> 
+	<textarea id="message" name="user_message"></textarea>
+	<br>
+	<p>
+	<input type="submit" value="Send">
+	</p>
+</form>
+
+</body>
+</html>

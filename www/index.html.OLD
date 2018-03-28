@@ -1,0 +1,420 @@
+<!doctype html>
+<html>
+<head>
+    <title>test1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="./includes/jquery.mobile-1.4.5.min.css" />
+    <script src="./includes/jquery-1.11.1.min.js"></script>
+    <script src="./includes/jquery.mobile-1.4.5.min.js"></script>
+    <script>
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			on_page_load();
+		});
+        function on_page_load() {
+			// send empty GET to check for cookies
+			var xhr = new XMLHttpRequest;
+            xhr.open('GET', server);
+            xhr.onload = function() {
+				if (xhr.status === 200) {
+					overlay_off();
+						}
+				else if (xhr.status !== 200) {
+					overlay_on();
+						}
+            };
+			xhr.send();
+        }
+        function sign_in() {
+			alert(document.getElementById("login-email").value);	
+            var xhr = new XMLHttpRequest;
+            xhr.open('POST', server);
+            xhr.onload = function() {
+              alert(this.response);
+				if (xhr.status === 200) {
+					//alert('Something went wrong.  Name is now ' + xhr.responseText);
+					overlay_off();
+						}
+				else if (xhr.status !== 200) {
+					//alert('Request failed.  Returned status of ' + xhr.status);
+						}
+            };
+			var data = JSON.stringify({login:document.getElementById("login-email").value,password:document.getElementById("login-password").value});
+			alert(data);
+			xhr.send(data);
+        }
+
+//to do
+        function sign_up_waiting_list() {
+			alert(document.getElementById("login-email").value);	
+            var xhr = new XMLHttpRequest;
+            xhr.open('POST', server);
+            xhr.onload = function() {
+              alert(this.response);
+				if (xhr.status === 200) {
+					//alert('Something went wrong.  Name is now ' + xhr.responseText);
+					overlay_off();
+						}
+				else if (xhr.status !== 200) {
+					//alert('Request failed.  Returned status of ' + xhr.status);
+						}
+            };
+			var data = JSON.stringify({login:document.getElementById("login-email").value,password:document.getElementById("login-password").value});
+			alert(data);
+			xhr.send(data);
+        }
+
+//to do
+        function sign_up() {
+			alert(document.getElementById("login-email").value);	
+            var xhr = new XMLHttpRequest;
+            xhr.open('POST', server);
+            xhr.onload = function() {
+              alert(this.response);
+				if (xhr.status === 200) {
+					//alert('Something went wrong.  Name is now ' + xhr.responseText);
+					overlay_off();
+						}
+				else if (xhr.status !== 200) {
+					//alert('Request failed.  Returned status of ' + xhr.status);
+						}
+            };
+			var data = JSON.stringify({login:document.getElementById("login-email").value,password:document.getElementById("login-password").value});
+			alert(data);
+			xhr.send(data);
+        }
+
+	function overlay_off(){
+		document.getElementById("overlay").style.display = "none";
+	}
+	function show_signup(){
+		document.getElementById("repeatpassword").style.display = "block";
+		document.getElementById("signupwithinvitation").style.display = "block";
+		document.getElementById("joinwaitinglistbutton").style.display = "block";
+		document.getElementById("sign-up").style.display = "block";
+		document.getElementById("loginbutton").style.display = "none";
+		document.getElementById("signupbutton").style.display = "none";
+		document.getElementById("no-account-text").style.display = "none";
+	}
+	function overlay_on(){
+		document.getElementById("overlay").style.display = "block";
+		document.getElementById("repeatpassword").style.display = "none";
+		document.getElementById("signupwithinvitation").style.display = "none";
+		document.getElementById("joinwaitinglistbutton").style.display = "none";
+		document.getElementById("sign-up").style.display = "none";
+	}
+		//global variables to be moved to scoping function
+        server = "/cowboy";
+        n = 0;
+        images_list = ["./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+        image_titles_list = ["foo", "bar", "baz", "fab"];
+        images_list_length = images_list.length;
+        image_titles_list_length = image_titles_list.length;
+
+        function nextimage(clickedbuttonid) {
+            alert(n + '\n' + clickedbuttonid + '\n' + document.getElementById("imagetitle").innerHTML);
+            document.getElementById("currentimage").src = images_list[n % images_list_length];
+            document.getElementById("imagetitle").innerHTML = image_titles_list[n % image_titles_list_length];
+            n = n + 1;
+            make_ajax_call(server);
+            //function to simply update images_list with this.response. 
+        }
+        function ajaxcallback(serverrespos) {
+            var server_response = JSON.parse(this.response);
+            alert(server_response);
+            //var myarray = JSON.parse(this.response);
+            //alert(myarray);
+            alert(this.response);
+            //images_list = JSON.parse(this.response);
+        }
+        function make_ajax_call(URL) {
+            var xhr = new XMLHttpRequest;
+            xhr.open('POST', URL);
+            xhr.onload = function(e) {
+                alert(this.response);
+            };
+            xhr.send("foo");
+        }
+        function sendmessage() {
+            var xhr = new XMLHttpRequest;
+            xhr.open('POST', server);
+            xhr.onload = function() {
+              alert(this.response);
+			  alert("thank you, message received");
+            };
+			var data = JSON.stringify({name:document.getElementById("text-name").value,email:document.getElementById("text-email").value,message:document.getElementById("textarea-message").value});
+			alert(data);
+			xhr.send(data);
+
+//			alert(document.getElementById("text-name").value);
+//			alert(document.getElementById("text-email").value);
+//			alert(document.getElementById("textarea-message").value);
+		}	
+    </script>
+    <style>
+        .ui-grid-a,
+        .ui-grid-solo {
+            width: 96vw;
+            display: block;
+            text-shadow: 0 0 0;
+            text-align: center;
+            #background: white;
+            background: #dcdcdc;
+            text-rendering: optimizelegibility;
+            text-rendering: geometricprecision;
+            font-smooth: always;
+            font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+		
+#        .ui-grid-a {
+#            display: block;
+#            width: 96vw;
+#            text-align: center;
+#            background: white;
+#            #background: #dcdcdc;
+#        }
+#
+         .ui-grid-half {
+            width: 50vw;
+            text-shadow: 0 0 0;
+            text-rendering: optimizelegibility;
+            text-rendering: geometricprecision;
+            font-smooth: always;
+            font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+		 .overlay {
+			 text-align: left;
+		 }
+
+         .overlay-text {
+            width: 100vw;
+            text-shadow: 0 0 0;
+            text-align: left;
+            text-rendering: optimizelegibility;
+            text-rendering: geometricprecision;
+            font-smooth: always;
+            font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .ui-controlgroup-horizontal {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+         .content {
+            width: 96vw;
+        }
+   
+        .ui-controlgroup-controls {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        ## xxvh/xxvw=xx% of viewport height/width #.userimage {
+            width: 100%;
+            height: auto;
+        }
+        
+        .userimage {
+            max-height: 60vh;
+            max-width: 100vw
+        }
+        
+        .image {
+            width: 96vw;
+            text-align: center;
+            background: white
+        }
+        
+        .mainpage {
+            background: white;
+        }
+        
+        .choicelegend {
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+            -o-font-smoothing: antialiased;
+            color: black;
+            hanging-punctuation: none;
+            background: #dcdcdc;
+        }
+        
+        .captionlegend {
+            color: white;
+            width: 100vw;
+            text-align: center;
+        }
+        
+        #overlay {
+            position: fixed;
+            display: block;
+            width: 100%;
+            height: 100%;
+     /*       text-align: center;*/
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay" class="overlay">
+		<div id="loginform">
+
+		<div class="ui-grid-solo">
+				<div id="emailandpassword">
+				    <label for="Email" >Enter your email: </label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear" >
+			        <input type="text" data-enhanced="true" data-clear-btn="true" name="login-email" id="login-email" value=""></div>
+
+				    <label for="Password">Enter your password:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+			        <input type="password" data-enhanced="true" data-clear-btn="true" name="login-password" id="login-password" value=""></div>
+				</div>
+				<div id="repeatpassword">
+				    <label for="Password">Re-enter your password to confirm: </label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+			        <input type="password" data-enhanced="true" data-clear-btn="true" name="login-password-repeat" id="login-password-repeat" value=""></div>
+				</div>
+				<div class="ui-block-a" id="loginbutton"><button id="login-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sign_in()" ><i>Login...</i></button></div> 
+
+				<div class="overlay-text" id="no-account-text">
+				<p>Don't have an account yet?'</p>
+				<p>Choose "Sign up" below...</p>
+				</div>
+				<div class="ui-block-a" id="signupbutton"><button id="signup-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_signup()" ><i>Sign up!</i></button></div> 
+					
+				<div class="ui-block-a"><button id="joinwaitinglistbutton" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="hide_login()" ><i>Join the waiting list!</i></button></div> 
+
+			<div id="sign-up">
+				<div id="with-invite-message">
+					<p>Have you been invited by a member?</p>
+					<p>Please sign up directly below...</p>
+				</div>
+				<div id="enterinviteremail">
+					    <label for="inviter-email">Enter the email address of the member who invited you </label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+				        <input type="text" data-enhanced="true" data-clear-btn="true" name="inviter-email" id="inviter-email" value=""></div>
+				</div>
+		</div>
+			<div class="ui-block-a"><button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="hide_login()" ><i> Sign up now!</i></button></div> 
+		</div>
+		</div>
+	</div>
+
+	<div data-role="page" class="mainpage" >
+			<!-- header
+	   <div data-role="header" data-position="fixed" data-theme="b">
+	   <h1>page header</h1>
+	   <a href="#" data-icon="bars" data-iconpos="notext"></a>
+	   </div>
+			-->
+		<div data-role="content" class="content" >
+
+			<div class = "image">
+					<img id="currentimage" class="userimage" src="/images/1.jpg" />
+				<div class="ui-grid-solo">
+					<legend class="captionlegend" id="imagetitle" >faz</legend>
+				</div>
+
+			</div>
+
+			<div class="ui-grid-a">
+				<legend class="choicelegend">What do you think of this:</legend>
+				<div class="ui-block-b">
+					<button id="button1" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">gorgeous</button>
+				</div>
+
+				<div class="ui-block-b">
+					<button id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">fabuluous</button>
+				</div>
+			</div>
+
+			<div class="ui-grid-solo">
+				<div class="ui-block-a"><button id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)"><i>Skip</i></button></div> 
+
+					<div>
+					<p>dkfjd fkdjf dkfj dkfj dkf j</p>
+					<p>dkfjd fkdjf dkfj dkfj dkf j</p>
+					</div>
+				<!-- <div class="ui-block-a"><button id="button3" class="ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Skip</i></button></div> -->
+			</div>
+			
+			<div class="contact" id="contact-form">
+				<h3>
+				Contact us
+				</h3>
+				<p>
+					We look forward to hearing from you! 
+				</p>
+				<p>
+					Write to us via the form below. 
+				</p>
+				<form action="/cowboy" method="post" id="contactform">
+				    <label for="text-name">Name:</label>
+				    <input type="text" name="text-name" id="text-name">
+				    <label for="text-email">Email:</label>
+				    <input type="text" name="text-email" id="text-email">
+				    <label for="textarea-message">Message:</label>
+				    <textarea name="textarea-message" id="textarea-message" ></textarea>
+				</form>
+				<div class="ui-grid-half">
+					<div class="ui-block-a">
+						<button id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sendmessage()" ><i>Send this message ...</i></button>
+						<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+					</div> 
+				</div>
+		   </div>
+
+<!--
+				<div id="vote">
+					<div class="ui-grid-b"> 
+						<form>
+							<fieldset data-role="controlgroup" data-type="horizontal" >
+								<legend>Horizontal, mini sized:</legend>
+								<input name="radio-choice-h-2" style="align:center" id="radio-choice-h-6a" type="radio">
+								<label for="radio-choice-h-6a">One</label>
+								<input name="radio-choice-h-2" style="align:center" id="radio-choice-h-6b" type="radio">
+								<label for="radio-choice-h-6b">Two</label>
+							</fieldset>
+						</form>
+					</div> 
+				</div>
+				<div class="ui-grid-a">
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>Make Your Choice:</legend>
+						<ul>
+							<li><button>Choice1</button></li>
+							<li><button>Choice2</button></li>
+						</ul>
+					</fieldset>
+				</div>
+				
+			<div data-role="footer">
+					...
+			</div>
+-->
+
+		</div>
+   </div>
+</body>
+</html>

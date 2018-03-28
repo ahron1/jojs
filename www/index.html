@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+    <title>test1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	<!-- 
+	try to make a custom download that doesn't break the forms and text fields/inputs
+    <script src="./includes/jquery.mobile.custom.min.js"></script>
+	<link rel="stylesheet" href="./includes/jquery.mobile-1.4.5.min.css"/> 
+	-->
+	<link rel="stylesheet" href="./includes/jquery.mobile.custom.theme.min.css" /> 
+    <link rel="stylesheet" href="./includes/jquery.mobile.custom.structure.min.css" />
+    <link rel="stylesheet" href="./includes/style.css" />
+</head>
+<body>
+    <div id="overlay" class="overlay">
+		<div class="ui-grid-solo">
+			<div id="email-and-password-entry">
+				<p>  </p>
+				<b>FooBar, an exclusive platform for fashion and fashionistas. Welcome!</b>
+				<p>  </p>
+			    <label for="Email" >Enter your email: </label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" >
+		        <input type="email" data-clear-btn="true" name="login-email" id="login-email" value="" ></div>
+
+			    <label for="Password">Enter your password:</label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
+		        <input type="password" data-clear-btn="true" name="login-password" id="login-password" value="" ></div>
+			</div>
+			<div class="ui-block-a ui-mini" id="loginbutton">
+				<button id="login-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_in()" ><i>Check-in </i></button>
+			</div> 
+			<div id="no-account-text">
+				<p>Don't have an account yet? Sign up...</p>
+			</div>
+			<div class="ui-block-a ui-mini" id="show-signup-button">
+				<button id="signup-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_signup()" ><i>Sign up!</i></button>
+			</div> 
+			<div id="sign-up">
+				    <label for="inviter-email"><p>We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. An invitation puts you at the top of the list... </p><p><i>Have you been invited by a member? Enter their email id:</i></p></label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
+			        <input type="text" data-enhanced="true" data-clear-btn="true" name="inviter-email" id="inviter-email" value="">
+				</div>
+			</div>
+			<div class="ui-block-a ui-mini" id="sign-up-now-button">
+				<button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_up_now()" ><i> Join the waiting list</i></button>
+			</div> 
+		</div>
+	</div>
+
+	<div data-role="page" class="mainpage" >
+	   <div data-role="header" data-fullscreen="true" data-theme="b">
+	   <h1>page header</h1>
+	   <a href="#" data-icon="bars" data-iconpos="notext"></a>
+	   </div>
+		<div data-role="content" class="content" >
+	<div id = "image-voting">
+			<div class = "image">
+					<img id="currentimage" class="userimage" src="/images/1.jpg" />
+				<div class="ui-grid-solo">
+					<legend class="captionlegend" id="imagetitle" >faz</legend>
+				</div>
+
+			</div>
+			<div class="ui-grid-a">
+				<legend class="choicelegend">What do you think of this:</legend>
+				<div class="ui-block-b">
+					<button id="button1" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">sophisticatedd</button>
+				</div>
+
+				<div class="ui-block-b">
+					<button id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</button>
+				</div>
+			</div>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a"><button id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)"><i>Skip</i></button></div> 
+			</div>
+	</div>
+	<div id = "contact-form-and-send-button">
+			<div class="contact" id="contact-form-div">
+				<h3>
+				Contact us
+				</h3>
+				<p>
+					We look forward to hearing from you! 
+				</p>
+				<p>
+					Write to us via the form below. 
+				</p>
+
+				<form id="contactform" enctype="multipart/form-data">
+				    <label for="text-name">Name:</label>
+				    <input type="text" name="text-name" id="text-name" value="">
+				    <label for="text-email">Email:</label>
+				    <input type="email" name="text-email" id="text-email" value="">
+				    <label for="textarea-message">Message:</label>
+				    <textarea name="textarea-message" id="textarea-message" ></textarea>
+			</div>
+			<div class="ui-grid-half" id="send-message-button-div">
+				<div class="ui-block-a">
+					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+					<a id="send-message-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="send_message()" ><i>Send this message</i></a>
+					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+				</div> 
+		</div>
+	</div>
+	<div id = "upload-form-and-submit-button">
+		<div class = "uploaded-image-preview">
+					<img id="imagetoupload" />
+				<div class="ui-grid-solo">
+					<legend class="captionlegend" id="imagetouploadtitle" ></legend>
+				</div>
+		</div>
+			<div class="upload" id="upload-form-div">
+				<h3>
+				Upload your own pic
+				</h3>
+				<p>
+					And write two adjectives you think can be used to describe the image. 
+				</p>
+
+				<form id="uploadform" enctype="multipart/form-data">
+				    <label for="image-upload">Image:</label>
+				    <input type="file" name="inputfile" id="inputfile">
+				    <label for="adj1">Adj1:</label>
+				    <input type="text" name="text-adj-1" id="text-adj-1" value="">
+				    <label for="adj2">Adj2:</label>
+				    <input type="text" name="text-adj-2" id="text-adj-2" value="">
+			</div>
+			<div class="ui-grid-half" id="upload-image-button-div">
+				<div class="ui-block-a">
+					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+					<a id="upload-image-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload image </i></a>
+				</div> 
+		</div>
+	</div>
+	   </div>
+	   <div data-role="footer" data-fullscreen="true" data-theme="b">
+				<div class="ui-grid-half" id="show-contact-button-div">
+					<div class="ui-block-a">
+						<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+						<a id="show-contact-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_contact_form()" ><i>Get in touch...</i></a>
+						<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+					</div> 
+			</div>
+				<div class="ui-grid-half" id="show-upload-button-div">
+					<div class="ui-block-a">
+						<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+						<a id="show-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_upload_form()" ><i>Upload image</i></a>
+					</div> 
+			</div>
+	   </div>
+	</div>
+
+	<div id = "list-of-scripts">
+	<script src="./includes/jquery-1.11.1.min.js"></script>  
+	<script src="./includes/jquery.mobile-1.4.5.min.js"></script> 
+    <script src="./includes/javascript.js"></script>
+	</div>
+</body>
+
+</html>
+
