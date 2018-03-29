@@ -1,3 +1,14 @@
+//global variables (to be moved to scoping function??)
+var files;
+var contacturl = "/contact";
+var uploadurl = "/upload";
+server = "/cowboy";
+n = 0;
+images_list = ["./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+image_titles_list = ["foo", "bar", "baz", "fab"];
+images_list_length = images_list.length;
+image_titles_list_length = image_titles_list.length;
+
 document.addEventListener("DOMContentLoaded", function(event) { 
 	on_page_load();
 });
@@ -25,6 +36,8 @@ document.querySelector('#inputfile').addEventListener('change', function(){
 function on_page_load() {
 	// hide all the "below-fold" divs
 	hide_below_fold();
+
+	console.log(window.location.pathname);
 
 	// send empty GET to check for cookies
 	var xhr = new XMLHttpRequest;
@@ -97,15 +110,6 @@ function overlay_on(){
 	document.getElementById("sign-up-now-button").style.display = "none";
 	document.getElementById("sign-up").style.display = "none";
 }
-//global variables to be moved to scoping function
-var files;
-server = "/cowboy";
-n = 0;
-images_list = ["./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
-image_titles_list = ["foo", "bar", "baz", "fab"];
-images_list_length = images_list.length;
-image_titles_list_length = image_titles_list.length;
-
 function nextimage(clickedbuttonid) {
 	alert(n + '\n' + clickedbuttonid + '\n' + document.getElementById("imagetitle").innerHTML);
 	document.getElementById("currentimage").src = images_list[n % images_list_length];
@@ -152,10 +156,12 @@ function hide_below_fold(){
 	hide_upload_form();
 }
 function show_contact_form(){
+	history.pushState(null, null, contacturl);
 	document.getElementById("contact-form-div").style.display = "block";
 	document.getElementById("show-contact-button").style.display = "none";
 	document.getElementById("send-message-button-div").style.display = "block";
 	hide_upload_form();
+	hide_image_voting();
 }
 function hide_contact_form(){
 	document.getElementById("contact-form-div").style.display = "none";
@@ -175,6 +181,7 @@ function hide_image_voting(){
 	document.getElementById("image-voting").style.display = "none";
 }
 function show_upload_form(){
+	history.pushState(null, null, uploadurl);
 	hide_image_voting();
 	hide_contact_form();
 	document.getElementById("imagetoupload").src = "";
@@ -194,8 +201,6 @@ function upload_image() {
 	xhr.onload = function() {
 	  alert(this.response);
 		if (xhr.status === 200) {
-//			alert('Submitted successfully, status text is: ' + xhr.statusText);
-//			alert('Submitted successfully, response text is: ' + xhr.responseText);
 			alert('upload successful');
 			overlay_off();
 		}
@@ -205,23 +210,14 @@ function upload_image() {
 			alert('upload failed. try again.' );
 		}
 	};
-	//json data
+	//json data - no longer used
 	//var data = JSON.stringify({name:document.getElementById("text-name").value,email:document.getElementById("text-email").value,message:document.getElementById("textarea-message").value});
-	
 	var data = new FormData();
 	data.append("inputfile", files[0]);
 	data.append("adj1", document.getElementById("text-adj-1").value);
 	data.append("adj2", document.getElementById("text-adj-2").value);
-	console.log(data);
-	console.log(files[0]);
-
-	//alert(data);
-	//document.getElementById("uploadform").reset();
 	clear_upload_form();
 	hide_upload_form();
 	show_image_voting();
 	xhr.send(data);
-//			alert(document.getElementById("text-name").value);
-//			alert(document.getElementById("text-email").value);
-//			alert(document.getElementById("textarea-message").value);
 }	
