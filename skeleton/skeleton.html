@@ -1,0 +1,129 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<b href="#div1" onclick=show_div1()>DIV1</b>
+		<b href="#div2" onclick=show_div2()>DIV2</b>
+		<b href="#div3" onclick=show_div3()>DIV3</b>
+
+		<div id="div1">
+			<p>This is div number 1</p>
+		</div>
+		<div id="div2">
+			<p>This is div number 2</p>
+		</div>
+		<div id="div3">
+			<p>This is div number 3</p>
+		</div>
+	</body>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event){
+			on_page_load();
+		});
+		function on_page_load(){
+			document.getElementById("div1").style.display="none";
+			document.getElementById("div2").style.display="none";
+			document.getElementById("div3").style.display="none";
+			//var p = window.location.pathname.split("/")[2];
+			var p = window.location.pathname;
+			console.log("on page load, pathname: " + p);
+			history.pushState({url: p}, null, p);
+			console.log("js routing to: " + p);
+			n1 = 0; n2 = 0; n3 = 0, n4=0;
+			js_route(p.substr(1));
+		}
+		function show_div1(){
+			document.getElementById("div1").style.display="block";
+			document.getElementById("div2").style.display="none";
+			document.getElementById("div3").style.display="none";
+			n1 = n1 + 1;
+			//console.log("showing div1 for " + n1 + "th time");
+			history.pushState({url: 'skeleton/div1', n: n1}, null, "/skeleton/div1");
+		}
+		function show_div1_hist(){
+			document.getElementById("div1").style.display="block";
+			document.getElementById("div3").style.display="none";
+			document.getElementById("div2").style.display="none";
+//			n1 = n1 + 1;
+//			console.log("showing div1 for " + n1 + "th time");
+//			history.pushState({url: 'div1', n: n1}, null, "div1");
+		}
+
+		function show_div2(){
+			document.getElementById("div2").style.display="block";
+			document.getElementById("div1").style.display="none";
+			document.getElementById("div3").style.display="none";
+			n2 = n2 + 1;
+			//console.log("showing div2 for " + n2 + "th time");
+			history.pushState({url: 'skeleton/div2', n: n2}, null, "/skeleton/div2");
+		}
+		function show_div2_hist(){
+			document.getElementById("div2").style.display="block";
+			document.getElementById("div1").style.display="none";
+			document.getElementById("div3").style.display="none";
+//			n2 = n2 + 1;
+//			console.log("showing div2 for " + n2 + "th time");
+//			history.pushState({url: 'div2', n: n2}, null, "div2");
+		}
+
+		function show_div3(){
+			document.getElementById("div3").style.display="block";
+			document.getElementById("div2").style.display="none";
+			document.getElementById("div1").style.display="none";
+			n3 = n3 + 1;
+			//console.log("showing div3 for " + n3 + "th time");
+			history.pushState({url: 'skeleton/div3', n: n3}, null, "/skeleton/div3");
+		}
+		function show_div3_hist(){
+			document.getElementById("div3").style.display="block";
+			document.getElementById("div2").style.display="none";
+			document.getElementById("div1").style.display="none";
+//			n3 = n3 + 1;
+//			console.log("showing div3 for " + n3 + "th time");
+//			history.pushState({url: 'div3', n: n3}, null, "div3");
+		}
+
+		window.onpopstate = function(event) {
+			event.preventDefault();
+			var popped_url = event.state.url;
+			var popped_n = event.state.n;
+			console.log("popstate url: " + popped_url);
+			console.log("onpopstate, routing to: " + window.location.pathname + " and n is " + popped_n);
+			js_route_hist(popped_url);
+			//js_route(window.location.pathname.split("/")[1]);
+		}
+
+		function js_route(path){
+			switch(path){
+				case "skeleton/div1":
+					show_div1();
+					break;
+				case "skeleton/div2":
+					show_div2();
+					break;
+				case "skeleton/div3":
+					show_div3();
+					break;
+				case "skeleton/div4":
+					show_div4();
+			}
+		}
+		function js_route_hist(path){
+			switch(path){
+				case "skeleton/div1":
+					show_div1_hist();
+					break;
+				case "skeleton/div2":
+					show_div2_hist();
+					break;
+				case "skeleton/div3":
+					show_div3_hist();
+					break;
+				case "skeleton/div4":
+					show_div4_hist();
+			}
+		}
+
+	</script>
+</html>
