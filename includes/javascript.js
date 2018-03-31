@@ -1,5 +1,6 @@
 //global variables (to be moved to scoping function??)
 var files;
+var homeurl = "/";
 var contacturl = "/contact";
 var uploadurl = "/upload";
 server = "/cowboy";
@@ -36,6 +37,7 @@ document.querySelector('#inputfile').addEventListener('change', function(){
 function on_page_load() {
 	// hide all the "below-fold" divs
 	hide_below_fold();
+	overlay_on();
 
 	console.log(window.location.pathname);
 
@@ -45,10 +47,12 @@ function on_page_load() {
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			overlay_off();
+			var path = window.location.pathname.substr(1);
+			//history.pushState({url: path}, null, path);
+			js_routing(path);
 				}
-		else if (xhr.status !== 200) {
-			overlay_on();
-				}
+//		else if (xhr.status !== 200) {
+//				}
 	};
 	xhr.send();
 }
@@ -97,6 +101,8 @@ function sign_up_now() {
 }
 function overlay_off(){
 	document.getElementById("overlay").style.display = "none";
+	document.getElementById("maincontents").classList.remove('noscroll');
+	window.scrollTo(0,0);
 }
 function show_signup(){
 	document.getElementById("sign-up-now-button").style.display = "block";
@@ -109,13 +115,14 @@ function overlay_on(){
 	document.getElementById("overlay").style.display = "block";
 	document.getElementById("sign-up-now-button").style.display = "none";
 	document.getElementById("sign-up").style.display = "none";
+	document.getElementById("maincontents").classList.add('noscroll');
 }
 function nextimage(clickedbuttonid) {
 	alert(n + '\n' + clickedbuttonid + '\n' + document.getElementById("imagetitle").innerHTML);
 	document.getElementById("currentimage").src = images_list[n % images_list_length];
 	document.getElementById("imagetitle").innerHTML = image_titles_list[n % image_titles_list_length];
 	n = n + 1;
-	make_ajax_call(server);
+	//make_ajax_call(server);
 	//function to simply update images_list with this.response. 
 }
 function ajaxcallback(serverrespos) {
@@ -156,7 +163,18 @@ function hide_below_fold(){
 	hide_upload_form();
 }
 function show_contact_form(){
-	history.pushState(null, null, contacturl);
+	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
+	history.pushState({url:contacturl}, null, contacturl);
+	document.getElementById("show-upload-button").style.display = "none";
+	document.getElementById("contact-form-div").style.display = "block";
+	document.getElementById("show-contact-button").style.display = "none";
+	document.getElementById("send-message-button-div").style.display = "block";
+	hide_upload_form();
+	hide_image_voting();
+}
+function show_contact_form_hist(){
+	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
+	document.getElementById("show-upload-button").style.display = "none";
 	document.getElementById("contact-form-div").style.display = "block";
 	document.getElementById("show-contact-button").style.display = "none";
 	document.getElementById("send-message-button-div").style.display = "block";
@@ -175,15 +193,39 @@ function hide_upload_form(){
 	document.getElementById("imagetoupload").style.display = "none";
 }
 function show_image_voting(){
+	//history.pushState({url:homeurl.substr(1)}, null, homeurl);
+	history.pushState({url:homeurl}, null, homeurl);
 	document.getElementById("image-voting").style.display = "block";
+	hide_upload_form();
+	hide_contact_form();
+	hide_below_fold();
+}
+function show_image_voting_hist(){
+	//history.pushState({url:homeurl.substr(1)}, null, homeurl);
+	document.getElementById("image-voting").style.display = "block";
+	hide_upload_form();
+	hide_contact_form();
+	hide_below_fold();
 }
 function hide_image_voting(){
 	document.getElementById("image-voting").style.display = "none";
 }
 function show_upload_form(){
-	history.pushState(null, null, uploadurl);
+	//history.pushState({url: uploadurl.substr(1)}, null, uploadurl);
+	history.pushState({url: uploadurl}, null, uploadurl);
 	hide_image_voting();
 	hide_contact_form();
+	document.getElementById("show-contact-button").style.display = "none";
+	document.getElementById("imagetoupload").src = "";
+	document.getElementById("upload-form-div").style.display = "block";
+	document.getElementById("show-upload-button").style.display = "none";
+	document.getElementById("upload-image-button-div").style.display = "block";
+	document.getElementById("imagetoupload").style.display = "block";
+}
+function show_upload_form_hist(){
+	hide_image_voting();
+	hide_contact_form();
+	document.getElementById("show-contact-button").style.display = "none";
 	document.getElementById("imagetoupload").src = "";
 	document.getElementById("upload-form-div").style.display = "block";
 	document.getElementById("show-upload-button").style.display = "none";
@@ -197,7 +239,7 @@ function clear_upload_form(){
 }
 function upload_image() {
 	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/upload");
+	xhr.open('POST', "/uploadhandler");
 	xhr.onload = function() {
 	  alert(this.response);
 		if (xhr.status === 200) {
@@ -221,3 +263,43 @@ function upload_image() {
 	show_image_voting();
 	xhr.send(data);
 }	
+window.onpopstate = function(event) {
+	event.preventDefault();
+	var popped_url = event.state.url;
+//	alert(document.title);
+//	alert(state);
+//	console.log(state.url);
+//	console.log(window.location.pathname);
+//	js_routing(window.location.pathname);
+	js_routing_hist(popped_url);
+}
+function js_routing(path){
+	switch(path) {
+		case "/upload": 
+			console.log("upload");
+			show_upload_form();
+			break;
+		case "/contact": 
+			console.log("contact");
+			show_contact_form();
+			break;
+		default:
+			console.log("default. loading home");
+			show_image_voting();
+	}
+}
+function js_routing_hist(path){
+	switch(path) {
+		case "/upload": 
+			console.log("upload history");
+			show_upload_form_hist();
+			break;
+		case "/contact": 
+			console.log("contact history");
+			show_contact_form_hist();
+			break;
+		default:
+			console.log("default. loading home");
+			show_image_voting_hist();
+	}
+}
