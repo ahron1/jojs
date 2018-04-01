@@ -25,9 +25,9 @@ window.onpopstate = function(event) {
 	js_routing_hist(popped_url);
 }
 document.querySelector('#inputfile').addEventListener('change', function(){
-	console.log("in query selector");
+	//console.log("in query selector");
     files = this.files; 
-	console.log(this.files);
+	//console.log(this.files);
 	var image=this.files[0];
 	var reader = new FileReader();
 	reader.onload = function(e) { 
@@ -49,30 +49,30 @@ document.querySelector('#inputfile').addEventListener('change', function(){
 function js_routing(path){
 	switch(path) {
 		case "/upload": 
-			console.log("upload");
+			//console.log("upload");
 			show_upload_form();
 			break;
 		case "/contact": 
-			console.log("contact");
+			//console.log("contact");
 			show_contact_form();
 			break;
 		default:
-			console.log("default. loading home");
+			//console.log("default. loading home");
 			show_image_voting();
 	}
 }
 function js_routing_hist(path){
 	switch(path) {
 		case "/upload": 
-			console.log("upload history");
+			//console.log("upload history");
 			show_upload_form_hist();
 			break;
 		case "/contact": 
-			console.log("contact history");
+			//console.log("contact history");
 			show_contact_form_hist();
 			break;
 		default:
-			console.log("default. loading home");
+			//console.log("default. loading home");
 			show_image_voting_hist();
 	}
 }
@@ -83,7 +83,7 @@ function on_page_load() {
 	hide_image_voting();
 	overlay_on();
 
-	console.log(window.location.pathname);
+	//console.log(window.location.pathname);
 
 	// send empty GET to check for cookies
 	var xhr = new XMLHttpRequest;
@@ -168,39 +168,6 @@ function show_signup(){
 	document.getElementById("show-signup-button").style.display = "none";
 	document.getElementById("no-account-text").style.display = "none";
 }
-function ajaxcallback(serverrespos) {
-	var server_response = JSON.parse(this.response);
-	alert(server_response);
-	//var myarray = JSON.parse(this.response);
-	//alert(myarray);
-	alert(this.response);
-	//images_list = JSON.parse(this.response);
-}
-function make_ajax_call(URL) {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', URL);
-	xhr.onload = function(e) {
-		alert(this.response);
-	};
-	xhr.send("foo");
-}
-function send_message() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', server);
-	xhr.onload = function() {
-	  alert(this.response);
-	  alert("thank you, message received");
-	};
-	var data = JSON.stringify({name:document.getElementById("text-name").value,email:document.getElementById("text-email").value,message:document.getElementById("textarea-message").value});
-	alert(data);
-	document.getElementById("contactform").reset();
-	hide_contact_form();
-	show_image_voting();
-	xhr.send(data);
-//			alert(document.getElementById("text-name").value);
-//			alert(document.getElementById("text-email").value);
-//			alert(document.getElementById("textarea-message").value);
-}	
 
 function show_image_voting(){
 	//history.pushState({url:homeurl.substr(1)}, null, homeurl);
@@ -261,6 +228,32 @@ function clear_contact_form(){
 	document.getElementById("textarea-message").value="";
 
 }
+function send_message() {
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', "/messagehandler");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			alert(this.response);
+			alert("thank you, message received");
+			window.history.back();
+		}
+		else {
+			alert('Message sending failed.  Returned status of ' + xhr.status);
+			alert('Message sending failed.  Returned status of ' + xhr.responseText);
+		}
+
+	};
+
+	var data = new FormData();
+	data.append("sender-name", document.getElementById("text-name").value);
+	data.append("sender-email", document.getElementById("text-email").value)
+	data.append("message-content", document.getElementById("textarea-message").value)
+
+	document.getElementById("contactform").reset();
+	hide_contact_form();
+	show_image_voting();
+	xhr.send(data);
+}	
 
 function show_upload_form(){
 	//history.pushState({url: uploadurl.substr(1)}, null, uploadurl);
@@ -322,3 +315,20 @@ function upload_image() {
 	show_image_voting();
 	xhr.send(data);
 }	
+
+function ajaxcallback(serverrespos) {
+	var server_response = JSON.parse(this.response);
+	alert(server_response);
+	//var myarray = JSON.parse(this.response);
+	//alert(myarray);
+	alert(this.response);
+	//images_list = JSON.parse(this.response);
+}
+function make_ajax_call(URL) {
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', URL);
+	xhr.onload = function(e) {
+		alert(this.response);
+	};
+	xhr.send("foo");
+}

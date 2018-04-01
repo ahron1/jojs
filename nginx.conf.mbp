@@ -163,6 +163,9 @@ http {
 		location /uploadhandler {
 			proxy_pass https://192.168.64.2:8443/uploadhandler;
 		}
+		location /messagehandler {
+			proxy_pass https://192.168.64.2:8443/messagehandler;
+		}
 #		location /cowboy {
 #			proxy_pass https://192.168.64.2:8443/cowboy;
 #		}
