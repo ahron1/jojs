@@ -142,19 +142,11 @@ http {
 			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/skeleton;
 			try_files $uri /skeleton.html;
 		}
-#		location /includes/ {
-#			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1;
-#		}
-#		location /images/ {
-#			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1;
-#		}
-#		location /server/ {
-#			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1;
-#		}
-#			location /upload{
-#			proxy_pass https://192.168.43.220:8765/;
-#		}
-	
+		location /faqs {
+			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/faqs;
+			try_files $uri /faqs.html;
+		}
+
 #### PROXY PASSES TO COWBOY SERVER ##
 	
 		location /login {
@@ -166,12 +158,9 @@ http {
 		location /messagehandler {
 			proxy_pass https://192.168.64.2:8443/messagehandler;
 		}
-#		location /cowboy {
-#			proxy_pass https://192.168.64.2:8443/cowboy;
-#		}
-#		location /join {
-#			proxy_pass https://192.168.64.2:8443/join;
-#		}
+		location /resetpassword {
+			proxy_pass https://192.168.64.2:8443/resetpassword;
+		}
 #### LOCATION / 
 		location / {
 #			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/www;

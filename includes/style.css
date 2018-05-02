@@ -1,5 +1,9 @@
-
     <style>
+		/*#textarea-message-div{
+			border-color: red;
+			border-width: 8px;
+			border-style: solid;
+		}*/
         .ui-grid-a, .ui-grid-solo {
             width: 96vw;
             display: block;

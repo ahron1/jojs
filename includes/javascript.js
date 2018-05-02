@@ -116,6 +116,10 @@ function hide_below_fold(){
 	hide_upload_form();
 }
 
+function clear_login_form(){
+	document.getElementById("login-email").value="";
+	document.getElementById("login-password").value="";
+}
 function sign_in() {
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/login");
@@ -129,6 +133,7 @@ function sign_in() {
 			js_routing(path);
 		}
 		else {
+			clear_login_form();
 			alert('Request failed.  Returned status of ' + xhr.status);
 		}
 	};
@@ -136,6 +141,32 @@ function sign_in() {
 	//create json data variable from html text input elements 
 	//var data = JSON.stringify({login:document.getElementById("login-email").value, password:document.getElementById("login-password").value});
 	
+	//create FormData variable and append values from html text input elements
+	var data = new FormData();
+	data.append("login-email", document.getElementById("login-email").value);
+	data.append("login-password", document.getElementById("login-password").value)
+	xhr.send(data);
+}
+function forgot_pw() {
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', "/resetpassword");
+	xhr.onload = function() {
+	  	alert(this.response);
+		if (xhr.status === 200) {
+			//alert('Something went wrong.  Name is now ' + xhr.responseText);
+			//alert('Something went wrong.  Name is now ' + xhr.statusText);
+//			overlay_off();
+//			var path = window.location.pathname;
+//			js_routing(path);
+			alert("request received successfully. check your email");
+			clear_login_form();
+		}
+		else {
+			alert('Request failed.  Returned status of ' + xhr.status);
+			clear_login_form();
+		}
+	};
+
 	//create FormData variable and append values from html text input elements
 	var data = new FormData();
 	data.append("login-email", document.getElementById("login-email").value);
@@ -190,6 +221,10 @@ function nextimage(clickedbuttonid) {
 	document.getElementById("currentimage").src = images_list[n % images_list_length];
 	document.getElementById("imagetitle").innerHTML = image_titles_list[n % image_titles_list_length];
 	n = n + 1;
+	// list of 10 images. when n is 2, update 6-10, when n is 7, update 1-5. 
+	// updating includes sending the votes for those images to the server (create new array to store vote results)
+	// create server module to process votes and another to send new images. 
+	// function to check for value of n and send votes to server and get/process/update new images
 	//make_ajax_call(server);
 	//function to simply update images_list with this.response. 
 }
@@ -233,9 +268,10 @@ function send_message() {
 	xhr.open('POST', "/messagehandler");
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			alert(this.response);
-			alert("thank you, message received");
-			window.history.back();
+			//document.getElementById("message-content").innerHTML=this.response;
+			//alert(this.response);
+			window.history.go(-1);
+			//window.history.go(+1);
 		}
 		else {
 			alert('Message sending failed.  Returned status of ' + xhr.status);
@@ -243,39 +279,69 @@ function send_message() {
 		}
 
 	};
-
 	var data = new FormData();
 	data.append("sender-name", document.getElementById("text-name").value);
 	data.append("sender-email", document.getElementById("text-email").value)
-	data.append("message-content", document.getElementById("textarea-message").value)
+	//the line below gets the content from a text box using .value
+	//data.append("message-content", document.getElementById("textarea-message").value)
+	//the line below gets the content from a adjustable content span using .innerhtml
+	//the advantage of using a span is its size adjusts automatically to given input.
+	//but a text box needs jquery for its size to adjust to input
+	data.append("message-content", document.getElementById("textarea-message").innerHTML);
 
 	document.getElementById("contactform").reset();
 	hide_contact_form();
-	show_image_voting();
+	//show_image_voting();
 	xhr.send(data);
 }	
 
 function show_upload_form(){
-	//history.pushState({url: uploadurl.substr(1)}, null, uploadurl);
-	history.pushState({url: uploadurl}, null, uploadurl);
-	hide_image_voting();
-	hide_contact_form();
-	document.getElementById("show-contact-button").style.display = "none";
-	document.getElementById("imagetoupload").src = "";
-	document.getElementById("upload-form-div").style.display = "block";
-	document.getElementById("show-upload-button").style.display = "none";
-	document.getElementById("upload-image-button-div").style.display = "block";
-	document.getElementById("imagetoupload").style.display = "block";
+	// send empty GET to check for cookies
+	var xhr = new XMLHttpRequest;
+	xhr.open('GET', "/login");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+//			var path = window.location.pathname;
+//			js_routing(path);
+			history.pushState({url: uploadurl}, null, uploadurl);
+			hide_image_voting();
+			hide_contact_form();
+			document.getElementById("show-contact-button").style.display = "none";
+			document.getElementById("imagetoupload").src = "";
+			document.getElementById("upload-form-div").style.display = "block";
+			document.getElementById("show-upload-button").style.display = "none";
+			document.getElementById("upload-image-button-div").style.display = "block";
+			document.getElementById("imagetoupload").style.display = "block";
+				}
+		else if (xhr.status !== 200) {
+			overlay_on();
+				}
+	};
+	xhr.send();
 }
 function show_upload_form_hist(){
-	hide_image_voting();
-	hide_contact_form();
-	document.getElementById("show-contact-button").style.display = "none";
-	document.getElementById("imagetoupload").src = "";
-	document.getElementById("upload-form-div").style.display = "block";
-	document.getElementById("show-upload-button").style.display = "none";
-	document.getElementById("upload-image-button-div").style.display = "block";
-	document.getElementById("imagetoupload").style.display = "block";
+	// send empty GET to check for cookies
+	var xhr = new XMLHttpRequest;
+	xhr.open('GET', "/login");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+//			var path = window.location.pathname;
+//			js_routing(path);
+//			history.pushState({url: uploadurl}, null, uploadurl);
+			hide_image_voting();
+			hide_contact_form();
+			document.getElementById("show-contact-button").style.display = "none";
+			document.getElementById("imagetoupload").src = "";
+			document.getElementById("upload-form-div").style.display = "block";
+			document.getElementById("show-upload-button").style.display = "none";
+			document.getElementById("upload-image-button-div").style.display = "block";
+			document.getElementById("imagetoupload").style.display = "block";
+				}
+		else if (xhr.status !== 200) {
+			overlay_on();
+				}
+	};
+	xhr.send();
 }
 function hide_upload_form(){
 	document.getElementById("upload-form-div").style.display = "none";
@@ -290,31 +356,74 @@ function clear_upload_form(){
 	document.getElementById("inputfile").value="";
 }
 function upload_image() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/uploadhandler");
-	xhr.onload = function() {
-	  alert(this.response);
-		if (xhr.status === 200) {
-			alert('upload successful');
-			overlay_off();
-		}
-		else {
-//			alert('Something went wrong. status text is: ' + xhr.responseText);
-//			alert('Something went wrong. response text is ' + xhr.statusText);
-			alert('upload failed. try again.' );
-		}
-	};
-	//json data - no longer used
-	//var data = JSON.stringify({name:document.getElementById("text-name").value,email:document.getElementById("text-email").value,message:document.getElementById("textarea-message").value});
-	var data = new FormData();
-	data.append("inputfile", files[0]);
-	data.append("adj1", document.getElementById("text-adj-1").value);
-	data.append("adj2", document.getElementById("text-adj-2").value);
-	clear_upload_form();
-	hide_upload_form();
-	show_image_voting();
-	xhr.send(data);
+	// send empty GET to /login to check for session cookie before uploading  
+	// alternatively, check session status serverside only: current approach
+//	var xhr = new XMLHttpRequest;
+//	xhr.open('GET', "/login");
+//	xhr.onload = function() {
+//		if (xhr.status === 200) {
+			var xhr1 = new XMLHttpRequest;
+			xhr1.open('POST', "/uploadhandler");
+			xhr1.onload = function() {
+			  alert(this.response);
+				if (xhr1.status === 200) {
+					alert('upload successful');
+					clear_upload_form();
+					hide_upload_form();
+					show_image_voting();
+					overlay_off();
+				}
+				else {
+					alert('upload failed. try again.' );
+					if (xhr1.status === 400) {
+						alert('your session has expired. please log in again');
+						clear_login_form();
+						overlay_on();
+					}
+				}
+			};
+			var data = new FormData();
+			data.append("inputfile", files[0]);
+			data.append("adj1", document.getElementById("text-adj-1").value);
+			data.append("adj2", document.getElementById("text-adj-2").value);
+			xhr1.send(data);
+//			}
+//		else if (xhr.status !== 200) {
+//			alert('your session has expired. please log in again');
+//			clear_login_form();
+//			overlay_on();
+//				}
+//	};
+//	xhr.send();
 }	
+
+function show_faqs_pre_login(){
+	history.pushState({url:window.location.pathname}, null, window.location.pathname);
+	window.location.replace("faqs");
+}
+//function show_faqs_post_login(){
+//	// INCOMPLETE FUNCTION. WIP. 
+//	  var xhr = new XMLHttpRequest;
+//	  xhr.onload = function() {
+//		if (xhr.status === 200) {
+//			var faqcontent = document.createElement('p');
+//			faqcontent.innerHTML = xhr.responseText;
+//			document.getElementById("faqs-div").appendChild(faqcontent);
+//			//document.getElementById("faqs-div").text = xhr.responseText;
+//			//doing the above leads to an effective page load - the on page load func is called and executed. 
+//			document.getElementById("show-contact-button").style.display = "none";
+//			document.getElementById("upload-form-div").style.display = "none";
+//			document.getElementById("show-upload-button").style.display = "none";
+//			document.getElementById("upload-image-button-div").style.display = "none";
+//			document.getElementById("imagetoupload").style.display = "none";
+//			document.getElementById("image-voting").style.display = "none";
+//			document.getElementById("faqs-div").style.display = "block";
+//		  }
+//	}
+//	xhr.open("GET", "/faqs #faqs-content"); 
+//	xhr.send();
+//	alert("xhr sent");
+//}
 
 function ajaxcallback(serverrespos) {
 	var server_response = JSON.parse(this.response);
