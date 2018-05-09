@@ -105,6 +105,7 @@ function overlay_on(){
 	document.getElementById("sign-up-now-button").style.display = "none";
 	document.getElementById("sign-up").style.display = "none";
 	document.getElementById("maincontents").classList.add('noscroll');
+	document.getElementById("password_reset").style.display = "none";
 }
 function overlay_off(){
 	document.getElementById("overlay").style.display = "none";
@@ -144,12 +145,41 @@ function sign_in() {
 	//create FormData variable and append values from html text input elements
 	var data = new FormData();
 	data.append("login-email", document.getElementById("login-email").value);
-	data.append("login-password", document.getElementById("login-password").value)
+	data.append("login-password", document.getElementById("login-password").value);
 	xhr.send(data);
 }
+function sign_up_now() {
+	alert('joining...');
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', "/join/new");
+	xhr.onload = function() {
+	  alert(this.response);
+		if (xhr.status === 200) {
+			alert('Request successful. You will be invited soon...' + xhr.responseText);
+			//overlay_off();
+				}
+		else if (xhr.status !== 200) {
+			alert('Request failed.  Returned status of ' + xhr.status);
+				}
+	};
+	var data = new FormData();
+	data.append("login-email", document.getElementById("login-email").value);
+	data.append("login-password", document.getElementById("login-password").value);
+	data.append("inviter-email", document.getElementById("inviter-email").value);
+	xhr.send(data);
+	//location.reload(true);
+}
+function show_signup(){
+	document.getElementById("sign-up-now-button").style.display = "block";
+	document.getElementById("sign-up").style.display = "block";
+	document.getElementById("loginbutton").style.display = "none";
+	document.getElementById("show-signup-button").style.display = "none";
+	document.getElementById("no-account-text").style.display = "none";
+}
+
 function forgot_pw() {
 	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/resetpassword");
+	xhr.open('POST', "/resetpassword/forgot");
 	xhr.onload = function() {
 	  	alert(this.response);
 		if (xhr.status === 200) {
@@ -160,6 +190,9 @@ function forgot_pw() {
 //			js_routing(path);
 			alert("request received successfully. check your email");
 			clear_login_form();
+//			document.getElementById("password_reset").style.display = "block";
+//			document.getElementById("entry").style.display = "none";
+			
 		}
 		else {
 			alert('Request failed.  Returned status of ' + xhr.status);
@@ -173,31 +206,29 @@ function forgot_pw() {
 	data.append("login-password", document.getElementById("login-password").value)
 	xhr.send(data);
 }
-function sign_up_now() {
-	alert('joining...');
+function new_pw() {
 	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/join");
+	xhr.open('POST', "/resetpassword/new");
 	xhr.onload = function() {
-	  alert(this.response);
+	  	alert(this.response);
 		if (xhr.status === 200) {
-			alert('Request successful. You will be invited soon...' + xhr.responseText);
+			//alert('Something went wrong.  Name is now ' + xhr.statusText+ xhr.responseText);
 			//overlay_off();
-				}
-		else if (xhr.status !== 200) {
+			//var path = window.location.pathname;
+			//js_routing(path);
+			alert("okay" + "xhr.responseText");
+		}
+		else {
+			//clear_login_form();
 			alert('Request failed.  Returned status of ' + xhr.status);
-				}
+		}
 	};
-	var data = JSON.stringify({login:document.getElementById("login-email").value,password:document.getElementById("login-password").value,inviter:document.getElementById("inviter-email").value});
-	alert("join waiting list with: " + data);
+
+	//create FormData variable and append values from html text input elements
+	var data = new FormData();
+	data.append("login-email", document.getElementById("password-reset-email").value);
+	data.append("login-password", document.getElementById("password-reset").value)
 	xhr.send(data);
-	//location.reload(true);
-}
-function show_signup(){
-	document.getElementById("sign-up-now-button").style.display = "block";
-	document.getElementById("sign-up").style.display = "block";
-	document.getElementById("loginbutton").style.display = "none";
-	document.getElementById("show-signup-button").style.display = "none";
-	document.getElementById("no-account-text").style.display = "none";
 }
 
 function show_image_voting(){
@@ -440,4 +471,8 @@ function make_ajax_call(URL) {
 		alert(this.response);
 	};
 	xhr.send("foo");
+}
+
+function dummy(){
+	alert("dummy");
 }
