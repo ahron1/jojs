@@ -5,9 +5,10 @@ var contacturl = "/contact";
 var uploadurl = "/upload";
 server = "/cowboy";
 n = 0;
-images_list = ["./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
-image_titles_list = ["foo", "bar", "baz", "fab"];
-images_list_length = images_list.length;
+images_src_list = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+images_id_list = ["111", "222", "333", "444", "555"];
+image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
+images_src_list_length = images_src_list.length;
 image_titles_list_length = image_titles_list.length;
 
 
@@ -56,6 +57,13 @@ function js_routing(path){
 			//console.log("contact");
 			show_contact_form();
 			break;
+		//case "/images": 
+			//console.log("contact history");
+			//get image Id from the url form /images/xxxx
+			//send req to server. receive array/list in response. 
+			//key difference between this route in js_routing/hist - load from server vs load from existing array. 
+			//load_image_n(n1);
+			//break;
 		default:
 			//console.log("default. loading home");
 			show_image_voting();
@@ -70,6 +78,21 @@ function js_routing_hist(path){
 		case "/contact": 
 			//console.log("contact history");
 			show_contact_form_hist();
+			break;
+
+		// todo : this case doesnt get called. figure the right regex to use. 
+		//case "/images/*": 
+		case (path.match(/[0-9]+$/) || {}).input: 
+			//console.log("contact history");
+			//get image Id from the url form /images/xxxx
+			imageid = get_image_id_from_url();
+			//get serial number of that image in the array
+			n1 = get_image_serial_from_id(imageid);
+			
+			//todo: consider using a simple in/decrement of n
+
+			//load up corresponding image from array
+			load_image_hist_n(n1);
 			break;
 		default:
 			//console.log("default. loading home");
@@ -92,6 +115,7 @@ function on_page_load() {
 		if (xhr.status === 200) {
 			overlay_off();
 			//var path = window.location.pathname.substr(1);
+			//call the js_routing fun to load the path submitted in the address bar
 			var path = window.location.pathname;
 			js_routing(path);
 				}
@@ -105,7 +129,7 @@ function overlay_on(){
 	document.getElementById("sign-up-now-button").style.display = "none";
 	document.getElementById("sign-up").style.display = "none";
 	document.getElementById("maincontents").classList.add('noscroll');
-	document.getElementById("password_reset").style.display = "none";
+//	document.getElementById("password_reset").style.display = "none";
 }
 function overlay_off(){
 	document.getElementById("overlay").style.display = "none";
@@ -120,6 +144,7 @@ function hide_below_fold(){
 function clear_login_form(){
 	document.getElementById("login-email").value="";
 	document.getElementById("login-password").value="";
+	document.getElementById("inviter-email").value="";
 }
 function sign_in() {
 	var xhr = new XMLHttpRequest;
@@ -149,11 +174,11 @@ function sign_in() {
 	xhr.send(data);
 }
 function sign_up_now() {
-	alert('joining...');
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/join/new");
 	xhr.onload = function() {
 	  alert(this.response);
+	  clear_login_form();
 		if (xhr.status === 200) {
 			alert('Request successful. You will be invited soon...' + xhr.responseText);
 			//overlay_off();
@@ -233,8 +258,9 @@ function new_pw() {
 
 function show_image_voting(){
 	//history.pushState({url:homeurl.substr(1)}, null, homeurl);
-	history.pushState({url:homeurl}, null, homeurl);
+	//history.pushState({url:homeurl+"images/111"}, null, homeurl+"images/111");
 	document.getElementById("image-voting").style.display = "block";
+	load_image_n(n);
 	hide_below_fold();
 }
 function show_image_voting_hist(){
@@ -249,15 +275,48 @@ function hide_image_voting(){
 }
 function nextimage(clickedbuttonid) {
 	alert(n + '\n' + clickedbuttonid + '\n' + document.getElementById("imagetitle").innerHTML);
-	document.getElementById("currentimage").src = images_list[n % images_list_length];
-	document.getElementById("imagetitle").innerHTML = image_titles_list[n % image_titles_list_length];
+	load_image_n(n);
+//	document.getElementById("currentimage").src = images_src_list[n % images_src_list_length];
+//	document.getElementById("imagetitle").innerHTML = image_titles_list[n % image_titles_list_length];
+//	history.pushState({url: images_id_list[n % image_titles_list_length]}, null, images_id_list[n % image_titles_list_length]);
 	n = n + 1;
 	// list of 10 images. when n is 2, update 6-10, when n is 7, update 1-5. 
+	//
+	//to do: consider using an ever expanding array - to preserve history. 
+	//
 	// updating includes sending the votes for those images to the server (create new array to store vote results)
 	// create server module to process votes and another to send new images. 
 	// function to check for value of n and send votes to server and get/process/update new images
 	//make_ajax_call(server);
-	//function to simply update images_list with this.response. 
+	//function to simply update images_src_list with this.response. 
+}
+
+function load_image_n(n) {
+	document.getElementById("currentimage").src = images_src_list[n];
+	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
+	if (n == 0) {
+		history.pushState({url:homeurl+"images/"+images_id_list[n]}, null, homeurl+"images/"+images_id_list[n]);
+	} else {
+		history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
+	}
+}
+function load_image_hist_n(n) {
+	document.getElementById("currentimage").src = images_src_list[n];
+	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
+	//history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
+}
+function get_image_id_from_url(){
+	patharray = window.location.pathname.split("/");
+	if (patharray[1] == "images"){
+		return patharray[2];
+	}
+}
+function get_image_serial_from_id(id){
+	for (var i = 0; i < images_id_list.length; i++) {
+		if (id == images_id_list[i]){
+			return i;
+		}
+	}
 }
 
 function show_contact_form(){
@@ -462,7 +521,7 @@ function ajaxcallback(serverrespos) {
 	//var myarray = JSON.parse(this.response);
 	//alert(myarray);
 	alert(this.response);
-	//images_list = JSON.parse(this.response);
+	//images_src_list = JSON.parse(this.response);
 }
 function make_ajax_call(URL) {
 	var xhr = new XMLHttpRequest;
