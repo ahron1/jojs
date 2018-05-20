@@ -1,10 +1,27 @@
-//global variables (to be moved to scoping function??)
+// todo
+//todo - make vars for all html elements used in js via getElementById
+//todo - consider separate req (and server route) to check for login status. route for actual login/pageload could already send image list. 
+
+//global variables (to be moved to new scoping function??)
 var files;
 var homeurl = "/";
 var contacturl = "/contact";
 var uploadurl = "/upload";
-server = "/cowboy";
-n = 0;
+var server = "/cowboy";
+
+var voterecord = [];
+var votedimages = [];
+
+//clicking on next: 
+//	when it is a votable image (identified by non existence in the votedimages list): show the next item in the votable list, and register the vote. 
+//	when it is a non votable image (identified by existence in the votedimages list): show the next item in the votable list, do not register the vote
+
+//clicking on a vote button:
+//	when it is a votable image (identified by non existence in the votedimages list): register the vote, and show the next item in the votable list
+//	when it is a non votable image: vote buttons are deactivated. 
+
+image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. 
+
 images_src_list = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
 images_id_list = ["111", "222", "333", "444", "555"];
 image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
@@ -12,41 +29,23 @@ images_src_list_length = images_src_list.length;
 image_titles_list_length = image_titles_list.length;
 
 
+// event listeners - domcontentloaded, popstate.
 document.addEventListener("DOMContentLoaded", function(event) { 
 	on_page_load();
 });
 window.onpopstate = function(event) {
 	event.preventDefault();
-	var popped_url = event.state.url;
-//	alert(document.title);
-//	alert(state);
-//	console.log(state.url);
-//	console.log(window.location.pathname);
+	if (event.state === null) {
+		//if the user has clicked the back button all the way to the start where there's no history and hence event.state is null
+		 window.location.href="https://192.168.43.220:8765";
+	} else {
+		var popped_url = event.state.url;
+		js_routing_hist(popped_url);
+	}
 //	js_routing(window.location.pathname);
-	js_routing_hist(popped_url);
 }
-document.querySelector('#inputfile').addEventListener('change', function(){
-	//console.log("in query selector");
-    files = this.files; 
-	//console.log(this.files);
-	var image=this.files[0];
-	var reader = new FileReader();
-	reader.onload = function(e) { 
-		document.querySelector('#imagetoupload').src = e.target.result;
-	};
-	reader.readAsDataURL(image);
 
-	//for(var i=0; i<files.length; i++){
-	//	upload_image(this.files[i]);
-	//	console.log(this.files[i]);
-	//}
-	//document.querySelector('#info').innerText = 
-	//'Name: '+ file.name+
-	//', Size: '+file.size +
-	//', Type: '+file.type +
-	//', Last Modified: ' + file.lastModified;
-}, false);
-
+// js routing
 function js_routing(path){
 	switch(path) {
 		case "/upload": 
@@ -62,7 +61,7 @@ function js_routing(path){
 			//get image Id from the url form /images/xxxx
 			//send req to server. receive array/list in response. 
 			//key difference between this route in js_routing/hist - load from server vs load from existing array. 
-			//load_image_n(n1);
+			//load_image_n(current_n);
 			//break;
 		default:
 			//console.log("default. loading home");
@@ -79,27 +78,19 @@ function js_routing_hist(path){
 			//console.log("contact history");
 			show_contact_form_hist();
 			break;
-
-		// todo : this case doesnt get called. figure the right regex to use. 
-		//case "/images/*": 
+		// for matching images. the path will be the last segment (with image id)
 		case (path.match(/[0-9]+$/) || {}).input: 
 			//console.log("contact history");
-			//get image Id from the url form /images/xxxx
-			imageid = get_image_id_from_url();
-			//get serial number of that image in the array
-			n1 = get_image_serial_from_id(imageid);
-			
-			//todo: consider using a simple in/decrement of n
-
-			//load up corresponding image from array
-			load_image_hist_n(n1);
+			show_image_voting_hist();
 			break;
 		default:
 			//console.log("default. loading home");
-			show_image_voting_hist();
+			 window.location.href="https://192.168.43.220:8765";
+			//show_image_voting_histndow.location.href=\""();
 	}
 }
 
+// page structure
 function on_page_load() {
 	// hide all the "below-fold" divs
 	hide_below_fold();
@@ -141,6 +132,7 @@ function hide_below_fold(){
 	hide_upload_form();
 }
 
+// login, pw, account related
 function clear_login_form(){
 	document.getElementById("login-email").value="";
 	document.getElementById("login-password").value="";
@@ -154,6 +146,9 @@ function sign_in() {
 		if (xhr.status === 200) {
 			//alert('Something went wrong.  Name is now ' + xhr.responseText);
 			//alert('Something went wrong.  Name is now ' + xhr.statusText);
+
+			//send new req to server to get images list. 
+
 			overlay_off();
 			var path = window.location.pathname;
 			js_routing(path);
@@ -231,87 +226,99 @@ function forgot_pw() {
 	data.append("login-password", document.getElementById("login-password").value)
 	xhr.send(data);
 }
-function new_pw() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/resetpassword/new");
-	xhr.onload = function() {
-	  	alert(this.response);
-		if (xhr.status === 200) {
-			//alert('Something went wrong.  Name is now ' + xhr.statusText+ xhr.responseText);
-			//overlay_off();
-			//var path = window.location.pathname;
-			//js_routing(path);
-			alert("okay" + "xhr.responseText");
-		}
-		else {
-			//clear_login_form();
-			alert('Request failed.  Returned status of ' + xhr.status);
-		}
-	};
 
-	//create FormData variable and append values from html text input elements
-	var data = new FormData();
-	data.append("login-email", document.getElementById("password-reset-email").value);
-	data.append("login-password", document.getElementById("password-reset").value)
-	xhr.send(data);
-}
-
+// image, voting related
 function show_image_voting(){
-	//history.pushState({url:homeurl.substr(1)}, null, homeurl);
-	//history.pushState({url:homeurl+"images/111"}, null, homeurl+"images/111");
 	document.getElementById("image-voting").style.display = "block";
-	load_image_n(n);
+	load_image_n(image_counter); // start at 0
 	hide_below_fold();
 }
 function show_image_voting_hist(){
-	//history.pushState({url:homeurl.substr(1)}, null, homeurl);
 	document.getElementById("image-voting").style.display = "block";
 	hide_upload_form();
 	hide_contact_form();
 	hide_below_fold();
+	
+	//load up corresponding image from array
+	load_image_hist();
 }
 function hide_image_voting(){
 	document.getElementById("image-voting").style.display = "none";
 }
+
+function load_image_n(n) {
+	document.getElementById("currentimage").src = images_src_list[n];
+	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
+	imagesbuttonsactivation(n);
+	createimagehistory(n);
+}
+function load_image_hist() {
+	//get serial number of that image in the array
+	current_n = get_image_serial();
+	imagesbuttonsactivation(current_n);
+
+	document.getElementById("currentimage").src = images_src_list[current_n];
+	document.getElementById("imagetitle").innerHTML = image_titles_list[current_n];
+
+	//createimagehistory(n);
+	//historical views don't push state to history because that leads to an infinite loop.
+}
+
 function nextimage(clickedbuttonid) {
-	alert(n + '\n' + clickedbuttonid + '\n' + document.getElementById("imagetitle").innerHTML);
-	load_image_n(n);
-//	document.getElementById("currentimage").src = images_src_list[n % images_src_list_length];
-//	document.getElementById("imagetitle").innerHTML = image_titles_list[n % image_titles_list_length];
-//	history.pushState({url: images_id_list[n % image_titles_list_length]}, null, images_id_list[n % image_titles_list_length]);
-	n = n + 1;
-	// list of 10 images. when n is 2, update 6-10, when n is 7, update 1-5. 
+	// img1 vote -> img 2 vote -> img 3 vote -> back -> back -> contact page -> back (to img 1) -> then click next
+	// to do - click skip/next button on already voted image - take to next (voted) image or next image yet to be voted?
+	// consider - checking (similar to imagesbuttonsactivation) before taking action on next click ??
 	//
-	//to do: consider using an ever expanding array - to preserve history. 
+	// list of 10 images. when n is 2, update 6-10, when n is 7, update 1-5. 
 	//
 	// updating includes sending the votes for those images to the server (create new array to store vote results)
 	// create server module to process votes and another to send new images. 
 	// function to check for value of n and send votes to server and get/process/update new images
 	//make_ajax_call(server);
 	//function to simply update images_src_list with this.response. 
-}
 
-function load_image_n(n) {
-	document.getElementById("currentimage").src = images_src_list[n];
-	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
+	current_n = get_image_serial();
+	recordvote(current_n, clickedbuttonid);
+
+	load_image_n(image_counter);
+	}
+
+function createimagehistory(n){
 	if (n == 0) {
 		history.pushState({url:homeurl+"images/"+images_id_list[n]}, null, homeurl+"images/"+images_id_list[n]);
 	} else {
 		history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
 	}
 }
-function load_image_hist_n(n) {
-	document.getElementById("currentimage").src = images_src_list[n];
-	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
-	//history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
+function recordvote(current_n, clickedbuttonid){
+	if (current_n == image_counter) {
+		//voterecord[n] = clickedbuttonid;
+		voterecord[image_counter] = clickedbuttonid;
+		alert(voterecord);
+		image_counter = image_counter + 1;
+		}
+}
+function imagesbuttonsactivation(n){
+	if (n < image_counter) {
+		// to do: try using getelementbyclass instead of id
+		document.getElementById("button1").disabled = true;
+		document.getElementById("button2").disabled = true;
+		//document.getElementById("button3").disabled = true;
+	} else {
+		document.getElementById("button1").disabled = false;
+		document.getElementById("button2").disabled = false;
+		//document.getElementById("button3").disabled = false;
+	}
 }
 function get_image_id_from_url(){
+	//get image Id from the url form /images/xxxx
 	patharray = window.location.pathname.split("/");
 	if (patharray[1] == "images"){
 		return patharray[2];
 	}
 }
-function get_image_serial_from_id(id){
+function get_image_serial(){
+	id = get_image_id_from_url();
 	for (var i = 0; i < images_id_list.length; i++) {
 		if (id == images_id_list[i]){
 			return i;
@@ -319,6 +326,7 @@ function get_image_serial_from_id(id){
 	}
 }
 
+// send message
 function show_contact_form(){
 	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
 	history.pushState({url:contacturl}, null, contacturl);
@@ -385,6 +393,7 @@ function send_message() {
 	xhr.send(data);
 }	
 
+// upload image
 function show_upload_form(){
 	// send empty GET to check for cookies
 	var xhr = new XMLHttpRequest;
@@ -487,6 +496,29 @@ function upload_image() {
 //	xhr.send();
 }	
 
+document.querySelector('#inputfile').addEventListener('change', function(){
+	//console.log("in query selector");
+    files = this.files; 
+	//console.log(this.files);
+	var image=this.files[0];
+	var reader = new FileReader();
+	reader.onload = function(e) { 
+		document.querySelector('#imagetoupload').src = e.target.result;
+	};
+	reader.readAsDataURL(image);
+
+	//for(var i=0; i<files.length; i++){
+	//	upload_image(this.files[i]);
+	//	console.log(this.files[i]);
+	//}
+	//document.querySelector('#info').innerText = 
+	//'Name: '+ file.name+
+	//', Size: '+file.size +
+	//', Type: '+file.type +
+	//', Last Modified: ' + file.lastModified;
+}, false);
+
+// show faqs
 function show_faqs_pre_login(){
 	history.pushState({url:window.location.pathname}, null, window.location.pathname);
 	window.location.replace("faqs");
@@ -515,6 +547,7 @@ function show_faqs_pre_login(){
 //	alert("xhr sent");
 //}
 
+// dummy funs
 function ajaxcallback(serverrespos) {
 	var server_response = JSON.parse(this.response);
 	alert(server_response);
@@ -531,7 +564,7 @@ function make_ajax_call(URL) {
 	};
 	xhr.send("foo");
 }
-
 function dummy(){
 	alert("dummy");
 }
+

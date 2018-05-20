@@ -151,14 +151,20 @@ http {
 			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/skeleton;
 			try_files $uri /skeleton.html;
 		}
+		location /contact {
+			try_files $uri /index.html;
+		}
+		location /upload {
+			try_files $uri /index.html;
+		}
 		location /faqs {
 			root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/faqs;
 			try_files $uri /faqs.html;
 		}
-		location /images {
-			#root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/faqs;
-			try_files $uri /index.html;
-		}
+#		location /images {
+#			#root /Users/yc/vm_shared_dir/demo/jquery_mobile/test1/faqs;
+#			try_files $uri /index.html;
+#		}
 
 #### PROXY PASSES TO COWBOY SERVER ##
 	
