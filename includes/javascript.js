@@ -1,6 +1,7 @@
 // todo
 //todo - make vars for all html elements used in js via getElementById
 //todo - consider separate req (and server route) to check for login status. route for actual login/pageload could already send image list. 
+//todo - consider using session storage, to retain vars after page refresh
 
 //global variables (to be moved to new scoping function??)
 var files;
@@ -22,7 +23,7 @@ var votedimages = [];
 
 image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. 
 
-images_src_list = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+images_src_list = ["https://drive.google.com/open?id=1lNiFftO1OCun9Yx0kqqj9jT47E0ocytL", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
 images_id_list = ["111", "222", "333", "444", "555"];
 image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
 images_src_list_length = images_src_list.length;
@@ -37,7 +38,8 @@ window.onpopstate = function(event) {
 	event.preventDefault();
 	if (event.state === null) {
 		//if the user has clicked the back button all the way to the start where there's no history and hence event.state is null
-		 window.location.href="https://192.168.43.220:8765";
+		//window.location.href="https://192.168.43.220:8765"; //reload the page to bring user back to same place. this is suboptimal. approach below works much better. 
+		history.go(1); //just keep on same page if user keeps clicking back button, since there's no back. 
 	} else {
 		var popped_url = event.state.url;
 		js_routing_hist(popped_url);
@@ -467,10 +469,11 @@ function upload_image() {
 			  alert(this.response);
 				if (xhr1.status === 200) {
 					alert('upload successful');
-					clear_upload_form();
-					hide_upload_form();
-					show_image_voting();
-					overlay_off();
+					window.history.go(-1);
+//					clear_upload_form();
+//					hide_upload_form();
+//					show_image_voting();
+//					overlay_off();
 				}
 				else {
 					alert('upload failed. try again.' );
