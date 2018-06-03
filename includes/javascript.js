@@ -23,7 +23,7 @@ var votedimages = [];
 
 image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. 
 
-images_src_list = ["https://drive.google.com/open?id=1lNiFftO1OCun9Yx0kqqj9jT47E0ocytL", "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+images_src_list = ["https://drive.google.com/host/17W37pVLO5ax12pQzCHfnSe-gmdHpTnbl/", "https://drive.google.com/file/d/1lNiFftO1OCun9Yx0kqqj9jT47E0ocytL/view", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
 images_id_list = ["111", "222", "333", "444", "555"];
 image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
 images_src_list_length = images_src_list.length;
