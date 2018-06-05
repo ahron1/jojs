@@ -10,6 +10,8 @@ var contacturl = "/contact";
 var uploadurl = "/upload";
 var server = "/cowboy";
 
+var Y;
+
 var voterecord = [];
 var votedimages = [];
 
@@ -25,6 +27,7 @@ image_counter = 0; //start at 0, inc each time a new image is voted on, not for 
 
 images_src_list = ["https://drive.google.com/host/17W37pVLO5ax12pQzCHfnSe-gmdHpTnbl/", "https://drive.google.com/file/d/1lNiFftO1OCun9Yx0kqqj9jT47E0ocytL/view", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
 images_id_list = ["111", "222", "333", "444", "555"];
+//images_id_list = [111, 222, 333, 444, 555];
 image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
 images_src_list_length = images_src_list.length;
 image_titles_list_length = image_titles_list.length;
@@ -120,7 +123,8 @@ function on_page_load() {
 function overlay_on(){
 	document.getElementById("overlay").style.display = "block";
 	document.getElementById("sign-up-now-button").style.display = "none";
-	document.getElementById("sign-up").style.display = "none";
+	document.getElementById("sign-up-text").style.display = "none";
+	document.getElementById("sign-up-inviter").style.display = "none";
 	document.getElementById("maincontents").classList.add('noscroll');
 //	document.getElementById("password_reset").style.display = "none";
 }
@@ -186,17 +190,19 @@ function sign_up_now() {
 	};
 	var data = new FormData();
 	data.append("login-email", document.getElementById("login-email").value);
-	data.append("login-password", document.getElementById("login-password").value);
+	//data.append("login-password", document.getElementById("login-password").value);
 	data.append("inviter-email", document.getElementById("inviter-email").value);
 	xhr.send(data);
 	//location.reload(true);
 }
 function show_signup(){
 	document.getElementById("sign-up-now-button").style.display = "block";
-	document.getElementById("sign-up").style.display = "block";
+	document.getElementById("sign-up-text").style.display = "block";
+	document.getElementById("sign-up-inviter").style.display = "block";
 	document.getElementById("loginbutton").style.display = "none";
 	document.getElementById("show-signup-button").style.display = "none";
 	document.getElementById("no-account-text").style.display = "none";
+	document.getElementById("password-entry").style.display = "none";
 }
 
 function forgot_pw() {
@@ -298,8 +304,40 @@ function recordvote(current_n, clickedbuttonid){
 		voterecord[image_counter] = clickedbuttonid;
 		alert(voterecord);
 		image_counter = image_counter + 1;
+		// get new set of images after every 5th image
+		// to do: send last 5 votes to server
+		// check if counter is multiple of 5, since array starts at 0. 
+		if (image_counter % 3 == 0) {
+			get_new_images();
+			//send_votes();
 		}
+	}
 }
+
+//req next (unseen) set of 5 images from server
+function get_new_images(){
+	var xhr = new XMLHttpRequest;
+	xhr.open('GET', "/getimages");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			//console.log(this.response);
+			Y = this.response;
+			console.log(Y);
+			Z = JSON.parse(Y);
+			console.log(Z.picid);
+			images_id_list = images_id_list.concat(Z.picid);
+			console.log(images_id_list);
+			//console.log(xhr.responseText);
+			//var path = window.location.pathname.substr(1);
+			//call the js_routing fun to load the path submitted in the address bar
+				}
+		else if (xhr.status !== 200) {
+			console.log(this.response);
+				}
+	};
+	xhr.send();
+}
+
 function imagesbuttonsactivation(n){
 	if (n < image_counter) {
 		// to do: try using getelementbyclass instead of id

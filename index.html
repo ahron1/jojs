@@ -24,13 +24,20 @@
 				<p>  </p>
 				<b>FooBar, an exclusive platform for fashion and fashionistas. Welcome!</b>
 				<p>  </p>
-			    <label for="Email" >Enter your email: </label>
-				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" >
-		        <input type="email" data-clear-btn="true" name="login-email" id="login-email" value="" ></div>
+				<div id="sign-up-text">
+				    <label for="beta-notice"><p>We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. </label>
+				</div>
+				<div id="email-entry"> 
+				    <label for="Email" >Enter your email: </label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" >
+			        <input type="email" data-clear-btn="true" name="login-email" id="login-email" value="" ></div>
+				</div>
 
-			    <label for="Password">Enter your password:</label>
-				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
-		        <input type="password" data-clear-btn="true" name="login-password" id="login-password" value="" ></div>
+				<div id="password-entry"> 
+				    <label for="Password">Enter your password:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
+			        <input type="password" data-clear-btn="true" name="login-password" id="login-password" value="" ></div>
+				</div>
 			</div>
 			<div class="ui-block-a ui-mini" id="loginbutton">
 				<button id="login-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_in()" ><i>Check-in </i></button>
@@ -42,8 +49,9 @@
 			<div class="ui-block-a ui-mini" id="show-signup-button">
 				<button id="signup-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_signup()" ><i>Sign up!</i></button>
 			</div> 
-			<div id="sign-up">
-				    <label for="inviter-email"><p>We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. An invitation puts you at the top of the list... </p><p><i>Have you been invited by a member? Enter their email id:</i></p></label>
+			
+			<div id="sign-up-inviter">
+			    <label for="inviter-email"><p>An invitation pushes you to the top of the waiting list... </p><p><i>Have you been invited by a member? Enter their email id:</i></p></label>
 				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
 			        <input type="text" data-enhanced="true" data-clear-btn="true" name="inviter-email" id="inviter-email" value="">
 				</div>

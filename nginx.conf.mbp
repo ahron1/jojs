@@ -180,6 +180,10 @@ http {
 		location /messagehandler {
 			proxy_pass https://192.168.64.2:8443/messagehandler;
 		}
+#		location = /getimages {
+		location /getimages {
+			proxy_pass https://192.168.64.2:8443/imagehandler;
+		}
 #		location ~* /join/[0-9a-z]+/ {
 		location /join {
 			proxy_pass https://192.168.64.2:8443/join;
