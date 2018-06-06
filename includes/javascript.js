@@ -25,7 +25,8 @@ var votedimages = [];
 
 image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. 
 
-images_src_list = ["https://drive.google.com/host/17W37pVLO5ax12pQzCHfnSe-gmdHpTnbl/", "https://drive.google.com/file/d/1lNiFftO1OCun9Yx0kqqj9jT47E0ocytL/view", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+//images_src_list = [ "./images/1.jpg",  "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
+images_src_list = [ "/images/1.jpg",  "/images/2.jpg", "/images/3.jpg", "/images/4.jpg", "/images/5.jpg"];
 images_id_list = ["111", "222", "333", "444", "555"];
 //images_id_list = [111, 222, 333, 444, 555];
 image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
@@ -148,6 +149,7 @@ function sign_in() {
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/login");
 	xhr.onload = function() {
+		clear_login_form();
 	  	alert(this.response);
 		if (xhr.status === 200) {
 			//alert('Something went wrong.  Name is now ' + xhr.responseText);
@@ -288,6 +290,14 @@ function nextimage(clickedbuttonid) {
 	current_n = get_image_serial();
 	recordvote(current_n, clickedbuttonid);
 
+	// get new set of images after every 5th image
+	// to do: send last 5 votes to server
+	// check if counter is multiple of 5, since array starts at 0. 
+	if ((image_counter + 1) % 2 == 0) {
+		get_new_images();
+		//send_votes();
+	}
+
 	load_image_n(image_counter);
 	}
 
@@ -304,13 +314,6 @@ function recordvote(current_n, clickedbuttonid){
 		voterecord[image_counter] = clickedbuttonid;
 		alert(voterecord);
 		image_counter = image_counter + 1;
-		// get new set of images after every 5th image
-		// to do: send last 5 votes to server
-		// check if counter is multiple of 5, since array starts at 0. 
-		if (image_counter % 3 == 0) {
-			get_new_images();
-			//send_votes();
-		}
 	}
 }
 
@@ -493,6 +496,8 @@ function clear_upload_form(){
 	document.getElementById("text-adj-1").value="";
 	document.getElementById("text-adj-2").value="";
 	document.getElementById("inputfile").value="";
+	document.querySelector('#imagetoupload').setAttribute("src", "");
+	document.getElementById("imagetoupload").setAttribute("src", "#");
 }
 function upload_image() {
 	// send empty GET to /login to check for session cookie before uploading  
@@ -504,7 +509,8 @@ function upload_image() {
 			var xhr1 = new XMLHttpRequest;
 			xhr1.open('POST', "/uploadhandler");
 			xhr1.onload = function() {
-			  alert(this.response);
+				clear_upload_form();
+			    alert(this.response);
 				if (xhr1.status === 200) {
 					alert('upload successful');
 					window.history.go(-1);
