@@ -2,19 +2,54 @@
 //todo - make vars for all html elements used in js via getElementById
 //todo - consider separate req (and server route) to check for login status. route for actual login/pageload could already send image list. 
 //todo - consider using session storage, to retain vars after page refresh
+//enter image id in url - client + server
 
 //global variables (to be moved to new scoping function??)
 var files;
 var homeurl = "/";
 var contacturl = "/contact";
 var uploadurl = "/upload";
-var server = "/cowboy";
 
 var Y;
+var batchsize = 2; //number of pics/votes to get/send in a lot
 
 var voterecord = [];
 var votedimages = [];
 
+var voted_images_id_list = [];
+var voted_adj1_list = [];
+var voted_adj2_list = [];
+var voted_choice_list = [];
+//var voted_list = [voted_images_id_list, voted_adj1_list, voted_adj2_list, voted_choice_list];
+var voted_list = {"images":voted_images_id_list,"adj1":voted_adj1_list,"adj2":voted_adj2_list,"choice":voted_choice_list};
+
+var image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. only increases. 
+var current_n; // used to denote the sequence number (in the array) of the image currently on display. increases and decreases. 
+
+//var images_src_list = [ "/images/1.jpg",  "/images/2.jpg", "/images/3.jpg", "/images/4.jpg", "/images/5.jpg"];
+//var images_id_list = ["111", "222", "333", "444", "555"];
+//var image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
+//var image_adj1_list = ["ddd", "foo", "bar", "baz", "fab"];
+//var image_adj1_id_list = ["999", "888", "777", "666", "000"];
+//var image_adj2_list = ["ddd", "foo", "bar", "baz", "fab"];
+//var image_adj2_id_list = ["456", "789", "987", "321", "123"];
+//var images_src_list_length = images_src_list.length;
+//var image_titles_list_length = image_titles_list.length;
+//
+
+
+var images_src_list = [];
+var images_id_list = [];
+var image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
+var image_adj1_list = [];
+var image_adj1_id_list = [];
+var image_adj2_list = [];
+var image_adj2_id_list = [];
+var images_src_list_length = images_src_list.length;
+var image_titles_list_length = image_titles_list.length;
+
+
+//desc
 //clicking on next: 
 //	when it is a votable image (identified by non existence in the votedimages list): show the next item in the votable list, and register the vote. 
 //	when it is a non votable image (identified by existence in the votedimages list): show the next item in the votable list, do not register the vote
@@ -22,16 +57,6 @@ var votedimages = [];
 //clicking on a vote button:
 //	when it is a votable image (identified by non existence in the votedimages list): register the vote, and show the next item in the votable list
 //	when it is a non votable image: vote buttons are deactivated. 
-
-image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. 
-
-//images_src_list = [ "./images/1.jpg",  "./images/2.jpg", "./images/3.jpg", "./images/4.jpg", "./images/5.jpg"];
-images_src_list = [ "/images/1.jpg",  "/images/2.jpg", "/images/3.jpg", "/images/4.jpg", "/images/5.jpg"];
-images_id_list = ["111", "222", "333", "444", "555"];
-//images_id_list = [111, 222, 333, 444, 555];
-image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
-images_src_list_length = images_src_list.length;
-image_titles_list_length = image_titles_list.length;
 
 
 // event listeners - domcontentloaded, popstate.
@@ -156,6 +181,7 @@ function sign_in() {
 			//alert('Something went wrong.  Name is now ' + xhr.statusText);
 
 			//send new req to server to get images list. 
+			get_new_images();
 
 			overlay_off();
 			var path = window.location.pathname;
@@ -259,6 +285,8 @@ function hide_image_voting(){
 function load_image_n(n) {
 	document.getElementById("currentimage").src = images_src_list[n];
 	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
+	document.getElementById("button1").innerHTML = image_adj1_list[n];
+	document.getElementById("button2").innerHTML = image_adj2_list[n];
 	imagesbuttonsactivation(n);
 	createimagehistory(n);
 }
@@ -269,6 +297,8 @@ function load_image_hist() {
 
 	document.getElementById("currentimage").src = images_src_list[current_n];
 	document.getElementById("imagetitle").innerHTML = image_titles_list[current_n];
+	document.getElementById("button1").innerHTML = image_adj1_list[current_n];
+	document.getElementById("button2").innerHTML = image_adj2_list[current_n];
 
 	//createimagehistory(n);
 	//historical views don't push state to history because that leads to an infinite loop.
@@ -293,32 +323,15 @@ function nextimage(clickedbuttonid) {
 	// get new set of images after every 5th image
 	// to do: send last 5 votes to server
 	// check if counter is multiple of 5, since array starts at 0. 
-	if ((image_counter + 1) % 2 == 0) {
+	if ((image_counter + 1) % batchsize == 0) {
 		get_new_images();
-		//send_votes();
+		send_votes();
 	}
 
 	load_image_n(image_counter);
 	}
-
-function createimagehistory(n){
-	if (n == 0) {
-		history.pushState({url:homeurl+"images/"+images_id_list[n]}, null, homeurl+"images/"+images_id_list[n]);
-	} else {
-		history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
-	}
-}
-function recordvote(current_n, clickedbuttonid){
-	if (current_n == image_counter) {
-		//voterecord[n] = clickedbuttonid;
-		voterecord[image_counter] = clickedbuttonid;
-		alert(voterecord);
-		image_counter = image_counter + 1;
-	}
-}
-
-//req next (unseen) set of 5 images from server
 function get_new_images(){
+//req next (unseen) set of 5 images from server
 	var xhr = new XMLHttpRequest;
 	xhr.open('GET', "/getimages");
 	xhr.onload = function() {
@@ -328,17 +341,69 @@ function get_new_images(){
 			console.log(Y);
 			Z = JSON.parse(Y);
 			console.log(Z.picid);
+
 			images_id_list = images_id_list.concat(Z.picid);
+			images_src_list = images_src_list.concat(Z.uri);
+			image_adj1_list = image_adj1_list.concat(Z.adj1);
+			image_adj1_id_list = image_adj1_id_list.concat(Z.adj1_id);
+			image_adj2_list = image_adj2_list.concat(Z.adj2);
+			image_adj2_id_list = image_adj2_id_list.concat(Z.adj2_id);
+			
 			console.log(images_id_list);
-			//console.log(xhr.responseText);
-			//var path = window.location.pathname.substr(1);
-			//call the js_routing fun to load the path submitted in the address bar
+			console.log(images_src_list);
 				}
 		else if (xhr.status !== 200) {
 			console.log(this.response);
 				}
 	};
 	xhr.send();
+}
+function createimagehistory(n){
+	if (n == 0) {
+		history.pushState({url:homeurl+"images/"+images_id_list[n]}, null, homeurl+"images/"+images_id_list[n]);
+	} else {
+		history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
+	}
+}
+
+function recordvote(current_n, clickedbuttonid){
+	if (current_n == image_counter) {
+		//voterecord[n] = clickedbuttonid;
+//		voted_images_id_list = voted_images_id_list.concat(images_id_list[image_counter]);
+//		voted_adj1_list = voted_adj1_list.concat(image_adj1_list[image_counter]);
+//		voted_adj2_list = voted_adj2_list.concat(image_adj2_list[image_counter]);
+//		voted_choice_list = voted_choice_list.concat([clickedbuttonid]);
+
+		voted_images_id_list.push(images_id_list[image_counter]);
+		voted_adj1_list.push(image_adj1_id_list[image_counter]);
+		voted_adj2_list.push(image_adj2_id_list[image_counter]);
+		voted_choice_list.push(clickedbuttonid);
+
+//		console.log(voted_images_id_list);
+//		console.log(voted_adj1_list);
+//		console.log(voted_adj2_list);
+//		console.log(voted_choice_list);
+		console.log(voted_list);
+
+		voterecord[image_counter] = clickedbuttonid;
+		//alert(voterecord);
+		image_counter = image_counter + 1;
+	}
+}
+function send_votes(){
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', "/sendvotes");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			console.log(this.response)
+		}
+		else if (xhr.status !== 200) {
+			console.log(this.response);
+		}
+	};
+	var data = new FormData();
+	data.append("votes", JSON.stringify(voted_list));
+	xhr.send(data);
 }
 
 function imagesbuttonsactivation(n){
@@ -509,9 +574,10 @@ function upload_image() {
 			var xhr1 = new XMLHttpRequest;
 			xhr1.open('POST', "/uploadhandler");
 			xhr1.onload = function() {
-				clear_upload_form();
-			    alert(this.response);
+				//clear_upload_form();
+			    //alert(this.response);
 				if (xhr1.status === 200) {
+					clear_upload_form();
 					alert('upload successful');
 					window.history.go(-1);
 //					clear_upload_form();
@@ -520,8 +586,10 @@ function upload_image() {
 //					overlay_off();
 				}
 				else {
+					alert(this.response);
 					alert('upload failed. try again.' );
 					if (xhr1.status === 400) {
+						clear_upload_form();
 						alert('your session has expired. please log in again');
 						clear_login_form();
 						overlay_on();
@@ -593,25 +661,4 @@ function show_faqs_pre_login(){
 //	xhr.send();
 //	alert("xhr sent");
 //}
-
-// dummy funs
-function ajaxcallback(serverrespos) {
-	var server_response = JSON.parse(this.response);
-	alert(server_response);
-	//var myarray = JSON.parse(this.response);
-	//alert(myarray);
-	alert(this.response);
-	//images_src_list = JSON.parse(this.response);
-}
-function make_ajax_call(URL) {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', URL);
-	xhr.onload = function(e) {
-		alert(this.response);
-	};
-	xhr.send("foo");
-}
-function dummy(){
-	alert("dummy");
-}
 
