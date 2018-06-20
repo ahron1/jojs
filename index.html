@@ -10,12 +10,20 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
 	<!-- 
 	try to make a custom download that doesn't break the forms and text fields/inputs
-    <script src="./includes/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="./includes/jquery.mobile.custom.min.js"></script>
 	<link rel="stylesheet" href="./includes/jquery.mobile-1.4.5.min.css"/> 
 	-->
+    <script type="text/javascript" src="./includes/javascript.js"></script>
 	<link rel="stylesheet" href="./includes/jquery.mobile.custom.theme.min.css" /> 
     <link rel="stylesheet" href="./includes/jquery.mobile.custom.structure.min.css" />
     <link rel="stylesheet" href="./includes/style.css" />
+
+	<!-- the below is hackish. x.com/images/ID looks for the includes dir as a subdir of images. -->
+    <script type="text/javascript" src="../includes/javascript.js"></script>
+	<link rel="stylesheet" href="../includes/jquery.mobile.custom.theme.min.css" /> 
+    <link rel="stylesheet" href="../includes/jquery.mobile.custom.structure.min.css" />
+    <link rel="stylesheet" href="../includes/style.css" />
+
 </head>
 <body>
     <div id="overlay" class="overlay">
@@ -198,11 +206,11 @@
 
 	<div id = "list-of-scripts">
 	<!-- 
-	 <script src="./includes/jquery-1.11.1.min.js"></script>  
-	<script src="./includes/jquery.mobile-1.4.5.min.js"></script> 
+	<script type="text/javascript" src="./includes/jquery-1.11.1.min.js"></script>  
+	<script type="text/javascript" src="./includes/jquery.mobile-1.4.5.min.js"></script> 
+    <script type="text/javascript" src="./includes/javascript.js"></script>
 	-->
 
-    <script src="./includes/javascript.js"></script>
 	</div>
 </body>
 

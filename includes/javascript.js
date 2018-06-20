@@ -87,9 +87,13 @@ function js_routing(path){
 			//console.log("contact");
 			show_contact_form();
 			break;
+		case (path.match(/[0-9]+$/) || {}).input: 
 		//case "/images": 
-			//console.log("contact history");
 			//get image Id from the url form /images/xxxx
+			//var path = window.location.pathname.substr(7);
+			alert(path);
+			var path = window.location.pathname;
+			alert(path);
 			//send req to server. receive array/list in response. 
 			//key difference between this route in js_routing/hist - load from server vs load from existing array. 
 			//load_image_n(current_n);
@@ -135,11 +139,12 @@ function on_page_load() {
 	xhr.open('GET', "/login");
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			overlay_off();
 			//var path = window.location.pathname.substr(1);
 			//call the js_routing fun to load the path submitted in the address bar
 			var path = window.location.pathname;
+			get_new_images();
 			js_routing(path);
+			overlay_off();
 				}
 //		else if (xhr.status !== 200) {
 //				}
@@ -333,7 +338,7 @@ function nextimage(clickedbuttonid) {
 function get_new_images(){
 //req next (unseen) set of 5 images from server
 	var xhr = new XMLHttpRequest;
-	xhr.open('GET', "/getimages");
+	xhr.open('GET', "/getimages", false);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			//console.log(this.response);
