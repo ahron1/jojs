@@ -26,17 +26,6 @@ var voted_list = {"images":voted_images_id_list,"adj1":voted_adj1_list,"adj2":vo
 var image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. only increases. 
 var current_n; // used to denote the sequence number (in the array) of the image currently on display. increases and decreases. 
 
-//var images_src_list = [ "/images/1.jpg",  "/images/2.jpg", "/images/3.jpg", "/images/4.jpg", "/images/5.jpg"];
-//var images_id_list = ["111", "222", "333", "444", "555"];
-//var image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
-//var image_adj1_list = ["ddd", "foo", "bar", "baz", "fab"];
-//var image_adj1_id_list = ["999", "888", "777", "666", "000"];
-//var image_adj2_list = ["ddd", "foo", "bar", "baz", "fab"];
-//var image_adj2_id_list = ["456", "789", "987", "321", "123"];
-//var images_src_list_length = images_src_list.length;
-//var image_titles_list_length = image_titles_list.length;
-//
-
 
 var images_src_list = [];
 var images_id_list = [];
@@ -88,16 +77,13 @@ function js_routing(path){
 			show_contact_form();
 			break;
 		case (path.match(/[0-9]+$/) || {}).input: 
-		//case "/images": 
 			//get image Id from the url form /images/xxxx
-			//var path = window.location.pathname.substr(7);
-			alert(path);
-			var path = window.location.pathname;
-			alert(path);
+
 			//send req to server. receive array/list in response. 
 			//key difference between this route in js_routing/hist - load from server vs load from existing array. 
-			//load_image_n(current_n);
-			//break;
+			//load_image_n(1);
+			show_image_voting();
+			break;
 		default:
 			//console.log("default. loading home");
 			show_image_voting();
@@ -142,7 +128,8 @@ function on_page_load() {
 			//var path = window.location.pathname.substr(1);
 			//call the js_routing fun to load the path submitted in the address bar
 			var path = window.location.pathname;
-			get_new_images();
+			//get_new_images("");
+			get_new_images(path);
 			js_routing(path);
 			overlay_off();
 				}
@@ -186,10 +173,10 @@ function sign_in() {
 			//alert('Something went wrong.  Name is now ' + xhr.statusText);
 
 			//send new req to server to get images list. 
-			get_new_images();
 
 			overlay_off();
 			var path = window.location.pathname;
+			get_new_images(path);
 			js_routing(path);
 		}
 		else {
@@ -329,16 +316,16 @@ function nextimage(clickedbuttonid) {
 	// to do: send last 5 votes to server
 	// check if counter is multiple of 5, since array starts at 0. 
 	if ((image_counter + 1) % batchsize == 0) {
-		get_new_images();
+		get_new_images("");
 		send_votes();
 	}
 
 	load_image_n(image_counter);
 	}
-function get_new_images(){
+function get_new_images(path){
 //req next (unseen) set of 5 images from server
 	var xhr = new XMLHttpRequest;
-	xhr.open('GET', "/getimages", false);
+	xhr.open('POST', "/getimages", false);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			//console.log(this.response);
@@ -361,7 +348,9 @@ function get_new_images(){
 			console.log(this.response);
 				}
 	};
-	xhr.send();
+	var data = new FormData();
+	data.append("votes", path);
+	xhr.send(data);
 }
 function createimagehistory(n){
 	if (n == 0) {
