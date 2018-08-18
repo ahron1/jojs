@@ -1,3 +1,6 @@
+#TO DO - 
+#set up later - nginx http auth for admin pages
+#change logs location to /var/log/nginx for FreeBSD
 
 #user  nobody;
 worker_processes  1;
@@ -14,6 +17,10 @@ events {
 }
 
 http {
+	
+	#rate limits #consider additional rate limits for other zones. 
+	limit_req_zone $binary_remote_addr zone=loginlimit:10m rate=10r/s;
+
     include       /usr/local/etc/nginx/mime.types;
     default_type  application/octet-stream;
 
@@ -174,6 +181,8 @@ http {
 #### PROXY PASSES TO COWBOY SERVER ##
 	
 		location /login {  # this allows further subpaths: /login/foobar
+		#rate limit for login zone - to prevent brute forcers
+		limit_req zone=loginlimit burst=20 nodelay;
 #		location = /login { # to allow only /login and nothing else
 			proxy_pass https://192.168.64.2:8443/login;
 		}

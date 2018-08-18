@@ -5,7 +5,7 @@
 //enter image id in url - client + server
 
 //global variables (to be moved to new scoping function??)
-var files;
+var file;
 var homeurl = "/";
 var contacturl = "/contact";
 var uploadurl = "/upload";
@@ -15,6 +15,7 @@ var batchsize = 2; //number of pics/votes to get/send in a lot
 
 var voterecord = [];
 var votedimages = [];
+
 
 var voted_images_id_list = [];
 var voted_adj1_list = [];
@@ -48,7 +49,7 @@ var image_titles_list_length = image_titles_list.length;
 //	when it is a non votable image: vote buttons are deactivated. 
 
 
-// event listeners - domcontentloaded, popstate.
+// event listeners - domcontentloaded, popstate, preview image for upload
 document.addEventListener("DOMContentLoaded", function(event) { 
 	on_page_load();
 });
@@ -64,6 +65,16 @@ window.onpopstate = function(event) {
 	}
 //	js_routing(window.location.pathname);
 }
+//show preview of image to be uploaded
+document.addEventListener('DOMContentLoaded',function() {
+	document.querySelector('#userinputfile').addEventListener('change', function(){
+		file = this.files[0];
+		var reader = new FileReader();
+		reader.onload = function(e){
+			document.querySelector('#imagetoupload').src = e.target.result
+		};
+		reader.readAsDataURL(file);
+	}, false)}, false);
 
 // js routing
 function js_routing(path){
@@ -106,7 +117,8 @@ function js_routing_hist(path){
 			break;
 		default:
 			//console.log("default. loading home");
-			 window.location.href="https://192.168.43.220:8765";
+			 //window.location.href="https://192.168.43.220:8765";
+			 window.location.href="https://192.168.64.2";
 			//show_image_voting_histndow.location.href=\""();
 	}
 }
@@ -362,21 +374,11 @@ function createimagehistory(n){
 
 function recordvote(current_n, clickedbuttonid){
 	if (current_n == image_counter) {
-		//voterecord[n] = clickedbuttonid;
-//		voted_images_id_list = voted_images_id_list.concat(images_id_list[image_counter]);
-//		voted_adj1_list = voted_adj1_list.concat(image_adj1_list[image_counter]);
-//		voted_adj2_list = voted_adj2_list.concat(image_adj2_list[image_counter]);
-//		voted_choice_list = voted_choice_list.concat([clickedbuttonid]);
-
 		voted_images_id_list.push(images_id_list[image_counter]);
 		voted_adj1_list.push(image_adj1_id_list[image_counter]);
 		voted_adj2_list.push(image_adj2_id_list[image_counter]);
 		voted_choice_list.push(clickedbuttonid);
 
-//		console.log(voted_images_id_list);
-//		console.log(voted_adj1_list);
-//		console.log(voted_adj2_list);
-//		console.log(voted_choice_list);
 		console.log(voted_list);
 
 		voterecord[image_counter] = clickedbuttonid;
@@ -389,7 +391,8 @@ function send_votes(){
 	xhr.open('POST', "/sendvotes");
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			console.log(this.response)
+			console.log(this.response);
+			reset_new_votes_list();
 		}
 		else if (xhr.status !== 200) {
 			console.log(this.response);
@@ -398,6 +401,12 @@ function send_votes(){
 	var data = new FormData();
 	data.append("votes", JSON.stringify(voted_list));
 	xhr.send(data);
+}
+function reset_new_votes_list(){
+	voted_images_id_list.splice(0,batchsize);
+	voted_adj1_list.splice(0,batchsize);
+	voted_adj2_list.splice(0,batchsize);
+	voted_choice_list.splice(0,batchsize);
 }
 
 function imagesbuttonsactivation(n){
@@ -421,11 +430,12 @@ function get_image_id_from_url(){
 }
 function get_image_serial(){
 	id = get_image_id_from_url();
-	for (var i = 0; i < images_id_list.length; i++) {
+	for (var i = images_id_list.length; i >= 0; i--) {
 		if (id == images_id_list[i]){
 			return i;
 		}
 	}
+
 }
 
 // send message
@@ -469,7 +479,7 @@ function send_message() {
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			//document.getElementById("message-content").innerHTML=this.response;
-			//alert(this.response);
+			alert(this.response);
 			window.history.go(-1);
 			//window.history.go(+1);
 		}
@@ -489,7 +499,7 @@ function send_message() {
 	//but a text box needs jquery for its size to adjust to input
 	data.append("message-content", document.getElementById("textarea-message").innerHTML);
 
-	document.getElementById("contactform").reset();
+	//document.getElementById("contactform").reset();
 	hide_contact_form();
 	//show_image_voting();
 	xhr.send(data);
@@ -554,7 +564,7 @@ function hide_upload_form(){
 function clear_upload_form(){
 	document.getElementById("text-adj-1").value="";
 	document.getElementById("text-adj-2").value="";
-	document.getElementById("inputfile").value="";
+	document.getElementById("userinputfile").value="";
 	document.querySelector('#imagetoupload').setAttribute("src", "");
 	document.getElementById("imagetoupload").setAttribute("src", "#");
 }
@@ -565,6 +575,7 @@ function upload_image() {
 //	xhr.open('GET', "/login");
 //	xhr.onload = function() {
 //		if (xhr.status === 200) {
+			alert("in upload_image func");
 			var xhr1 = new XMLHttpRequest;
 			xhr1.open('POST', "/uploadhandler");
 			xhr1.onload = function() {
@@ -574,10 +585,6 @@ function upload_image() {
 					clear_upload_form();
 					alert('upload successful');
 					window.history.go(-1);
-//					clear_upload_form();
-//					hide_upload_form();
-//					show_image_voting();
-//					overlay_off();
 				}
 				else {
 					alert(this.response);
@@ -591,7 +598,7 @@ function upload_image() {
 				}
 			};
 			var data = new FormData();
-			data.append("inputfile", files[0]);
+			data.append("inputfile", file);
 			data.append("adj1", document.getElementById("text-adj-1").value);
 			data.append("adj2", document.getElementById("text-adj-2").value);
 			xhr1.send(data);
@@ -605,27 +612,36 @@ function upload_image() {
 //	xhr.send();
 }	
 
-document.querySelector('#inputfile').addEventListener('change', function(){
-	//console.log("in query selector");
-    files = this.files; 
-	//console.log(this.files);
-	var image=this.files[0];
-	var reader = new FileReader();
-	reader.onload = function(e) { 
-		document.querySelector('#imagetoupload').src = e.target.result;
-	};
-	reader.readAsDataURL(image);
-
-	//for(var i=0; i<files.length; i++){
-	//	upload_image(this.files[i]);
-	//	console.log(this.files[i]);
-	//}
-	//document.querySelector('#info').innerText = 
-	//'Name: '+ file.name+
-	//', Size: '+file.size +
-	//', Type: '+file.type +
-	//', Last Modified: ' + file.lastModified;
-}, false);
+//UNUSED - upload file on submit button click
+//document.addEventListener('DOMContentLoaded',function() {
+//	document.querySelector('#uploadimagebutton').addEventListener('click', function () {
+//			alert("button clicked");
+//		    //var files = this.files;
+//			//console.log(files);
+//			uploadFile(file); // call the function to upload the file
+//	}, false)}
+//	, false);
+//
+//function uploadFile(file){
+//	var url =  "/uploadhandler";
+//	var xhr = new XMLHttpRequest();
+//	var fd = new FormData();
+//	xhr.open("POST", url, true);
+//	xhr.onreadystatechange = function() {
+//		if (xhr.readyState === 4 && xhr.status === 200) {
+//			// Every thing ok, file uploaded
+//			 console.log(xhr.responseText); // handle response.
+//			 } else if(xhr.readyState == 4){
+//			 // with some error
+//			 console.log(xhr.responseText); // handle response.
+//			 }
+//		 };
+//	fd.append("inputfile", file);
+//	fd.append("adj1", document.getElementById("text-adj-1").value);
+//	fd.append("adj2", document.getElementById("text-adj-2").value);
+//	xhr.send(fd);
+// }
+//
 
 // show faqs
 function show_faqs_pre_login(){
