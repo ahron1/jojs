@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<script>
+			var file;
+document.addEventListener('DOMContentLoaded', function(){
+
+			document.querySelector('#fileinput').addEventListener('change', function(){
+					alert("change");
+				    if(this.files.length===0)
+			        return;
+			
+					// gets first selected file
+					var file = this.files[0]; 
+
+					document.querySelector('#info').innerText = 
+					        'Name: '+ file.name+
+					        ', Size: '+file.size +
+					        ', Type: '+file.type +
+					        ', Last Modified: ' + file.lastModified;
+				
+				    // Using FileReader to display the image content
+				    var reader = new FileReader();
+				    reader.onload = function(e) { 
+					        document.querySelector('#preview').src = e.target.result;
+						    };
+				    reader.readAsDataURL(file);
+			
+			}, false)
+}, false	
+);
+		</script>
+	</head>
+
+	<body>
+		<h1>image upload test</h1>
+		<input type="file" id="fileinput" />
+		<img id="preview">
+		<p id="info"></p>
+	
+	
+	</body>
+
+
+</html>
