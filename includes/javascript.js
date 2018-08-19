@@ -206,6 +206,20 @@ function sign_in() {
 	data.append("login-password", document.getElementById("login-password").value);
 	xhr.send(data);
 }
+function sign_out() {
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', "/logout");
+	xhr.onload = function() {
+	  	alert(this.response);
+		if (xhr.status === 200) {
+			location.reload();
+		}
+		else {
+			alert('Request failed.  Returned status of ' + xhr.status);
+		}
+	};
+	xhr.send();
+}
 function sign_up_now() {
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/join/new");
