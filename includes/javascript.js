@@ -643,32 +643,3 @@ function upload_image() {
 // }
 //
 
-// show faqs
-function show_faqs_pre_login(){
-	history.pushState({url:window.location.pathname}, null, window.location.pathname);
-	window.location.replace("faqs");
-}
-//function show_faqs_post_login(){
-//	// INCOMPLETE FUNCTION. WIP. 
-//	  var xhr = new XMLHttpRequest;
-//	  xhr.onload = function() {
-//		if (xhr.status === 200) {
-//			var faqcontent = document.createElement('p');
-//			faqcontent.innerHTML = xhr.responseText;
-//			document.getElementById("faqs-div").appendChild(faqcontent);
-//			//document.getElementById("faqs-div").text = xhr.responseText;
-//			//doing the above leads to an effective page load - the on page load func is called and executed. 
-//			document.getElementById("show-contact-button").style.display = "none";
-//			document.getElementById("upload-form-div").style.display = "none";
-//			document.getElementById("show-upload-button").style.display = "none";
-//			document.getElementById("upload-image-button-div").style.display = "none";
-//			document.getElementById("imagetoupload").style.display = "none";
-//			document.getElementById("image-voting").style.display = "none";
-//			document.getElementById("faqs-div").style.display = "block";
-//		  }
-//	}
-//	xhr.open("GET", "/faqs #faqs-content"); 
-//	xhr.send();
-//	alert("xhr sent");
-//}
-
