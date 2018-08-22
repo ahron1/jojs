@@ -154,7 +154,8 @@ function overlay_on(){
 	document.getElementById("overlay").style.display = "block";
 	document.getElementById("sign-up-now-button").style.display = "none";
 	document.getElementById("sign-up-text").style.display = "none";
-	document.getElementById("sign-up-inviter").style.display = "none";
+//	document.getElementById("sign-up-inviter").style.display = "none";
+	document.getElementById("user-details").style.display = "none";
 	document.getElementById("maincontents").classList.add('noscroll');
 //	document.getElementById("password_reset").style.display = "none";
 }
@@ -172,7 +173,8 @@ function hide_below_fold(){
 function clear_login_form(){
 	document.getElementById("login-email").value="";
 	document.getElementById("login-password").value="";
-	document.getElementById("inviter-email").value="";
+//	document.getElementById("inviter-email").value="";
+	document.getElementById("first-name").value="";
 }
 function sign_in() {
 	var xhr = new XMLHttpRequest;
@@ -236,21 +238,19 @@ function sign_up_now() {
 	};
 	var data = new FormData();
 	data.append("login-email", document.getElementById("login-email").value);
-	//data.append("login-password", document.getElementById("login-password").value);
-	data.append("inviter-email", document.getElementById("inviter-email").value);
+	data.append("first-name", document.getElementById("first-name").value);
 	xhr.send(data);
 	//location.reload(true);
 }
 function show_signup(){
 	document.getElementById("sign-up-now-button").style.display = "block";
 	document.getElementById("sign-up-text").style.display = "block";
-	document.getElementById("sign-up-inviter").style.display = "block";
+	document.getElementById("user-details").style.display = "block";
 	document.getElementById("loginbutton").style.display = "none";
 	document.getElementById("show-signup-button").style.display = "none";
 	document.getElementById("no-account-text").style.display = "none";
 	document.getElementById("password-entry").style.display = "none";
 }
-
 function forgot_pw() {
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/resetpassword/forgot");
