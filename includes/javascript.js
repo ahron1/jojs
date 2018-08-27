@@ -230,6 +230,7 @@ function sign_up_now() {
 	  clear_login_form();
 		if (xhr.status === 200) {
 			alert('Request successful. You will be invited soon...' + xhr.responseText);
+			location.reload(true);
 			//overlay_off();
 				}
 		else if (xhr.status !== 200) {
@@ -240,7 +241,6 @@ function sign_up_now() {
 	data.append("login-email", document.getElementById("login-email").value);
 	data.append("first-name", document.getElementById("first-name").value);
 	xhr.send(data);
-	//location.reload(true);
 }
 function show_signup(){
 	document.getElementById("sign-up-now-button").style.display = "block";
