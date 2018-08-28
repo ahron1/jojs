@@ -81,15 +81,17 @@ function js_routing(path){
 	switch(path) {
 		case "/upload": 
 			//console.log("upload");
+			console.log(path);
 			show_upload_form();
 			break;
 		case "/contact": 
-			//console.log("contact");
+			console.log(path);
 			show_contact_form();
 			break;
 		case (path.match(/[0-9]+$/) || {}).input: 
 			//get image Id from the url form /images/xxxx
 
+			console.log(path);
 			//send req to server. receive array/list in response. 
 			//key difference between this route in js_routing/hist - load from server vs load from existing array. 
 			//load_image_n(1);
@@ -97,6 +99,7 @@ function js_routing(path){
 			break;
 		default:
 			//console.log("default. loading home");
+			console.log(path);
 			show_image_voting();
 	}
 }
@@ -158,6 +161,10 @@ function overlay_on(){
 	document.getElementById("user-details").style.display = "none";
 	document.getElementById("maincontents").classList.add('noscroll');
 //	document.getElementById("password_reset").style.display = "none";
+
+	document.getElementById("contact-form-div-prelogin").style.display = "none";
+	document.getElementById("show-contact-button-prelogin").style.display = "block";
+	document.getElementById("send-message-button-div-prelogin").style.display = "none";
 }
 function overlay_off(){
 	document.getElementById("overlay").style.display = "none";
@@ -475,22 +482,23 @@ function show_contact_form_hist(){
 	hide_image_voting();
 }
 function hide_contact_form(){
+	clear_contact_form();
 	document.getElementById("contact-form-div").style.display = "none";
 	document.getElementById("show-contact-button").style.display = "block";
 	document.getElementById("send-message-button-div").style.display = "none";
 	document.getElementById("show-upload-button-div").style.display = "block";
-	clear_contact_form();
 }
 function clear_contact_form(){
 	document.getElementById("text-name").value="";
 	document.getElementById("text-email").value="";
-	document.getElementById("textarea-message").value="";
+	document.getElementById("textarea-message").textContent="Hi there...";
 
 }
 function send_message() {
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/messagehandler");
 	xhr.onload = function() {
+		hide_contact_form();
 		if (xhr.status === 200) {
 			//document.getElementById("message-content").innerHTML=this.response;
 			alert(this.response);
@@ -514,10 +522,56 @@ function send_message() {
 	data.append("message-content", document.getElementById("textarea-message").innerHTML);
 
 	//document.getElementById("contactform").reset();
+	//hide_contact_form();
+	//show_image_voting();
+	xhr.send(data);
+}	
+function cancel_message() {
+	hide_contact_form();
+	window.history.go(-1);
+}
+
+function send_message_prelogin() {
+	var xhr = new XMLHttpRequest;
+	xhr.open('POST', "/messagehandler");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			//document.getElementById("message-content").innerHTML=this.response;
+			alert(this.response);
+			//window.history.go(-1);
+			location.reload();
+			//window.history.go(+1);
+		}
+		else {
+			alert('Message sending failed.  Returned status of ' + xhr.status);
+			alert('Message sending failed.  Returned status of ' + xhr.responseText);
+		}
+
+	};
+	var data = new FormData();
+	data.append("sender-name", document.getElementById("text-name-prelogin").value);
+	data.append("sender-email", document.getElementById("text-email-prelogin").value)
+	data.append("message-content", document.getElementById("textarea-message-prelogin").innerHTML);
+
+	//document.getElementById("contactform").reset();
 	hide_contact_form();
 	//show_image_voting();
 	xhr.send(data);
 }	
+function show_contact_form_prelogin(){
+	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
+	//history.pushState({url:contacturl}, null, contacturl);
+	//document.getElementById("show-upload-button").style.display = "none";
+	document.getElementById("contact-form-div-prelogin").style.display = "block";
+	document.getElementById("show-contact-button-prelogin").style.display = "none";
+	document.getElementById("send-message-button-div-prelogin").style.display = "block";
+	//document.getElementById("show-upload-button-div").style.display = "none";
+	hide_upload_form();
+	hide_image_voting();
+}
+function cancel_message_prelogin() {
+	location.reload();
+}
 
 // upload image
 function show_upload_form(){
