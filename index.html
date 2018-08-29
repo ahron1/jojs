@@ -29,45 +29,44 @@
     <div id="overlay" class="overlay">
 		<div class="ui-grid-solo" id="entry">
 			<div id="email-and-password-entry">
-				<p>  </p>
+				<br>
 				<b>FooBar, an exclusive platform for fashion and fashionistas. Welcome!</b>
-				<p>  </p>
 				<div id="sign-up-text">
 				    <label for="beta-notice"><p>We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. </label>
 				</div>
 				<div id="email-entry"> 
+				<br>
 				    <label for="Email" >Enter your email: </label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" >
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw" >
 			        <input type="email" data-clear-btn="true" name="login-email" id="login-email" value="" ></div>
 				</div>
-
 				<div id="password-entry"> 
+					<br>
 				    <label for="Password">Enter your password:</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw">
 			        <input type="password" data-clear-btn="true" name="login-password" id="login-password" value="" ></div>
 				</div>
-			</div>
-			<div class="ui-block-a ui-mini" id="loginbutton">
-				<button id="login-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_in()" ><i>Check-in </i></button>
-				<div class="ui-block-a ui-mini" >
-					<button id="pw-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" ><i>Forgot your password? </i></button>
-				</div>
+			<div class="ui-block-a " id="loginbutton">
+				<br>
+				<a id="login-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="sign_in()" style="width:75vw"><b>Check-in </b></a>
+				<a id="pw-button" class="ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" style="width:78vw"><i>I forgot my password.. </i></a>
 			</div> 
+
+
 			<div class="ui-block-a " id="no-account-text">
-				<p>Don't have an account yet? Sign up...</p>
+<br><br>
+			    <label for="Signup" >Don't have an account yet? Sign up...</label>
 			</div>
 			<div class="ui-block-a ui-mini" id="show-signup-button">
-				<button id="signup-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_signup()" ><i>Sign up!</i></button>
+				<a id="signup-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_signup()" style="width:75vw"><i>Sign up!</i></a>
 			</div> 
 			
-			<p></p>
 			<div id="user-details">
 			    <label for="pro-privacy"><p>We respect your privacy enough to not need your full name...</p></label>
 			    <label for="first-name-only">Please enter your first name: </label>
-				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw">
 			        <input type="text" data-enhanced="true" data-clear-btn="true" name="first-name" id="first-name" value="">
 				</div>
-				<p></p>
 			<!--    <label for="birth-year-only">Please enter the year you were born in: </label>
 				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini">
 			        <input type="text" data-enhanced="true" data-clear-btn="true" name="birth-year" id="birth-year" value="">
@@ -82,21 +81,30 @@
 			        <input type="text" data-enhanced="true" data-clear-btn="true" name="inviter-email" id="inviter-email" value="">
 				</div>
 			</div> -->
-			<div class="ui-block-a ui-mini" id="sign-up-now-button">
+			<div class="ui-block-a " id="sign-up-now-button">
 				<!-- <button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_up_now()" ><i> Join the waiting list</i></button> -->
-				<button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_up_now()" ><i>Join the club!</i></button>
+				<br>
+				<a id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="sign_up_now()" style="width:75vw"><i>Join the club!</i></a>
 			</div> 
-			<div id="faq-prelogin">
-				<div class="ui-block-a ui-mini" id="faq-prelogin-div">
-					<button id="faq-prelogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="location.href='https://192.168.64.2/faqs'" type="button" ><i>FAQs </i></button>
-				</div>  
 			</div>
-
-			
-				<div class="ui-block-a ui-mini" id="show-contact-button-div-prelogin">
+				<div>
+				<div class="ui-block-a " id="faq-prelogin-div">
+<br>
+			    <label for="faqs" >Wanna know more? </label>
+				</div>
 				<div class="ui-block-a ui-mini" >
+					<a id="faq-prelogin-button" class="image-button ui-btn ui-btn-c ui-shadow ui-corner-all ui-mini" onclick="location.href='https://192.168.64.2/faqs'" type="button" style="width:75vw"><i>FAQs </i></a>
+				</div>
+				</div>  
+
+				<div class="ui-block-a " id="faq-prelogin-div">
+<br>
+				<div>
+			    <label for="faqs" >We look forward to hearing from you!</label>
+				</div>  
+				<div class="ui-block-a " id="show-contact-button-div-prelogin">
 					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-					<button id="show-contact-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_contact_form_prelogin()" type="button" ><i>Get in touch...</i></button>
+					<a id="show-contact-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="show_contact_form_prelogin()" type="button" style="width:75vw" ><i>Get in touch...</i></a>
 					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
 				</div> 
 				</div> 
@@ -116,32 +124,39 @@
 							<form id="contactform-prelogin" enctype="multipart/form-data">
 								<p>
 							    <label for="text-name-prelogin">Name:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
 							    <input type="text" name="text-name-prelogin" id="text-name-prelogin" value="">
+					</div>
 								</p>
 								<p>
+
 							    <label for="text-email-prelogin">Email:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw">
 							    <input type="email" name="text-email-prelogin" id="text-email-prelogin" value="">
+					</div>
 								</p>
 								<p>
 							    <label for="textarea-message">Message:</label>
 								<!-- <textarea name="textarea-message" id="textarea-message" ></textarea>-->	
 								<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
 								<div id="textarea-message-div-prelogin">
-									<span id="textarea-message-prelogin" contenteditable="true">Hi there ...</span>
+									<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
+									<div style="border-radius:5px; display:inline-block; min-height: 100px; width: 90vw; background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</div> 
 								</div>
 							   
 								</p>
+							</form>
 						</div>
-						<div class="ui-grid-solo" id="send-message-button-div-prelogin">
-							<div class="ui-block-b ui-mini">
+						<div id="send-message-button-div-prelogin">
+							<div class="ui-block-a ">
 								<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-								<a id="send-message-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="send_message_prelogin()" ><i>Send this message</i></a>
+								<a id="send-message-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="send_message_prelogin()" style="width:75vw" ><i>Send this message</i></a>
 								<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
 							</div> 
 
-							<div class="ui-block-b ui-mini ">
+							<div class="ui-block-a ui-mini ">
 								<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-								<a id="cancel-message-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="cancel_message_prelogin()" ><i>Cancel </i></a>
+								<a id="cancel-message-button-prelogin" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="cancel_message_prelogin()"  style="width:75vw"><i>Cancel </i></a>
 								<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
 							</div>
 
@@ -173,15 +188,17 @@
 			<div class="ui-grid-a" id="voting-div">
 				<legend class="choicelegend">What do you think of this:</legend>
 				<div class="ui-block-b">
-					<button id="button1" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">sophisticatedd</button>
+					<a id="button1" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)">sophisticatedd</a>
 				</div>
 
 				<div class="ui-block-b">
-					<button id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</button>
+					<a id="button2" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</a>
 				</div>
 			</div>
 			<div class="ui-grid-solo" id="skip-image-div">
-				<div class="ui-block-a"><button id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)"><i>Skip</i></button></div> 
+				<div class="ui-block-a">
+					<a id="button3" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)"><i>Skip</i></a>
+				</div> 
 			</div>
 	</div>
 	<div id = "contact-form-and-send-button">
@@ -199,19 +216,28 @@
 				<form id="contactform" enctype="multipart/form-data">
 					<p>
 				    <label for="text-name">Name:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
 				    <input type="text" name="text-name" id="text-name" value="">
+					</div>
 					</p>
 					<p>
 				    <label for="text-email">Email:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw">
 				    <input type="email" name="text-email" id="text-email" value="">
+					</div>
 					</p>
 					<p>
 				    <label for="textarea-message">Message:</label>
 					<!-- <textarea name="textarea-message" id="textarea-message" ></textarea>-->	
 					<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
 					<div id="textarea-message-div">
-						<span id="textarea-message" contenteditable="true">Hi there ...</span>
+						<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
+						<div style="border-radius:5px; display:inline-block; min-height: 100px; width: 90vw; background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message" contenteditable="true">Hi there ...</div> 
 					</div>
+
+					<!-- <div id="textarea-message-div">
+						<span id="textarea-message" contenteditable="true">Hi there ...</span>
+					</div> -->
 				   
 					</p>
 			</div>
@@ -219,7 +245,7 @@
 				<div class="ui-block-a">
 					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
 					<a id="send-message-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="send_message()" ><i>Send this message</i></a>
-					<a id="send-message-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="cancel_message()" ><i>Cancel </i></a>
+					<a id="send-message-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini" onclick="cancel_message()" ><i>Cancel </i></a>
 					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
 				</div> 
 		</div>
@@ -250,50 +276,44 @@
 			</div>
 			
 
-			<div class="ui-grid-half" id="upload-image-button-div">
+			<div class="ui-grid-a" id="upload-image-button-div">
 				<div class="ui-block-a">
 					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-					 <a id="upload-image-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload image </i></a>  
+					 <a id="upload-image-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload now</i></a>  
 					<!-- <a id="uploadimagebutton" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all"  ><i>Upload image </i></a>  -->
 				</div> 
 		</div>
 	</div>
 
-	<div id="faqs-postlogin">
-		<div class="ui-block-a ui-mini" id="faq-postlogin-div">
-			<button id="faq-postlogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="location.href='https://192.168.64.2/faqs'" type="button" ><i>FAQs </i></button>
-		</div>  
-	</div>
+	
 
-	<div id="logout">
-		<div class="ui-block-a ui-mini" id="logout-div">
-			 <a id="logout-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sign_out()" ><i>Logout.</i></a>  
-		</div>  
-	</div>
+		
 
 	   </div>
 	   <div data-role="footer" data-fullscreen="true" data-theme="b">
-			<div class="ui-grid-half" id="show-contact-button-div">
-				<div class="ui-block-a">
+		   <!-- <div class="ui-grid-half" id="show-contact-button-div"> -->
+			
+				<div class="ui-grid-a" id="show-upload-button-div" style="width:80vw">
 					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-					<a id="show-contact-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_contact_form()" ><i>Get in touch...</i></a>
-					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
-				</div> 
+					<a id="show-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_upload_form()" ><i>Upload image</i></a>
+
+					<a id="faq-postlogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="location.href='https://192.168.64.2/faqs'" type="button" ><i>FAQs </i></a>
 			</div>
-				<div class="ui-grid-half" id="show-upload-button-div">
-					<div class="ui-block-a">
+
+
+
+			<div class="ui-grid-a" >
+				<div class="ui-block-a " id="show-contact-button-div" style="width:80vw">
 						<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-						<a id="show-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_upload_form()" ><i>Upload image</i></a>
-					</div> 
+						<a id="show-contact-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_contact_form()" ><i>Get in touch...</i></a>
+						<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+				</div>
+
+				<div class="ui-block-b " id="logout" style="width:80vw">
+					 <a id="logout-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sign_out()" ><i>Logout.</i></a>  
+				</div>
 			</div>
-			<div id="faq-main-page">
-				<!-- <div class="ui-block-a ui-mini" id="faq-button-div-main-page">
-				<button id="faq-button-main-page" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_faqs_post_login()" ><i>FAQs </i></button>
-			</div>--> 
-			<!-- <div class="ui-block-a ui-mini" id="faq-button-div">
-				<button id="faq-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_faqs_pre_login()" ><i>FAQs </i></button>
-			</div>  -->
-			</div>
+
 	   </div>
 	</div>
 
