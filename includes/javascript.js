@@ -221,7 +221,7 @@ function sign_out() {
 	xhr.onload = function() {
 	  	alert(this.response);
 		if (xhr.status === 200) {
-			location.reload();
+			location.replace("/");
 		}
 		else {
 			alert('Request failed.  Returned status of ' + xhr.status);
@@ -343,7 +343,7 @@ function nextimage(clickedbuttonid) {
 	//function to simply update images_src_list with this.response. 
 
 	current_n = get_image_serial();
-	document.getElementById("button1").disabled=true;
+	//document.getElementById("button1").disabled=true;
 	recordvote(current_n, clickedbuttonid);
 
 	// get new set of images after every 5th image
@@ -567,6 +567,7 @@ function show_contact_form_prelogin(){
 	document.getElementById("show-contact-button-prelogin").style.display = "none";
 	document.getElementById("email-and-password-entry").style.display = "none";
 	document.getElementById("faq-prelogin-div").style.display = "none";
+	document.getElementById("contact-prelogin-div").style.display = "none";
 	document.getElementById("send-message-button-div-prelogin").style.display = "block";
 	//document.getElementById("show-upload-button-div").style.display = "none";
 	hide_upload_form();
