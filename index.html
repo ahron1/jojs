@@ -161,15 +161,19 @@
 	   </div>
 		<div data-role="content" class="content"  >
 	<div id = "image-voting" style="width:95vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
-			<div class = "image" id="picture-div" style="background-color:black; color:#D3D3D3; max-height:75vh; width:95vw;height=auto" >
+			<div class = "image" id="picture-div" style="background-color:black; color:#D3D3D3; max-height:65vh; min-height:65vh; height:65vh; width:95vw;" >
 			<!-- <div class = "image" id="picture-div" style="background-color:black; color:#D3D3D3; height:75vh; max-width:95vw;" >-->
-				<img id="currentimage"  style="max-height:75vh;width=100%;height=auto;object-fit=cover " class="userimage" src="" /> 
-				<div class="ui-grid-solo">
+			<!-- <div style="max-width:95vw;overflow: hidden;"> -->
+			<div style="max-width:95vw;">
+				<img id="currentimage" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; max-width:95vw; height:65vh; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
+			</div>
+				<div class="ui-grid-solo" style="visibility:hidden; display:block; position:relative">
 					<legend class="captionlegend" id="imagetitle" style="background-color:black; color:#D3D3D3">faz</legend>
-				</div>
+				</div> 
 
 			</div>
-			<div class="ui-grid-a" id="voting-div" >
+			<div id="voting-buttons" style="height:30vh; max-height:30vh; min-height:30vh; ">
+			<div class="ui-grid-a" id="voting-div" style="display:block; position:relative; ">
 				<br>
 				<legend class="choicelegend" style="background-color:black; color:#D3D3D3" >What do you think of this:</legend>
 				<div class="ui-block-b">
@@ -180,10 +184,11 @@
 					<a id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</a>
 				</div>
 			</div>
-			<div class="ui-grid-solo" id="skip-image-div">
+			<div class="ui-grid-solo" id="skip-image-div" style="display:block; position:relative">
 				<div class="ui-block-a">
 					<a id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)"><i>Skip</i></a>
 				</div> 
+			</div>
 			</div>
 	</div>
 	<div id = "contact-form-and-send-button">
