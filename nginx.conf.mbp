@@ -203,9 +203,9 @@ http {
 			proxy_pass https://192.168.64.2:8443/join;
 		}
 
-#		location ~* /resetpassword/[0-9a-z]+/ {
-		location /resetpassword {
-			proxy_pass https://192.168.64.2:8443/resetpassword;
+#		location ~* /password/[0-9a-z]+/ {
+		location /password {
+			proxy_pass https://192.168.64.2:8443/password;
 		}
 ##		location ~* /loadimage/[0-9a-z]+/ {
 #		location /loadimage {

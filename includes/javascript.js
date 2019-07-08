@@ -260,7 +260,7 @@ function show_signup(){
 }
 function forgot_pw() {
 	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/resetpassword/forgot");
+	xhr.open('POST', "/password/forgot");
 	xhr.onload = function() {
 	  	alert(this.response);
 		if (xhr.status === 200) {
