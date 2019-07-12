@@ -11,7 +11,7 @@ var contacturl = "/contact";
 var uploadurl = "/upload";
 
 var Y;
-var batchsize = 2; //number of pics/votes to get/send in a lot
+var batchsize = 5; //number of pics/votes to get/send in a lot
 
 var voterecord = [];
 var votedimages = [];
