@@ -120,8 +120,8 @@ function js_routing_hist(path){
 			break;
 		default:
 			//console.log("default. loading home");
-			 //window.location.href="https://192.168.43.220:8765";
-			 window.location.href="https://192.168.64.2";
+			 //window.location.href="https://192.168.64.2";
+			 window.location.href="https://jochoice.com";
 			//show_image_voting_histndow.location.href=\""();
 	}
 }
