@@ -550,10 +550,10 @@ function sign_up_now() {
 	var xhr = new XMLHttpRequest;
 	xhr.open('POST', "/join/new");
 	xhr.onload = function() {
-	  alert(this.response);
+	  //alert(this.response);
 	  clear_login_form();
 		if (xhr.status === 200) {
-			alert('Request successful. You will be invited soon...' + xhr.responseText);
+			alert('Request successful. You will soon receive an invite...' + xhr.responseText);
 			location.reload(true);
 			//overlay_off();
 				}
@@ -586,7 +586,7 @@ function forgot_pw() {
 //			overlay_off();
 //			var path = window.location.pathname;
 //			js_routing(path);
-			alert("request received successfully. check your email");
+			alert("Request received successfully. Please check your email");
 			clear_login_form();
 //			document.getElementById("password_reset").style.display = "block";
 //			document.getElementById("entry").style.display = "none";
@@ -833,7 +833,7 @@ function send_message() {
 			//window.history.go(+1);
 		}
 		else {
-			alert('Message sending failed.  Returned status of ' + xhr.status);
+			//alert('Message sending failed.  Returned status of ' + xhr.status);
 			alert('Message sending failed.  Returned status of ' + xhr.responseText);
 		}
 
@@ -870,7 +870,7 @@ function send_message_prelogin() {
 			//window.history.go(+1);
 		}
 		else {
-			alert('Message sending failed.  Returned status of ' + xhr.status);
+			//alert('Message sending failed.  Returned status of ' + xhr.status);
 			alert('Message sending failed.  Returned status of ' + xhr.responseText);
 		}
 
@@ -973,7 +973,7 @@ function upload_image() {
 //	xhr.open('GET', "/login");
 //	xhr.onload = function() {
 //		if (xhr.status === 200) {
-			alert("in upload_image func");
+			//alert("in upload_image func");
 			var xhr1 = new XMLHttpRequest;
 			xhr1.open('POST', "/uploadhandler");
 			xhr1.onload = function() {
@@ -981,15 +981,15 @@ function upload_image() {
 			    //alert(this.response);
 				if (xhr1.status === 200) {
 					clear_upload_form();
-					alert('upload successful');
+					alert('Upload successful');
 					window.history.go(-1);
 				}
 				else {
 					alert(this.response);
-					alert('upload failed. try again.' );
+					//alert('upload failed. try again.' );
 					if (xhr1.status === 400) {
 						clear_upload_form();
-						alert('your session has expired. please log in again');
+						alert('Your session has expired, please log in again');
 						clear_login_form();
 						overlay_on();
 					}
@@ -1002,7 +1002,7 @@ function upload_image() {
 			xhr1.send(data);
 //			}
 //		else if (xhr.status !== 200) {
-//			alert('your session has expired. please log in again');
+//			alert('Your session has expired, please log in again');
 //			clear_login_form();
 //			overlay_on();
 //				}
