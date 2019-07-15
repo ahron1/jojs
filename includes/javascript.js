@@ -328,6 +328,12 @@ function load_image_hist() {
 	//createimagehistory(n);
 	//historical views don't push state to history because that leads to an infinite loop.
 }
+function preload_images(src_array) {
+	document.getElementById("preload1").src = src_array[1];
+	document.getElementById("preload2").src = src_array[2];
+	document.getElementById("preload3").src = src_array[3];
+	document.getElementById("preload4").src = src_array[4];
+}
 
 function nextimage(clickedbuttonid) {
 	// img1 vote -> img 2 vote -> img 3 vote -> back -> back -> contact page -> back (to img 1) -> then click next
@@ -367,6 +373,9 @@ function get_new_images(path){
 			console.log(Y);
 			Z = JSON.parse(Y);
 			console.log(Z.picid);
+
+			console.log(Z.uri);
+			preload_images(Z.uri);
 
 			images_id_list = images_id_list.concat(Z.picid);
 			images_src_list = images_src_list.concat(Z.uri);
