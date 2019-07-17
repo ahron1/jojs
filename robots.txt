@@ -1,0 +1,14 @@
+User-agent: *
+#disallow weblocations
+Disallow: /images/
+#disallow proxy passes
+Disallow: /login
+Disallow: /uploadhandler
+Disallow: /messagehandler
+Disallow: /getimages
+Disallow: /join
+Disallow: /password
+Disallow: /logout
+Disallow: /sendvotes
+
+
