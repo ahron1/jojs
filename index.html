@@ -618,6 +618,10 @@ function forgot_pw() {
 }
 
 // image, voting related
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function show_image_voting(){
 	document.getElementById("image-voting").style.display = "block";
 	load_image_n(image_counter); // start at 0
@@ -636,14 +640,41 @@ function hide_image_voting(){
 	document.getElementById("image-voting").style.display = "none";
 }
 
+//original load_image_fun. works okay.
+//async function load_image_n(n) {
+//	document.getElementById("currentimage").src = images_src_list[n];
+//	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
+//
+//	imagesbuttonsdeactivation();
+//	document.getElementById("button1").innerHTML = "...";
+//	document.getElementById("button2").innerHTML = "...";
+//	await sleep(2000);
+//	document.getElementById("button1").innerHTML = image_adj1_list[n];
+//	document.getElementById("button2").innerHTML = image_adj2_list[n];
+//
+//	imagesbuttonsactivation(n);
+//	createimagehistory(n);
+//}
+//alternative load_image_fun with img.onload. to test. 
 function load_image_n(n) {
 	document.getElementById("currentimage").src = images_src_list[n];
 	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
-	document.getElementById("button1").innerHTML = image_adj1_list[n];
-	document.getElementById("button2").innerHTML = image_adj2_list[n];
-	imagesbuttonsactivation(n);
-	createimagehistory(n);
+
+	imagesbuttonsdeactivation();
+	document.getElementById("button1").innerHTML = "...";
+	document.getElementById("button2").innerHTML = "...";
+
+	document.getElementById("currentimage").onload = async function(){ 
+		await sleep(2000);
+		console.log("image loaded. updating adjectives. ");
+		document.getElementById("button1").innerHTML = image_adj1_list[n];
+		document.getElementById("button2").innerHTML = image_adj2_list[n];
+
+		imagesbuttonsactivation(n);
+		createimagehistory(n);
+	}
 }
+
 function load_image_hist() {
 	//get serial number of that image in the array
 	current_n = get_image_serial();
@@ -781,6 +812,11 @@ function imagesbuttonsactivation(n){
 		//document.getElementById("button3").disabled = false;
 	}
 }
+function imagesbuttonsdeactivation(){
+		document.getElementById("button1").disabled = true;
+		document.getElementById("button2").disabled = true;
+}
+
 function get_image_id_from_url(){
 	//get image Id from the url form /images/xxxx
 	patharray = window.location.pathname.split("/");
