@@ -1,0 +1,22 @@
+{
+	"short_name": "JoChoice",
+	"name": "JoChoice - for designers and fashionistas",
+	"icons": 
+	[
+	 	{
+			"src": "./jo192.png",
+		  	"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+		 	"src": "./jo512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/",
+	"background_color": "#000000",
+	"display": "fullscreen",
+	"orientation": "portrait", 
+  	"theme_color": "#FF3737"
+}
