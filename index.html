@@ -123,7 +123,8 @@
 							</p>--> 
 							<div>
 								<br>
-							    <label for="faqs" > Write to us via the form below.</label>
+								<p style="margin-left:5%">Our email is: contact AT jochoice.com</p>
+							    <label for="contact-form" >Or, you can just write to us via the form below.</label>
 							</div>
 							<form id="contactform-prelogin" enctype="multipart/form-data">
 								<br>
@@ -204,11 +205,20 @@
 				<h3>
 				Contact us
 				</h3>
-				<p>
+				
+
+<!--				<p>
+					Write to us via the form below.  
+</p> -->
+
+				<div>
+					<br>
+					<p style="margin-left:5%">Our email is: contact AT jochoice.com</p>
+				    <label for="contact-form" >Or, you can just write to us via the form below.</label>
+				</div>
+
+				<p style="margin-left:5%">
 					We look forward to hearing from you! 
-				</p>
-				<p>
-					Write to us via the form below. 
 				</p>
 
 				<form id="contactform" enctype="multipart/form-data">
@@ -665,7 +675,7 @@ function load_image_n(n) {
 	document.getElementById("button2").innerHTML = "...";
 
 	document.getElementById("currentimage").onload = async function(){ 
-		await sleep(2000);
+		await sleep(1100);
 		console.log("image loaded. updating adjectives. ");
 		document.getElementById("button1").innerHTML = image_adj1_list[n];
 		document.getElementById("button2").innerHTML = image_adj2_list[n];
