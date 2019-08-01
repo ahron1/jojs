@@ -174,7 +174,7 @@
 	<div id = "image-voting" style="width:95vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
 			<div class = "image" id="picture-div" style="background-color:black; color:#D3D3D3; max-height:65vh; min-height:65vh; height:65vh; width:95vw;" >
 			<div style="max-width:95vw;">
-				<img id="currentimage" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; max-width:95vw; height:65vh; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
+				<img id="currentimage" style="border-radius:50%; display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; max-width:95vw; height:65vh; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
 			</div>
 				<div class="ui-grid-solo" style="visibility:hidden; display:block; position:relative">
 					<legend class="captionlegend" id="imagetitle" style="background-color:black; color:#D3D3D3">faz</legend>
@@ -575,7 +575,7 @@ function sign_up_now() {
 	  //alert(this.response);
 	  clear_login_form();
 		if (xhr.status === 200) {
-			alert('Request successful. You will soon receive an invite...' + xhr.responseText);
+			alert(xhr.responseText);
 			location.reload(true);
 			//overlay_off();
 				}
@@ -608,7 +608,7 @@ function forgot_pw() {
 //			overlay_off();
 //			var path = window.location.pathname;
 //			js_routing(path);
-			alert("Request received successfully. Please check your email");
+//			alert("Request received successfully. Please check your email");
 			clear_login_form();
 //			document.getElementById("password_reset").style.display = "block";
 //			document.getElementById("entry").style.display = "none";
