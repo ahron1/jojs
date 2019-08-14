@@ -18,10 +18,60 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
 		<link rel="stylesheet" href="../includes/style.css" />
+
+		<style>
+				hr.brandbar {
+					/*  border: 0.5em;
+					border-radius: 5px; */
+					width: 100%;
+					border: 0;   /* in order to override TWBS stylesheet */
+					height: 0.25em;
+					background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
+				}
+				hr.brandbartop {
+					/*  border: 0.5em;
+					border-radius: 5px; */
+					width: 100%;
+					border: 0;   /* in order to override TWBS stylesheet */
+					height: 0.25em;
+					background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
+					position: -webkit-sticky; /* Safari */
+					position: sticky;
+					top: 0;
+				}
+				hr.brandbarbottom {
+					/*  border: 0.5em;
+					border-radius: 5px; */
+					width: 100%;
+					border: 0;   /* in order to override TWBS stylesheet */
+					height: 0.25em;
+					background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
+					position: -webkit-sticky; /* Safari */
+					position: sticky;
+					bottom: 0;
+				}
+
+			</style>
+
 	</head>
 
 
-	<body style="background-color:#DCDCDC; color:#000000"; >
+	<body style="background-color:#6f6f6f; color:#000000; font-size:1.2em;" > 
+	<!-- <body style="background-color:#ffffff; color:#000000; font-size:1.2em;" > -->
+		<hr class="brandbartop" align="left" />
+		<div class="logotext" style="max-height:35vh;"> 
+			<div id="logoimage" style="width:33.33%; float:left;">
+				<img src="../logo-circ-192.png" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;">
+			</div>
+			<!-- <div id=txtimage style="width:66.67%; float:right; ">
+				<img src="../bgtxt.png" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;">
+			</div> -->
+			<div id="welcome-note" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1em; line-height: 1.2;
+				max-height:20vh; ">
+			</div>
+		</div>
+
+
 		<h3>Frequently Asked Questions</h3>
 
 		<dl class="faq">
@@ -203,8 +253,8 @@
 			 </dd>
 
 
-
-
+			 <br><br>
+<a id="faqs-go-back" onclick="faqs_go_back()" ><i>Go back </i></a>
 
 
 
@@ -212,8 +262,12 @@
 		 </dl>
 
 
-		<script type="text/javascript" >
+<script type="text/javascript" >
 
+
+	function faqs_go_back() {
+		window.history.go(-1);
+	}
 
 			/*
 			*   This content is licensed according to the W3C Software License at
@@ -338,5 +392,6 @@ window.addEventListener('load', function (event) {
 	</script>  
 
 
+		<hr class="brandbarbottom" align="left" />
 	</body>
 </html>
