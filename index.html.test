@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144111244-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-144111244-1');
+		</script>
+
+		<title>JoChoice. For designers and fashionistas. </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="JoChoice. An exclusive platform for designers and fashionistas. Vote on fashion tastes and styles. Share your voice with the community. Your Choice matters." />
+		<meta name="keywords" content="fashion, adjective, vote, platform, designer, fashionista, taste, style, choice " />
+		<meta name="author" content="JoChoice" />
+		<link rel="shortcut icon" type="image/x-icon" href="includes/favicon.ico" />
+		<link rel="manifest" href="manifest.json" />
+		
+		<script type="text/javascript" src="includes/javascript.js"></script>
+		<link rel="stylesheet" href="includes/jquery.mobile.custom.structure.min.css" />
+		<link rel="stylesheet" href="includes/jquery.mobile.custom.theme.min.css" /> 
+		<link rel="stylesheet" href="includes/style.css" />
+
+		<!--
+		<link rel="stylesheet" href="includes/jquery.mobile.inline-png-1.4.5.min.css" />
+		<script type="text/javascript" src="./includes/jquery.mobile.custom.min.js"></script>
+		<link rel="stylesheet" href="./includes/jquery.mobile-1.4.5.min.css"/> 
+		<script type="text/javascript" src="includes/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="includes/jquery.mobile-1.4.5.min.js"></script>
+		-->
+
+		<!-- my_style_sheet_here --> 
+
+
+	</head>
+
+<body style="background-color:black; color:#D3D3D3" >
+
+	<div id="overlay" class="overlay" style="background-color:black; color:#D3D3D3">
+		<div class="ui-grid-solo" id="entry">
+			<div id="logo-text-welcome" class="logotext" style="max-height:35vh;"> 
+				<div id="logoimage" style="width:33%; float:left;">
+					<img src="includes/logo-circ-192.png" alt="logo" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;" onclick="window.location='https://jochoice.com'">
+				</div>
+				<div id="txtimage" style="width:65%; float:left; ">
+					<img src="includes/bgtxt.png" alt="background text" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;" onclick="window.location='https://jochoice.com'">
+				</div>
+
+				<div id="welcome-note" style="margin-left:2%; margin-right:5%; clear: both; color:#DCDCDC; font-size: 1em; line-height: 1.2;
+					max-height:20vh; ">
+					<p style="margin-left:2%;">Welcome to JoChoice, an exclusive platform for designers and fashionistas.</p> 
+				</div>
+			</div>
+
+			<div id="email-and-password-entry" style="margin-left:2%; position:absolute; top:25vh;">
+				<br>
+				
+				<div id="sign-up-text" style="width:95vw;margin-left:2%; margin-right:5% ">
+				    <p>
+						We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. 
+					</p>
+				</div>
+				<div id="email-entry"  > 
+					<br> <br>
+				    <label for="login-email" >Enter your email: </label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%;">
+			        <input type="email" style="font-size:125%;letter-spacing:0.1em" data-clear-btn="true" name="login-email" id="login-email" value="" ></div>
+				</div>
+				<div id="password-entry"> 
+					<br>
+				    <label for="login-password">Enter your password:</label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%;">
+			        <input type="password"  style="font-size:125%;letter-spacing:0.1em" data-clear-btn="true" name="login-password" id="login-password" value="" ></div>
+				</div>
+				<div class="ui-block-a " id="loginbutton">
+					<br>
+					<a id="login-button" class="ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_in()" style="width:75vw; margin-left:5%"><b>Check-in </b></a>
+					<a id="pw-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" style="width:77vw; margin-left:5%">I forgot my password... </a>
+				</div> 
+				<div class="ui-block-a " id="no-account-text" style="margin-left:5%;">
+					<br><br>
+				    <p>Don't have an account yet? Sign up...</p>
+					<a id="signup-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini" onclick="show_signup()" style="width:77vw;"><b>Sign up now!</b></a>
+				</div> 
+			
+				<div id="user-details">
+					<div style="width:90vw;margin-left:2%; margin-right:5% ">
+					    <p>We respect your privacy and do not need your full name...</p>
+					</div>
+				    <label for="first-name">Please enter your first name: </label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%; ">
+				        <input type="text" style="font-size:125%;letter-spacing:0.1em" data-enhanced="true" data-clear-btn="true" name="first-name" id="first-name" value="">
+					</div>
+				</div>
+				<div class="ui-block-a " id="sign-up-now-button">
+					<!-- <button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_up_now()" > Join the waiting list</button> -->
+					<br>
+					<a id="signupwithinvitation" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_up_now()" style="width:75vw;margin-left:5%; "><b>Join the club!</b></a>
+				</div> 
+
+				<div  id="faq-prelogin-div" class="ui-block-a " style="margin-left:5%;" >
+				    <p>Wanna know more? </p>
+					<a id="faq-prelogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" href='https://jochoice.com/faqs' style="width:77vw;">FAQs </a>
+				</div>  
+				<div class="ui-block-a " id="contact-prelogin-div" style="margin-left:5%">
+			    <p>We look forward to hearing from you!</p>
+					<a id="show-contact-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_contact_form_prelogin()" style="width:77vw; " >Get in touch...</a>
+
+				</div> 
+
+			</div>
+
+			<div id = "contact-form-and-send-button-prelogin" style="margin-left:2%">
+				<div id="contact-form-div-prelogin" class="contact-prelogin" >
+					<div id="contact-prelogin-copy" style="margin-left:5%">
+						<br>
+						<p >
+							Our email is: contact AT jochoice.com
+						</p>
+					    <p>
+							Or, you can just write to us via the form below.
+						</p>
+					</div>
+					<form id="contactform-prelogin" enctype="multipart/form-data">
+						<br>
+					    <label for="text-email-prelogin">Name:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw;border-color:#D3D3D3;margin-left:5%; " >
+						    <input type="text" name="text-name-prelogin" style="font-size:125%;letter-spacing:0.1em" id="text-name-prelogin" value="">
+						</div>
+						
+						<br>
+					    <label for="text-email-prelogin">Email:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw; border-color:#D3D3D3;margin-left:5%;">
+						    <input type="email" name="text-email-prelogin" style="font-size:125%;letter-spacing:0.1em" id="text-email-prelogin" value="">
+						</div>
+						<br>
+						<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
+						<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
+						<div id="textarea-message-div-prelogin">
+						    <p>Message:</p>
+							<div style="border-radius:5px; display:inline-block; min-height: 100px; width:83vw; background: #D3D3D3; color:black; border: 1px solid #666; cursor: text; border-color:#D3D3D3;margin-left:5%;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</div> 
+						</div>
+					   
+					</form>
+				</div>
+				<div id="contact-form-buttons-prelogin" style="margin-left:5%; margin-right:5%">
+					<div class="ui-block-a ">
+						<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+						<a id="send-message-button-prelogin" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="send_message_prelogin()" style="width:75vw" >Send this message</a>
+
+						<a id="cancel-message-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini " onclick="cancel_message_prelogin()"  style="width:77vw">Cancel </a>
+						<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="page" class="mainpage noscroll" id="maincontents" style="background-color:black; color:#D3D3D3" >
+		<!-- <div data-role="header" data-fullscreen="true" data-theme="b"> -->
+		   <hr class="brandbartop" style="text-align:right;margin-right:0" />
+		<!--</div> -->
+		<div data-role="content" class="content " >
+			<div id = "home-page" style="width:100vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
+				<div id="home-page-buttons" style="height:95vh; " > <!-- max-width:100vh; -->
+					<div id="home-page-choice-div" class="ui-grid-a" style="max-height:20vh; display:block; position:relative; ">
+						<p>Choose one of the big yellow buttons..</p>
+					</div>
+					<div id="infinite-mode-div" class="ui-grid-solo" style="display:block; position:relative; text-align: center; max-height:40vh; max-width:100vw; "> <!-- padding:1em 1em 4em 4em;-->
+						<img src="includes/voting_booth_icon.png" alt="background text" style=" max-width:100%; max-height:25vh; " onclick="start_slideshow()">
+						<p style="max-height:15vh;">
+							Watch a show. And cast your votes! <!--Enter the Voting Booth-->
+						</p>
+					</div>
+					<br><br>
+					<div id="add-own-div" class="ui-grid-solo" style="display:block; padding:1em 4em 4em 4em; position:relative; text-align: center; margin:auto; max-height:40vh; max-width:100vw; " >
+						<button style="max-height:25vh; text-align:center; " class="round-button " onclick="showalert()" ><div style="text-align:center; padding: 0em 0em 0em 0em; position:relative; margin:auto; ">Upload</div></button>
+						<p style="max-height:15vh; text-align:center; " >
+							Upload your own photos! <!--Enter the Voting Booth-->
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div id = "image-voting" style="width:95vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
+				<div id="picture-div" class = "image" style="background-color:black; color:#D3D3D3; max-height:65vh; min-height:65vh; height:65vh; width:95vw;" >
+					<div style="max-width:95vw;">
+						<img id="currentimage" alt="image to be voted upon" style="border-radius:50%; display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; max-width:95vw; height:65vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/logo-circ-192.png" /> 
+					</div>
+					<div class="ui-grid-solo" style="visibility:hidden; display:block; position:relative">
+						<!-- <legend class="captionlegend" id="imagetitle" style="background-color:black; color:#D3D3D3">faz</legend> --> 
+						<p id="imagetitle" ></p>
+					</div> 
+				</div>
+				<br>
+				<div id="voting-buttons" style="height:30vh; max-height:30vh; min-height:30vh; ">
+					<div id="shareicons" class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
+						<img id="hearticon" alt="heart" style="width:auto; margin-left: 1%; margin-right:auto; max-width:9vw; max-height:9vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/not_yet_liked_green.png" onclick="liked()"/> 
+						<img id="shareicon" alt="share" style="width:auto; margin-left: 3%; margin-right:auto; max-width:9vw; max-height:9vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/share_red_plane.png" /> 
+						<img id="usericon" alt="user" style="float:right; width:auto; margin-left: 3%; margin-right:5%; max-width:9vw; max-height:9vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/user_green.png" /> 
+					</div>
+
+					<div id="sharefallback" class="share-buttons" style="display:none;">
+						<br>
+						<p></p>
+						<a class="share-btn tw" href="" onclick="window.open('https://twitter.com/intent/tweet/?text=Web+Share+API+with+fallback&url='+window.location.href) ;" >Tweet</a>
+						<a class="share-btn wa" href="" onclick="window.open('whatsapp://send?text='+encodeURIComponent(window.location.href)) ;" >Text</a>
+						<a class="share-btn fb" href="" onclick="window.open('https://facebook.com/sharer/sharer.php?u='+window.location.href) ;" >Share</a>
+						<br>
+						<p></p>
+					</div>
+
+					<div id="image-voting-div" class="ui-grid-a" style="display:block; position:relative; ">
+						<!-- <legend class="choicelegend" style="background-color:black; color:#D3D3D3" >Which word describes the photo better?</legend> --> 
+						<p style="background-color:black; color:#D3D3D3" >Which word describes the photo better?</p>
+						<div class="ui-block-b">
+							<a id="button1" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">sophisticatedd</a>
+						</div>
+
+						<div class="ui-block-b">
+							<a id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</a>
+						</div>
+					</div>
+					<div id="next-image-div" class="ui-grid-solo" style="display:block; position:relative">
+						<div class="ui-block-a">
+							<a id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="nextimage(this.id)"><i>Next image..</i></a>
+						</div> 
+					</div>
+					<div id="quit-show-div" class="ui-grid-solo" style="display:block; position:relative">
+						<div class="ui-block-a">
+							<a id="button4" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_home_page()"><i>Quit show.</i></a>
+							<br>
+						</div> 
+					</div>
+				</div>
+			</div>
+	   </div>
+	  <!--  <div data-role="footer" data-fullscreen="true" data-theme="b"> -->
+			
+	<div id="bottom-section" style="height:100%;" >
+		<div id="contact-form-div" class="contact" >
+			<div class="logotext" style="max-height:35vh;"> 
+				<div id="logoimage-contact-form" style="width:33.33%; float:left;">
+					<img alt="logo" src="includes/logo-circ-192.png" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;" onclick="window.location='https://jochoice.com'" >
+				</div>
+				<div id="txtimage-contact-form" style="width:66.67%; float:right; ">
+					<img src="includes/bgtxt.png" alt="background text" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;" onclick="window.location='https://jochoice.com'">
+				</div>
+				<div id="contact-title" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1.5em; font-weight:bold; line-height: 1.2;
+					max-height:20vh; ">
+					<br>
+					<p style="margin-left:2%;">Contact us</p> 
+				</div>
+			</div>
+
+			<div id="contact-copy" style="margin-left:5%;">
+				<p>
+					Our email is: contact AT jochoice.com
+				</p>
+				<p>
+					We look forward to hearing from you! 
+				</p>
+				<p>
+					You can also write to us via this form:
+				</p>
+			</div>
+
+			<form id="contactform" enctype="multipart/form-data">
+				<p>
+				</p>
+			    <label for="text-name">Your name:</label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+				    <input type="text" name="text-name" id="text-name" value="">
+				</div>
+				<p>
+				</p>
+			    <label for="text-email">Your e-mail:</label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw">
+				    <input type="email" name="text-email" id="text-email" value="">
+				</div>
+				<p>
+				</p>
+				<!-- <textarea name="textarea-message" id="textarea-message" ></textarea>-->	
+				<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
+				<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
+				<div id="textarea-message-div">
+					<!--    <label for="textarea-message">Message:</label> -->
+				    <p>Your message:</p>
+					<div style="color: black; border-radius:5px; display:inline-block; min-height: 100px; width: 97vw; background: white; border: 2px solid #666; cursor: text; margin-left:1vw; margin-right:3vw;" id="textarea-message" contenteditable="true">Hi there ...</div> 
+				</div>
+
+				<!-- <div id="textarea-message-div">
+					<span id="textarea-message" contenteditable="true">Hi there ...</span>
+				</div> -->
+			   
+				<p>
+				</p>
+			</form>
+			<div id="send-message-button-div" class="ui-grid-solo" >
+				<div class="ui-block-a">
+					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+					<a id="send-message-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="send_message()" ><i>Send this message</i></a>
+					<a id="cancel-message-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="cancel_message()" ><i>Cancel </i></a>
+					<br><br>
+					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+				</div> 
+			</div>
+		</div>
+
+		<div id = "upload-form-and-submit-button">
+			<div class="upload" id="upload-form-div">
+				<div id="logotext-upload-form" class="logotext" style="max-height:35vh;"> 
+					<div id="logoimage-upload-form" style="width:33.33%; float:left;">
+						<img src="includes/logo-circ-192.png" alt="logo" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;" onclick="window.location='https://jochoice.com'">
+					</div>
+					<div id="txtimage-upload-form" style="width:66.67%; float:right; ">
+						<img src="includes/bgtxt.png" alt="background text" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;" onclick="window.location='https://jochoice.com'">
+					</div>
+					<div id="upload-copy" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1.5em; font-weight:bold; line-height: 1.2;
+						max-height:20vh; ">
+						<p style="margin-left:2%;">Upload your own pics</p> 
+					</div>
+				</div>
+
+				<!--<p style="margin-left:5%; font-style:italic;">Please note than images larger than 3 MB cannot be uploaded.</p> -->
+				<div class = "uploaded-image-preview" style="max-width:95vw;">
+					<img style="max-width:95vw;" id="imagetoupload" />
+				</div>
+
+				<div id="upload-form" style="margin-left:2%; ">
+					<form id="uploadform" enctype="multipart/form-data">
+					    <label for="userinputfile">Image:</label>
+						<div class="ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+						    <input type="file" name="userinputfile" id="userinputfile" />
+						</div>
+						<br> 
+						<h4 style="margin-left:5%;">
+							And, write two adjectives you think can be used to describe the image. 
+						</h4>
+						<br>
+					    <label for="text-adj-1">Adjective 1:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+						    <input type="text" name="text-adj-1" id="text-adj-1" value="">
+						</div>
+						<br> 
+					    <label for="text-adj-2">Adjective 2:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+						    <input type="text" name="text-adj-2" id="text-adj-2" value="">
+						</div>
+					</form>
+
+					<div id="upload-image-button-div" class="ui-grid-solo" >
+						<div class="ui-block-a">
+							<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+							<br>
+							<a id="upload-image-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload now</i></a>  
+							<a id="cancel-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="cancel_upload()" ><i>Cancel </i></a>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="bottom-buttons" class="ui-grid-a" >
+			<div id="show-upload-button-div" class="ui-block-a" style="width:100vw; text-align:center;">
+				<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+				<br><br><br><br><br><br>
+				<a id="show-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_upload_form()" ><i>Upload image</i></a>
+				<a id="show-contact-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_contact_form()" ><i>Get in touch...</i></a>
+			</div>
+
+			<div id="show-faq-button-div" class="ui-block-a" style="width:100vw">
+					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+					<a id="faq-postlogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " href='https://jochoice.com/faqs' ><i>FAQs </i></a>
+			</div>
+
+			<div id="logout-button" class="ui-block-a" style="width:100vw">
+				 <a id="logout-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sign_out()" ><i>Logout.</i></a>  
+			</div>
+		</div>
+	</div>
+
+	<!-- <div id = "dummy-images-preload">
+		<img id="preload1" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
+		<img id="preload2" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
+		<img id="preload3" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
+		<img id="preload4" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
+	</div> --> 
+		<!-- </div> -->
+	    <hr class="brandbartopbottom" style="text-align:right;margin-right:0" />
+	</div>
+
+	<!-- inline all the js so that the standard jquery, etc. .js files can have a longer caching, since the custom js is frequently updated --> 
+	<div id="myjs">
+		<script type="text/javascript">
+
+		</script>
+	</div>
+
+</body>
+
+</html>
+

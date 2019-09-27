@@ -144,4 +144,123 @@
 			content: url('../images/down-arrow-brown.png');
 			padding-right: 0.35em;
 		} */
-</style>
+
+		hr.brandbar {
+			/*  border: 0.5em;
+			border-radius: 5px; */
+			width: 100%;
+			border: 0;   /* in order to override TWBS stylesheet */
+			height: 0.25em;
+			background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
+		}
+		hr.brandbartop {
+			/*  border: 0.5em;
+			border-radius: 5px; */
+			width: 100%;
+			border: 0;   /* in order to override TWBS stylesheet */
+			height: 0.25em;
+			background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
+			position: -webkit-sticky; /* Safari */
+			position: sticky;
+			top: 0;
+		}
+
+		.web-icons:after {
+			  background-color: #4da6ff;
+		}
+
+		hr.brandbarbottom {
+			/*  border: 0.5em;
+			border-radius: 5px; */
+			width: 100%;
+			border: 0;   /* in order to override TWBS stylesheet */
+			height: 0.25em;
+			background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
+			position: -webkit-sticky; /* Safari */
+			position: sticky;
+			bottom: 0;
+		}
+
+		/* NEW - for full page scroll */
+
+		.panel {
+			    position: relative;
+	/*		    height: 100vh;  */
+				overflow: hidden;
+				/*font-size: 10vmin; */
+				padding: 1em;
+				box-sizing: border-box;
+				color: hsla(0, 0%, 100%, .1);
+				cursor: default;
+		}
+
+
+		.well {
+			    position: relative;
+				overflow: hidden;
+				transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+		}
+
+		.share-buttons {
+			  display: none;
+			  justify-content: space-between;
+			  margin: 2em 0;
+		}
+
+		.share-btn {
+			  display: inline-block;
+			  padding: 0.3em 0.1em;
+			  background: #00ad45;
+			  color: #fff;
+			  border-radius: 1em;
+			  text-decoration: none;
+			  font-weight: bold;
+			  flex-grow: 1;
+			  text-align: center;
+		}
+
+		.share-btn:hover {
+			  opacity: .85;
+			  color: #fff;
+		}
+
+		.share-btn.tw {
+			  background: #1da1f2;
+			  margin: 0 0.3em;
+		}
+
+		.share-btn.fb {
+			  background: #3b5998;
+			  margin: 0 0.3em;
+		}
+		.share-btn.wa {
+			  background: #25D366;
+			  margin: 0 0.3em;
+		}
+
+		.round-button {
+			  background-color: #F2CD1F; /* yellow */
+			  border-radius: 50%;
+			  border: none;
+			  color: black;
+			  font-weight: bold;
+			  margin: auto;
+			  text-align: center;
+			  text-decoration: none;
+			  display: block;
+			  cursor: pointer;
+
+			  font-size: 3vh;
+			  /*
+			  background-color: #FF3737; 
+			  display: inline-block;
+			  margin: 0.3em 0.3em;
+			  padding-top: 0.25em;
+			  padding-bottom: 1vh;
+			  */
+
+			  width: 15vh;
+			  height: 15vh;
+		}
+
+	</style>

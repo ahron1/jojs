@@ -1,121 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144111244-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144111244-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
 
-	  gtag('config', 'UA-144111244-1');
-	</script>
+		  gtag('config', 'UA-144111244-1');
+		</script>
 
-    <title>JoChoice. For designers and fashionistas. </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="JoChoice. An exclusive platform for designers and fashionistas. Vote on fashion tastes and styles. Share your voice with the community. Your Choice matters.">
-    <meta name="keywords" content="fashion, adjective, vote, platform, designer, fashionista, taste, style, choice ">
-    <meta name="author" content="JoChoice">
-	<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
-	<link rel="manifest" href="manifest.json">
-	<!-- 
-	try to make a custom download that doesn't break the forms and text fields/inputs	
-    <script type="text/javascript" src="./includes/jquery.mobile.custom.min.js"></script>
-	<link rel="stylesheet" href="./includes/jquery.mobile-1.4.5.min.css"/> 
-    <script type="text/javascript" src="includes/javascript.js"></script>-->
-	<link rel="stylesheet" href="includes/jquery.mobile.custom.theme.min.css" /> 
-    <link rel="stylesheet" href="includes/jquery.mobile.custom.structure.min.css" />
-    <link rel="stylesheet" href="includes/style.css" />
+		<title>JoChoice. For designers and fashionistas. </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="JoChoice. An exclusive platform for designers and fashionistas. Vote on fashion tastes and styles. Share your voice with the community. Your Choice matters." />
+		<meta name="keywords" content="fashion, adjective, vote, platform, designer, fashionista, taste, style, choice " />
+		<meta name="author" content="JoChoice" />
+		<link rel="shortcut icon" type="image/x-icon" href="includes/favicon.ico" />
+		<link rel="manifest" href="manifest.json" />
+		
+		<script type="text/javascript" src="includes/javascript.js"></script>
+		<link rel="stylesheet" href="includes/jquery.mobile.custom.structure.min.css" />
+		<link rel="stylesheet" href="includes/jquery.mobile.custom.theme.min.css" /> 
+		<link rel="stylesheet" href="includes/style.css" />
 
-	<!-- the below is hackish. x.com/images/ID looks for the includes dir as a subdir of images.
-	
-    <script type="text/javascript" src="../includes/javascript.js"></script> -->
-	<link rel="stylesheet" href="../includes/jquery.mobile.custom.theme.min.css" /> 
-    <link rel="stylesheet" href="../includes/jquery.mobile.custom.structure.min.css" />
-    <link rel="stylesheet" href="../includes/style.css" />
-	
-	<style>
-		hr.brandbar {
-			/*  border: 0.5em;
-			border-radius: 5px; */
-			width: 100%;
-			border: 0;   /* in order to override TWBS stylesheet */
-			height: 0.25em;
-			background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
-		}
-		hr.brandbartop {
-			/*  border: 0.5em;
-			border-radius: 5px; */
-			width: 100%;
-			border: 0;   /* in order to override TWBS stylesheet */
-			height: 0.25em;
-			background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
-			position: -webkit-sticky; /* Safari */
-			position: sticky;
-			top: 0;
-		}
-		hr.brandbarbottom {
-			/*  border: 0.5em;
-			border-radius: 5px; */
-			width: 100%;
-			border: 0;   /* in order to override TWBS stylesheet */
-			height: 0.25em;
-			background: linear-gradient(to right, #00D0D2 60%, 60%, #FF5146 40%);
-			position: -webkit-sticky; /* Safari */
-			position: sticky;
-			bottom: 0;
-		}
+		<!--
+		<link rel="stylesheet" href="includes/jquery.mobile.inline-png-1.4.5.min.css" />
+		<script type="text/javascript" src="./includes/jquery.mobile.custom.min.js"></script>
+		<link rel="stylesheet" href="./includes/jquery.mobile-1.4.5.min.css"/> 
+		<script type="text/javascript" src="includes/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="includes/jquery.mobile-1.4.5.min.js"></script>
+		-->
 
-		/* NEW - for full page scroll */
-
-		.panel {
-			    position: relative;
-		/*		    height: 100vh;  */
-					    overflow: hidden;
-						    /*font-size: 10vmin; */
-							    padding: 1em;
-								    box-sizing: border-box;
-									    color: hsla(0, 0%, 100%, .1);
-										    cursor: default;
-		}
+		<!-- my_style_sheet_here --> 
 
 
-		.well {
-			    position: relative;
-				    overflow: hidden;
-					    transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
-		}
+	</head>
 
-
-
-	</style>
-
-</head>
 <body style="background-color:black; color:#D3D3D3" >
 
-	<hr class="brandbartop" align="left" />
-
-    <div id="overlay" class="overlay" style="background-color:black; color:#D3D3D3">
-
-		
-
+	<div id="overlay" class="overlay" style="background-color:black; color:#D3D3D3">
 		<div class="ui-grid-solo" id="entry">
-
-			<!-- <div id="logotext" style="max-height:10vh; width:100vw; border:1px solid green;">
-				<p style="font-size:2em; margin:0px; border:1px solid red;"><img style="float:left; height:10vh; padding: 2em 2em 2em 2em;" src="logo-circ-192.png">JoChoice</p>
-			</div> -->
-
-
-			<div class="logotext" style="max-height:35vh;"> 
-				
-				<div id="logoimage" style="width:33.33%; float:left;">
-					<img src="logo-circ-192.png" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;">
+			<div id="logo-text-welcome" class="logotext" style="max-height:35vh;"> 
+				<div id="logoimage" style="width:33%; float:left;">
+					<img src="includes/logo-circ-192.png" alt="logo" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;" onclick="window.location='https://jochoice.com'">
 				</div>
-				<div id=txtimage style="width:66.67%; float:right; ">
-					<img src="bgtxt.png" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;">
+				<div id="txtimage" style="width:65%; float:left; ">
+					<img src="includes/bgtxt.png" alt="background text" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;" onclick="window.location='https://jochoice.com'">
 				</div>
-				<div id="welcome-note" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1em; line-height: 1.2;
+
+				<div id="welcome-note" style="margin-left:2%; margin-right:5%; clear: both; color:#DCDCDC; font-size: 1em; line-height: 1.2;
 					max-height:20vh; ">
 					<p style="margin-left:2%;">Welcome to JoChoice, an exclusive platform for designers and fashionistas.</p> 
 				</div>
@@ -125,226 +60,247 @@
 				<br>
 				
 				<div id="sign-up-text" style="width:95vw;margin-left:2%; margin-right:5% ">
-				    <label for="beta-notice"><p>We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. </label>
+				    <p>
+						We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. 
+					</p>
 				</div>
 				<div id="email-entry"  > 
-
 					<br> <br>
-				    <label for="Email" >Enter your email: </label>
+				    <label for="login-email" >Enter your email: </label>
 					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%;">
 			        <input type="email" style="font-size:125%;letter-spacing:0.1em" data-clear-btn="true" name="login-email" id="login-email" value="" ></div>
 				</div>
 				<div id="password-entry"> 
 					<br>
-				    <label for="Password">Enter your password:</label>
+				    <label for="login-password">Enter your password:</label>
 					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%;">
 			        <input type="password"  style="font-size:125%;letter-spacing:0.1em" data-clear-btn="true" name="login-password" id="login-password" value="" ></div>
 				</div>
-			<div class="ui-block-a " id="loginbutton">
-				<br>
-				<a id="login-button" class="ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_in()" style="width:75vw; margin-left:5%"><b>Check-in </b></a>
-				<a id="pw-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" style="width:77vw; margin-left:5%">I forgot my password... </a>
-			</div> 
-
-			<div class="ui-block-a " id="no-account-text">
-<br><br>
-			    <label for="Signup" >Don't have an account yet? Sign up...</label>
-			</div>
-			<div class="ui-block-a ui-mini" id="show-signup-button">
-				<a id="signup-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini" onclick="show_signup()" style="width:77vw; margin-left:3%"><b>Sign up now!</b></a>
-			</div> 
+				<div class="ui-block-a " id="loginbutton">
+					<br>
+					<a id="login-button" class="ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_in()" style="width:75vw; margin-left:5%"><b>Check-in </b></a>
+					<a id="pw-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" style="width:77vw; margin-left:5%">I forgot my password... </a>
+				</div> 
+				<div class="ui-block-a " id="no-account-text" style="margin-left:5%;">
+					<br><br>
+				    <p>Don't have an account yet? Sign up...</p>
+					<a id="signup-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini" onclick="show_signup()" style="width:77vw;"><b>Sign up now!</b></a>
+				</div> 
 			
-			<div id="user-details">
-				<div style="width:90vw;margin-left:2%; margin-right:5% ">
-				    <label for="pro-privacy"><p>We respect your privacy and do not need your full name...</p></label>
+				<div id="user-details">
+					<div style="width:90vw;margin-left:2%; margin-right:5% ">
+					    <p>We respect your privacy and do not need your full name...</p>
+					</div>
+				    <label for="first-name">Please enter your first name: </label>
+					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%; ">
+				        <input type="text" style="font-size:125%;letter-spacing:0.1em" data-enhanced="true" data-clear-btn="true" name="first-name" id="first-name" value="">
+					</div>
 				</div>
-			    <label for="first-name-only">Please enter your first name: </label>
-				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:74vw; border-color:#D3D3D3;margin-left:5%; ">
-			        <input type="text" style="font-size:125%;letter-spacing:0.1em" data-enhanced="true" data-clear-btn="true" name="first-name" id="first-name" value="">
-				</div>
-			</div>
-			<div class="ui-block-a " id="sign-up-now-button">
-				<!-- <button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_up_now()" > Join the waiting list</button> -->
-				<br>
-				<a id="signupwithinvitation" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_up_now()" style="width:75vw;margin-left:5%; "><b>Join the club!</b></a>
-			</div> 
-
-				<div  id="faq-prelogin-div">
-				<div class="ui-block-a " id="faq-prelogin-div">
-<br>
-			    <label for="faqs" >Wanna know more? </label>
-				</div>
-				<div class="ui-block-a " >
-					<a id="faq-prelogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="location.href='https://jochoice.com/faqs'" type="button" style="width:77vw; margin-left:5%">FAQs </a>
-				</div>
-				</div>  
-
-				<div class="ui-block-a " id="contact-prelogin-div" style="margin-left:0%">
-<br>
-				<div>
-			    <label for="show-contact-button-div-prelogin" >We look forward to hearing from you!</label>
-				</div>  
-				<div class="ui-block-a " id="show-contact-button-div-prelogin">
-					<a id="show-contact-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_contact_form_prelogin()" type="button" style="width:77vw; margin-left:5%" >Get in touch...</a>
+				<div class="ui-block-a " id="sign-up-now-button">
+					<!-- <button id="signupwithinvitation" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="sign_up_now()" > Join the waiting list</button> -->
+					<br>
+					<a id="signupwithinvitation" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_up_now()" style="width:75vw;margin-left:5%; "><b>Join the club!</b></a>
 				</div> 
+
+				<div  id="faq-prelogin-div" class="ui-block-a " style="margin-left:5%;" >
+				    <p>Wanna know more? </p>
+					<a id="faq-prelogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" href='https://jochoice.com/faqs' style="width:77vw;">FAQs </a>
+				</div>  
+				<div class="ui-block-a " id="contact-prelogin-div" style="margin-left:5%">
+			    <p>We look forward to hearing from you!</p>
+					<a id="show-contact-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_contact_form_prelogin()" style="width:77vw; " >Get in touch...</a>
 
 				</div> 
 
 			</div>
-
 
 			<div id = "contact-form-and-send-button-prelogin" style="margin-left:2%">
-						<div class="contact-prelogin" id="contact-form-div-prelogin">
-							<!-- <h3>
-							Contact us
-							</h3>
-							<p>
-								We look forward to hearing from you! 
-							</p> 
-							<p>
-								Write to us via the form below. 
-							</p>--> 
-							<div>
-								<br>
-								<p style="margin-left:5%">Our email is: contact AT jochoice.com</p>
-							    <label for="contact-form" >Or, you can just write to us via the form below.</label>
-							</div>
-							<form id="contactform-prelogin" enctype="multipart/form-data">
-								<br>
-							    <label for="text-email-prelogin">Name:</label>
-								<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw;border-color:#D3D3D3;margin-left:5%; " >
-								    <input type="text" name="text-name-prelogin" style="font-size:125%;letter-spacing:0.1em" id="text-name-prelogin" value="">
-								</div>
-								
-								<br>
-							    <label for="text-email-prelogin">Email:</label>
-								<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw; border-color:#D3D3D3;margin-left:5%;">
-								    <input type="email" name="text-email-prelogin" style="font-size:125%;letter-spacing:0.1em" id="text-email-prelogin" value="">
-								</div>
-								<br>
-							    <label for="textarea-message" style:"line-height:200">Message:</label>
-								<!-- <textarea name="textarea-message" id="textarea-message" ></textarea>-->	
-								<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
-								<div id="textarea-message-div-prelogin">
-									<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
-									<div style="border-radius:5px; display:inline-block; min-height: 100px; width:83vw; background: #D3D3D3; color:black; border: 1px solid #666; cursor: text; border-color:#D3D3D3;margin-left:5%;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</div> 
-								</div>
-							   
-							</form>
-						</div>
-						<div id="send-message-button-div-prelogin" style="margin-left:5%; margin-right:5%">
-							<div class="ui-block-a ">
-								<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-								<a id="send-message-button-prelogin" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="send_message_prelogin()" style="width:75vw" >Send this message</a>
-							</div> 
-
-							<div class="ui-block-a ">
-								<a id="cancel-message-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini " onclick="cancel_message_prelogin()"  style="width:77vw">Cancel </a>
-								<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
-							</div>
-
+				<div id="contact-form-div-prelogin" class="contact-prelogin" >
+					<div id="contact-prelogin-copy" style="margin-left:5%">
+						<br>
+						<p >
+							Our email is: contact AT jochoice.com
+						</p>
+					    <p>
+							Or, you can just write to us via the form below.
+						</p>
 					</div>
-
+					<form id="contactform-prelogin" enctype="multipart/form-data">
+						<br>
+					    <label for="text-email-prelogin">Name:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw;border-color:#D3D3D3;margin-left:5%; " >
+						    <input type="text" name="text-name-prelogin" style="font-size:125%;letter-spacing:0.1em" id="text-name-prelogin" value="">
+						</div>
+						
+						<br>
+					    <label for="text-email-prelogin">Email:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:75vw; border-color:#D3D3D3;margin-left:5%;">
+						    <input type="email" name="text-email-prelogin" style="font-size:125%;letter-spacing:0.1em" id="text-email-prelogin" value="">
+						</div>
+						<br>
+						<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
+						<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
+						<div id="textarea-message-div-prelogin">
+						    <p>Message:</p>
+							<div style="border-radius:5px; display:inline-block; min-height: 100px; width:83vw; background: #D3D3D3; color:black; border: 1px solid #666; cursor: text; border-color:#D3D3D3;margin-left:5%;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</div> 
+						</div>
+					   
+					</form>
 				</div>
+				<div id="contact-form-buttons-prelogin" style="margin-left:5%; margin-right:5%">
+					<div class="ui-block-a ">
+						<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+						<a id="send-message-button-prelogin" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="send_message_prelogin()" style="width:75vw" >Send this message</a>
+
+						<a id="cancel-message-button-prelogin" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini " onclick="cancel_message_prelogin()"  style="width:77vw">Cancel </a>
+						<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div data-role="page" class="mainpage" class="noscroll" id="maincontents" style="background-color:black; color:#D3D3D3" >
-	   <div data-role="header" data-fullscreen="true" data-theme="b">
-	   <a href="#" data-icon="bars" data-iconpos="notext"></a>
-	   </div>
-	   <div >
+	<div data-role="page" class="mainpage noscroll" id="maincontents" style="background-color:black; color:#D3D3D3" >
+		<!-- <div data-role="header" data-fullscreen="true" data-theme="b"> -->
+		   <hr class="brandbartop" style="text-align:right;margin-right:0" />
+		<!--</div> -->
 		<div data-role="content" class="content " >
-	<div id = "image-voting" style="width:95vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
-			<div class = "image" id="picture-div" style="background-color:black; color:#D3D3D3; max-height:65vh; min-height:65vh; height:65vh; width:95vw;" >
-			<div style="max-width:95vw;">
-				<img id="currentimage" style="border-radius:50%; display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; max-width:95vw; height:65vh; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
-			</div>
-				<div class="ui-grid-solo" style="visibility:hidden; display:block; position:relative">
-					<legend class="captionlegend" id="imagetitle" style="background-color:black; color:#D3D3D3">faz</legend>
-				</div> 
-
-			</div>
-			<br>
-			<div id="voting-buttons" style="height:30vh; max-height:30vh; min-height:30vh; ">
-			<div class="ui-grid-a" id="voting-div" style="display:block; position:relative; ">
-				<legend class="choicelegend" style="background-color:black; color:#D3D3D3" >Which word describes the photo better?</legend>
-				<div class="ui-block-b">
-					<a id="button1" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">sophisticatedd</a>
-				</div>
-
-				<div class="ui-block-b">
-					<a id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</a>
+			<div id = "home-page" style="width:100vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
+				<div id="home-page-buttons" style="height:95vh; " > <!-- max-width:100vh; -->
+					<div id="home-page-choice-div" class="ui-grid-a" style="max-height:20vh; display:block; position:relative; ">
+						<p>Choose one of the big yellow buttons..</p>
+					</div>
+					<div id="infinite-mode-div" class="ui-grid-solo" style="display:block; position:relative; text-align: center; max-height:40vh; max-width:100vw; "> <!-- padding:1em 1em 4em 4em;-->
+						<img src="includes/voting_booth_icon.png" alt="background text" style=" max-width:100%; max-height:25vh; " onclick="start_slideshow()">
+						<p style="max-height:15vh;">
+							Watch a show. And cast your votes! <!--Enter the Voting Booth-->
+						</p>
+					</div>
+					<br><br>
+					<div id="add-own-div" class="ui-grid-solo" style="display:block; padding:1em 4em 4em 4em; position:relative; text-align: center; margin:auto; max-height:40vh; max-width:100vw; " >
+						<button style="max-height:25vh; text-align:center; " class="round-button " onclick="show_upload_form()" ><div style="text-align:center; padding: 0em 0em 0em 0em; position:relative; margin:auto; ">Upload</div></button>
+						<p style="max-height:15vh; text-align:center; " >
+							Upload your own photos! <!--Enter the Voting Booth-->
+						</p>
+					</div>
 				</div>
 			</div>
-			<div class="ui-grid-solo" id="skip-image-div" style="display:block; position:relative">
-				<div class="ui-block-a">
-					<a id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="nextimage(this.id)"><i>Skip</i></a>
-				</div> 
-			</div>
-			</div>
-	</div>
 
+			<div id = "image-voting" style="width:95vw; height:100vh; border-color:#D3D3D3;margin-left:1%; margin-right:1%; ">
+				<div id="picture-div" class = "image" style="background-color:black; color:#D3D3D3; max-height:65vh; min-height:65vh; height:65vh; width:95vw;" >
+					<div style="max-width:95vw;">
+						<img id="currentimage" alt="image to be voted upon" style="border-radius:50%; display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; max-width:95vw; height:65vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/logo-circ-192.png" /> 
+					</div>
+					<div class="ui-grid-solo" style="visibility:hidden; display:block; position:relative">
+						<!-- <legend class="captionlegend" id="imagetitle" style="background-color:black; color:#D3D3D3">faz</legend> --> 
+						<p id="imagetitle" ></p>
+					</div> 
+				</div>
+				<br>
+				<div id="voting-buttons" style="height:30vh; max-height:30vh; min-height:30vh; ">
+					<div id="shareicons" class="ui-nodisc-icon ui-alt-icon"><!-- Classes added to the wrapper -->
+						<img id="hearticon" alt="heart" style="width:auto; margin-left: 1%; margin-right:auto; max-width:9vw; max-height:9vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/not_yet_liked_green.png" onclick="liked()"/> 
+						<img id="shareicon" alt="share" style="width:auto; margin-left: 3%; margin-right:auto; max-width:9vw; max-height:9vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/share_red_plane.png" /> 
+						<img id="usericon" alt="user" style="float:right; width:auto; margin-left: 3%; margin-right:5%; max-width:9vw; max-height:9vh; overflow:hidden; object-fit:cover" class="userimage" src="includes/user_green.png" /> 
+					</div>
+
+					<div id="sharefallback" class="share-buttons" style="display:none;">
+						<br>
+						<p></p>
+						<a class="share-btn tw" href="" onclick="window.open('https://twitter.com/intent/tweet/?text=Web+Share+API+with+fallback&url='+window.location.href) ;" >Tweet</a>
+						<a class="share-btn wa" href="" onclick="window.open('whatsapp://send?text='+encodeURIComponent(window.location.href)) ;" >Text</a>
+						<a class="share-btn fb" href="" onclick="window.open('https://facebook.com/sharer/sharer.php?u='+window.location.href) ;" >Share</a>
+						<br>
+						<p></p>
+					</div>
+
+					<div id="image-voting-div" class="ui-grid-a" style="display:block; position:relative; ">
+						<!-- <legend class="choicelegend" style="background-color:black; color:#D3D3D3" >Which word describes the photo better?</legend> --> 
+						<p style="background-color:black; color:#D3D3D3" >Which word describes the photo better?</p>
+						<div class="ui-block-b">
+							<a id="button1" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">sophisticatedd</a>
+						</div>
+
+						<div class="ui-block-b">
+							<a id="button2" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="nextimage(this.id)">ostentatiousss</a>
+						</div>
+					</div>
+					<div id="next-image-div" class="ui-grid-solo" style="display:block; position:relative">
+						<div class="ui-block-a">
+							<a id="button3" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="nextimage(this.id)"><i>Next image..</i></a>
+						</div> 
+					</div>
+					<div id="quit-show-div" class="ui-grid-solo" style="display:block; position:relative">
+						<div class="ui-block-a">
+							<a id="button4" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="show_home_page()"><i>Quit show.</i></a>
+							<br>
+						</div> 
+					</div>
+				</div>
+			</div>
 	   </div>
 	  <!--  <div data-role="footer" data-fullscreen="true" data-theme="b"> -->
 			
-	  <div id="bottom-section" style="height:100%;" >
-
-			<div id = "contact-form-and-send-button">
-				<div class="contact" id="contact-form-div">
-				<div class="logotext" style="max-height:35vh;"> 
-				
-					<div id="logoimage" style="width:33.33%; float:left;">
-						<img src="logo-circ-192.png" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;">
-					</div>
-					<div id=txtimage style="width:66.67%; float:right; ">
-						<img src="bgtxt.png" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;">
-					</div>
-					<div id="contact-title" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1.5em; font-weight:bold; line-height: 1.2;
-						max-height:20vh; ">
-						<br>
-						<p style="margin-left:2%;">Contact us</p> 
-					</div>
+	<div id="bottom-section" style="height:100%;" >
+		<div id="contact-form-div" class="contact" >
+			<div class="logotext" style="max-height:35vh;"> 
+				<div id="logoimage-contact-form" style="width:33.33%; float:left;">
+					<img alt="logo" src="includes/logo-circ-192.png" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;" onclick="window.location='https://jochoice.com'" >
 				</div>
-
-				<div>
+				<div id="txtimage-contact-form" style="width:66.67%; float:right; ">
+					<img src="includes/bgtxt.png" alt="background text" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;" onclick="window.location='https://jochoice.com'">
+				</div>
+				<div id="contact-title" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1.5em; font-weight:bold; line-height: 1.2;
+					max-height:20vh; ">
 					<br>
-					<p style="margin-left:5%;">Our email is: contact AT jochoice.com</p>
-					<p style="margin-left:5%;">
-						We look forward to hearing from you! 
-					</p>
-				    <label style="margin-left:1%;" for="contact-form" >You can also write to us via this form:</label>
+					<p style="margin-left:2%;">Contact us</p> 
+				</div>
+			</div>
+
+			<div id="contact-copy" style="margin-left:5%;">
+				<p>
+					Our email is: contact AT jochoice.com
+				</p>
+				<p>
+					We look forward to hearing from you! 
+				</p>
+				<p>
+					You can also write to us via this form:
+				</p>
+			</div>
+
+			<form id="contactform" enctype="multipart/form-data">
+				<p>
+				</p>
+			    <label for="text-name">Your name:</label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+				    <input type="text" name="text-name" id="text-name" value="">
+				</div>
+				<p>
+				</p>
+			    <label for="text-email">Your e-mail:</label>
+				<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw">
+				    <input type="email" name="text-email" id="text-email" value="">
+				</div>
+				<p>
+				</p>
+				<!-- <textarea name="textarea-message" id="textarea-message" ></textarea>-->	
+				<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
+				<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
+				<div id="textarea-message-div">
+					<!--    <label for="textarea-message">Message:</label> -->
+				    <p>Your message:</p>
+					<div style="color: black; border-radius:5px; display:inline-block; min-height: 100px; width: 97vw; background: white; border: 2px solid #666; cursor: text; margin-left:1vw; margin-right:3vw;" id="textarea-message" contenteditable="true">Hi there ...</div> 
 				</div>
 
-				<form id="contactform" enctype="multipart/form-data">
-					<p>
-				    <label for="text-name">Name:</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
-				    <input type="text" name="text-name" id="text-name" value="">
-					</div>
-					</p>
-					<p>
-				    <label for="text-email">Email:</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw">
-				    <input type="email" name="text-email" id="text-email" value="">
-					</div>
-					</p>
-					<p>
-				    <label for="textarea-message">Message:</label>
-					<!-- <textarea name="textarea-message" id="textarea-message" ></textarea>-->	
-					<!--the advantage of using a span instead of a textarea is its size adjusts automatically to given input without jquery -->
-					<div id="textarea-message-div">
-						<!-- <span style="background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message-prelogin" contenteditable="true">Hi there ...</span> -->
-						<div style="border-radius:5px; display:inline-block; min-height: 100px; width: 97vw; background: white; border: 2px solid #666; cursor: text margin-left:30px;" id="textarea-message" contenteditable="true">Hi there ...</div> 
-					</div>
-
-					<!-- <div id="textarea-message-div">
-						<span id="textarea-message" contenteditable="true">Hi there ...</span>
-					</div> -->
-				   
-					</p>
-			</div>
-			<div class="ui-grid-solo" id="send-message-button-div">
+				<!-- <div id="textarea-message-div">
+					<span id="textarea-message" contenteditable="true">Hi there ...</span>
+				</div> -->
+			   
+				<p>
+				</p>
+			</form>
+			<div id="send-message-button-div" class="ui-grid-solo" >
 				<div class="ui-block-a">
 					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
 					<a id="send-message-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="send_message()" ><i>Send this message</i></a>
@@ -352,94 +308,82 @@
 					<br><br>
 					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
 				</div> 
-		</div>
-	</div>
-
-	<div id = "upload-form-and-submit-button">
-		
-			<div class="upload" id="upload-form-div">
-				
-
-				<div class="logotext" style="max-height:35vh;"> 
-				
-				<div id="logoimage" style="width:33.33%; float:left;">
-					<img src="../logo-circ-192.png" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;">
-				</div>
-				<div id=txtimage style="width:66.67%; float:right; ">
-					<img src="../bgtxt.png" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;">
-				</div>
-				<div id="contact-title" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1.5em; font-weight:bold; line-height: 1.2;
-					max-height:20vh; ">
-					<p style="margin-left:2%;">Upload your own pics</p> 
-				</div>
 			</div>
+		</div>
 
-				
+		<div id = "upload-form-and-submit-button">
+			<div class="upload" id="upload-form-div">
+				<div id="logotext-upload-form" class="logotext" style="max-height:35vh;"> 
+					<div id="logoimage-upload-form" style="width:33.33%; float:left;">
+						<img src="includes/logo-circ-192.png" alt="logo" style="padding:1em 1em 1em 1em; float:left; max-width:20vw;max-height:15vh;" onclick="window.location='https://jochoice.com'">
+					</div>
+					<div id="txtimage-upload-form" style="width:66.67%; float:right; ">
+						<img src="includes/bgtxt.png" alt="background text" style="padding:1em 1em 1em 1em; max-width:100%; max-height:15vh; float:right;" onclick="window.location='https://jochoice.com'">
+					</div>
+					<div id="upload-copy" style="margin-left:2%; margin-right:2%; clear: both; color:#DCDCDC; font-size: 1.5em; font-weight:bold; line-height: 1.2;
+						max-height:20vh; ">
+						<p style="margin-left:2%;">Upload your own pics</p> 
+					</div>
+				</div>
+
 				<!--<p style="margin-left:5%; font-style:italic;">Please note than images larger than 3 MB cannot be uploaded.</p> -->
 				<div class = "uploaded-image-preview" style="max-width:95vw;">
-							<img style="max-width:95vw;" id="imagetoupload" />
+					<img style="max-width:95vw;" id="imagetoupload" />
 				</div>
 
 				<div id="upload-form" style="margin-left:2%; ">
-				<form id="uploadform" enctype="multipart/form-data">
-				    <label for="image-upload">Image:</label>
-					<div class="ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
-					    <input type="file" name="userinputfile" id="userinputfile" />
+					<form id="uploadform" enctype="multipart/form-data">
+					    <label for="userinputfile">Image:</label>
+						<div class="ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+						    <input type="file" name="userinputfile" id="userinputfile" />
+						</div>
+						<br> 
+						<h4 style="margin-left:5%;">
+							And, write two adjectives you think can be used to describe the image. 
+						</h4>
+						<br>
+					    <label for="text-adj-1">Adjective 1:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+						    <input type="text" name="text-adj-1" id="text-adj-1" value="">
+						</div>
+						<br> 
+					    <label for="text-adj-2">Adjective 2:</label>
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+						    <input type="text" name="text-adj-2" id="text-adj-2" value="">
+						</div>
+					</form>
+
+					<div id="upload-image-button-div" class="ui-grid-solo" >
+						<div class="ui-block-a">
+							<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+							<br>
+							<a id="upload-image-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload now</i></a>  
+							<a id="cancel-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="cancel_upload()" ><i>Cancel </i></a>
+						</div> 
 					</div>
-				<br> 
-				<h4 style="margin-left:5%;">
-					And, write two adjectives you think can be used to describe the image. 
-				</h4>
-				<br>
-				    <label for="adj1">Adjective 1:</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
-					    <input type="text" name="text-adj-1" id="text-adj-1" value="">
-					</div>
-				<br> 
-				    <label for="adj2">Adjective 2:</label>
-					<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
-					    <input type="text" name="text-adj-2" id="text-adj-2" value="">
-					</div>
-
-
-			<div class="ui-grid-solo" id="upload-image-button-div">
-				<div class="ui-block-a">
-					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-					<br>
-					<a id="upload-image-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload now</i></a>  
-
-					<a id="cancel-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="cancel_upload()" ><i>Cancel </i></a>
-
-					<!-- <a id="uploadimagebutton" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all"  ><i>Upload image </i></a>  -->
-				</div> 
-		</div>
-	</div>
-	</div>
-	</div>
-
-	<div id="bottom-buttons" class="ui-grid-a" >
-
-		<div class="ui-block-a" id="show-upload-button-div" style="width:100vw; align:center;">
-			<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-			<br><br><br><br>
-			<a id="show-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_upload_form()" ><i>Upload image</i></a>
-			<a id="show-contact-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_contact_form()" ><i>Get in touch...</i></a>
+				</div>
+			</div>
 		</div>
 
-		<div class="ui-block-a " id="show-contact-button-div" style="width:100vw">
-				<a id="faq-postlogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="location.href='https://jochoice.com/faqs'" type="button" ><i>FAQs </i></a>
+		<div id="bottom-buttons" class="ui-grid-a" >
+			<div id="show-upload-and-contact-button-div" class="ui-block-a" style="width:100vw; text-align:center;">
 				<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-				
-				<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
-		</div>
+				<br><br><br><br><br><br>
+				<a id="show-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_upload_form()" ><i>Upload image</i></a>
+				<a id="show-contact-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="show_contact_form()" ><i>Get in touch...</i></a>
+			</div>
 
-		<div class="ui-block-a " id="logout" style="width:100vw">
-			 <a id="logout-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sign_out()" ><i>Logout.</i></a>  
+			<div id="show-faq-button-div" class="ui-block-a" style="width:100vw">
+					<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+					<!-- <button type="submit" form="contactform" value="Submit" id="send-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" ><i>Send this message ...</i></button> -->
+					<a id="faq-postlogin-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " href='https://jochoice.com/faqs' ><i>FAQs </i></a>
+			</div>
+
+			<div id="logout-button" class="ui-block-a" style="width:100vw">
+				 <a id="logout-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all" onclick="sign_out()" ><i>Logout.</i></a>  
+			</div>
 		</div>
 	</div>
-	</div>
-</div>
-
 
 	<!-- <div id = "dummy-images-preload">
 		<img id="preload1" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
@@ -447,792 +391,16 @@
 		<img id="preload3" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
 		<img id="preload4" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
 	</div> --> 
-			<!-- </div> -->
-		<hr class="brandbarbottom" align="left" />
+		<!-- </div> -->
+	    <hr class="brandbartopbottom" style="text-align:right;margin-right:0" />
 	</div>
 
-	<div id = "list-of-scripts">
-	<!-- 
-	<script type="text/javascript" src="./includes/jquery-1.11.1.min.js"></script>  
-	<script type="text/javascript" src="./includes/jquery.mobile-1.4.5.min.js"></script> 
-    <script type="text/javascript" src="./includes/javascript.js"></script>
-    <script type="text/javascript" src="./includes/test.js"></script>
-    <script type="text/javascript" src="../includes/test.js"></script>
+	<!-- inline all the js here so that the standard jquery, etc. .js files can have a longer caching, since the custom js is frequently updated --> 
+	<div id="myjs">
+		<script type="text/javascript">
 
-	-->
+		</script>
 	</div>
-
-	<!-- inline all the js so that the standard jquery, etc. .js files can have a longer caching, since the custom js is frequently updated --> 
-	<script type="text/javascript">
-	// todo
-	//todo - make vars for all html elements used in js via getElementById
-	//todo - consider separate req (and server route) to check for login status. route for actual login/pageload could already send image list. 
-	//todo - consider using session storage, to retain vars after page refresh
-	//enter image id in url - client + server
-
-	//global variables (to be moved to new scoping function??)
-	var file;
-	var homeurl = "/";
-	var contacturl = "/contact";
-	var uploadurl = "/upload";
-
-	var Y;
-	var batchsize = 5; //number of pics/votes to get/send in a lot
-
-	var voterecord = [];
-	var votedimages = [];
-
-
-	var voted_images_id_list = [];
-	var voted_adj1_list = [];
-	var voted_adj2_list = [];
-	var voted_choice_list = [];
-	//var voted_list = [voted_images_id_list, voted_adj1_list, voted_adj2_list, voted_choice_list];
-	var voted_list = {"images":voted_images_id_list,"adj1":voted_adj1_list,"adj2":voted_adj2_list,"choice":voted_choice_list};
-
-	var image_counter = 0; //start at 0, inc each time a new image is voted on, not for revisited images. only increases. 
-	var current_n; // used to denote the sequence number (in the array) of the image currently on display. increases and decreases. 
-
-
-	var images_src_list = [];
-	var images_id_list = [];
-	var image_titles_list = ["ddd", "foo", "bar", "baz", "fab"];
-	var image_adj1_list = [];
-	var image_adj1_id_list = [];
-	var image_adj2_list = [];
-	var image_adj2_id_list = [];
-	var images_src_list_length = images_src_list.length;
-	var image_titles_list_length = image_titles_list.length;
-
-	//desc
-	//clicking on next: 
-	//	when it is a votable image (identified by non existence in the votedimages list): show the next item in the votable list, and register the vote. 
-	//	when it is a non votable image (identified by existence in the votedimages list): show the next item in the votable list, do not register the vote
-
-	//clicking on a vote button:
-	//	when it is a votable image (identified by non existence in the votedimages list): register the vote, and show the next item in the votable list
-	//	when it is a non votable image: vote buttons are deactivated. 
-
-
-// event listeners - domcontentloaded, popstate, preview image for upload
-	document.addEventListener("DOMContentLoaded", function(event) { 
-		on_page_load();
-	});
-	window.onpopstate = function(event) {
-		event.preventDefault();
-		if (event.state === null) {
-			//if the user has clicked the back button all the way to the start where there's no history and hence event.state is null
-			//window.location.href="https://192.168.43.220:8765"; //reload the page to bring user back to same place. this is suboptimal. approach below works much better. 
-			history.go(1); //just keep on same page if user keeps clicking back button, since there's no back. 
-		} else {
-			var popped_url = event.state.url;
-			js_routing_hist(popped_url);
-		}
-	//	js_routing(window.location.pathname);
-	}
-	//show preview of image to be uploaded
-	document.addEventListener('DOMContentLoaded',function() {
-		document.querySelector('#userinputfile').addEventListener('change', function(){
-			file = this.files[0];
-			var reader = new FileReader();
-			reader.onload = function(e){
-				document.querySelector('#imagetoupload').src = e.target.result
-			};
-			reader.readAsDataURL(file);
-		}, false)}, false);
-
-// js routing
-	function js_routing(path){
-		switch(path) {
-			case "/upload": 
-				//console.log("upload");
-				console.log(path);
-				show_upload_form();
-				break;
-			case "/contact": 
-				console.log(path);
-				show_contact_form();
-				break;
-			case (path.match(/[0-9]+$/) || {}).input: 
-				//get image Id from the url form /images/xxxx
-
-				console.log(path);
-				//send req to server. receive array/list in response. 
-				//key difference between this route in js_routing/hist - load from server vs load from existing array. 
-				//load_image_n(1);
-				show_image_voting();
-				break;
-			default:
-				//console.log("default. loading home");
-				console.log(path);
-				show_image_voting();
-		}
-	}
-	function js_routing_hist(path){
-		switch(path) {
-			case "/upload": 
-				//console.log("upload history");
-				show_upload_form_hist();
-				break;
-			case "/contact": 
-				//console.log("contact history");
-				show_contact_form_hist();
-				break;
-			// for matching images. the path will be the last segment (with image id)
-			case (path.match(/[0-9]+$/) || {}).input: 
-				//console.log("contact history");
-				show_image_voting_hist();
-				break;
-			default:
-				//console.log("default. loading home");
-				 //window.location.href="https://192.168.64.2";
-				 window.location.href="https://jochoice.com";
-				//show_image_voting_histndow.location.href=\""();
-		}
-	}
-
-// page structure
-	function on_page_load() {
-		// hide all the "below-fold" divs
-		hide_below_fold();
-		hide_image_voting();
-		overlay_on();
-
-		//console.log(window.location.pathname);
-
-		// send empty GET to check for cookies
-		var xhr = new XMLHttpRequest;
-		xhr.open('GET', "/login");
-		xhr.onload = function() {
-			if (xhr.status === 200) {
-				//var path = window.location.pathname.substr(1);
-				//call the js_routing fun to load the path submitted in the address bar
-				var path = window.location.pathname;
-				//get_new_images("");
-				get_new_images(path);
-				js_routing(path);
-				overlay_off();
-					}
-	//		else if (xhr.status !== 200) {
-	//				}
-		};
-		xhr.send();
-	}
-	function overlay_on(){
-		document.getElementById("overlay").style.display = "block";
-		document.getElementById("sign-up-now-button").style.display = "none";
-		document.getElementById("sign-up-text").style.display = "none";
-	//	document.getElementById("sign-up-inviter").style.display = "none";
-		document.getElementById("user-details").style.display = "none";
-		document.getElementById("maincontents").classList.add('noscroll');
-	//	document.getElementById("password_reset").style.display = "none";
-
-		document.getElementById("contact-form-div-prelogin").style.display = "none";
-		document.getElementById("show-contact-button-prelogin").style.display = "block";
-		document.getElementById("send-message-button-div-prelogin").style.display = "none";
-	}
-	function overlay_off(){
-		document.getElementById("overlay").style.display = "none";
-		document.getElementById("maincontents").classList.remove('noscroll');
-		window.scrollTo(0,0);
-	}
-	function hide_below_fold(){
-		hide_contact_form();
-		hide_upload_form();
-	}
-
-// login, pw, account related
-function clear_login_form(){
-	document.getElementById("login-email").value="";
-	document.getElementById("login-password").value="";
-//	document.getElementById("inviter-email").value="";
-	document.getElementById("first-name").value="";
-}
-function sign_in() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/login");
-	xhr.onload = function() {
-		clear_login_form();
-	  	alert(this.response);
-		if (xhr.status === 200) {
-			//alert('Something went wrong.  Name is now ' + xhr.responseText);
-			//alert('Something went wrong.  Name is now ' + xhr.statusText);
-
-			//send new req to server to get images list. 
-
-			overlay_off();
-			var path = window.location.pathname;
-			get_new_images(path);
-			js_routing(path);
-		}
-		else {
-			clear_login_form();
-			//alert('Request failed.  Returned status of ' + xhr.status);
-		}
-	};
-
-	//create json data variable from html text input elements 
-	//var data = JSON.stringify({login:document.getElementById("login-email").value, password:document.getElementById("login-password").value});
-	
-	//create FormData variable and append values from html text input elements
-	var data = new FormData();
-	data.append("login-email", document.getElementById("login-email").value);
-	data.append("login-password", document.getElementById("login-password").value);
-	xhr.send(data);
-}
-function sign_out() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/logout");
-	xhr.onload = function() {
-	  	alert(this.response);
-		if (xhr.status === 200) {
-			location.replace("/");
-		}
-		else {
-			//alert('Request failed.  Returned status of ' + xhr.status);
-		}
-	};
-	xhr.send();
-}
-function sign_up_now() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/join/new");
-	xhr.onload = function() {
-	  //alert(this.response);
-	  clear_login_form();
-		if (xhr.status === 200) {
-			alert(xhr.responseText);
-			location.reload(true);
-			//overlay_off();
-				}
-		else if (xhr.status !== 200) {
-			alert('Request failed.  Returned status of ' + xhr.status);
-				}
-	};
-	var data = new FormData();
-	data.append("login-email", document.getElementById("login-email").value);
-	data.append("first-name", document.getElementById("first-name").value);
-	xhr.send(data);
-}
-function show_signup(){
-	document.getElementById("sign-up-now-button").style.display = "block";
-	document.getElementById("sign-up-text").style.display = "block";
-	document.getElementById("user-details").style.display = "block";
-	document.getElementById("loginbutton").style.display = "none";
-	document.getElementById("show-signup-button").style.display = "none";
-	document.getElementById("no-account-text").style.display = "none";
-	document.getElementById("password-entry").style.display = "none";
-}
-function forgot_pw() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/password/forgot");
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			//alert('Something went wrong.  Name is now ' + xhr.responseText);
-			//alert('Something went wrong.  Name is now ' + xhr.statusText);
-//			overlay_off();
-//			var path = window.location.pathname;
-//			js_routing(path);
-//			alert("Request received successfully. Please check your email");
-			alert(this.response);
-			clear_login_form();
-//			document.getElementById("password_reset").style.display = "block";
-//			document.getElementById("entry").style.display = "none";
-			
-		}
-		else {
-			alert('Request failed.  Returned status of ' + xhr.status);
-			clear_login_form();
-		}
-	};
-
-	//create FormData variable and append values from html text input elements
-	var data = new FormData();
-	data.append("login-email", document.getElementById("login-email").value);
-	data.append("login-password", document.getElementById("login-password").value)
-	xhr.send(data);
-}
-
-// image, voting related
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function show_image_voting(){
-	document.getElementById("image-voting").style.display = "block";
-	load_image_n(image_counter); // start at 0
-	hide_below_fold();
-}
-function show_image_voting_hist(){
-	document.getElementById("image-voting").style.display = "block";
-	hide_upload_form();
-	hide_contact_form();
-	hide_below_fold();
-	
-	//load up corresponding image from array
-	load_image_hist();
-}
-function hide_image_voting(){
-	document.getElementById("image-voting").style.display = "none";
-}
-
-//original load_image_fun. works okay.
-//async function load_image_n(n) {
-//	document.getElementById("currentimage").src = images_src_list[n];
-//	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
-//
-//	imagesbuttonsdeactivation();
-//	document.getElementById("button1").innerHTML = "...";
-//	document.getElementById("button2").innerHTML = "...";
-//	await sleep(2000);
-//	document.getElementById("button1").innerHTML = image_adj1_list[n];
-//	document.getElementById("button2").innerHTML = image_adj2_list[n];
-//
-//	imagesbuttonsactivation(n);
-//	createimagehistory(n);
-//}
-//alternative load_image_fun with img.onload. to test. 
-function load_image_n(n) {
-	document.getElementById("currentimage").src = images_src_list[n];
-	document.getElementById("imagetitle").innerHTML = image_titles_list[n];
-
-	imagesbuttonsdeactivation();
-	document.getElementById("button1").innerHTML = "...";
-	document.getElementById("button2").innerHTML = "...";
-
-	document.getElementById("currentimage").onload = async function(){ 
-		await sleep(1100);
-		console.log("image loaded. updating adjectives. ");
-		document.getElementById("button1").innerHTML = image_adj1_list[n];
-		document.getElementById("button2").innerHTML = image_adj2_list[n];
-
-		imagesbuttonsactivation(n);
-		createimagehistory(n);
-	}
-}
-
-function load_image_hist() {
-	//get serial number of that image in the array
-	current_n = get_image_serial();
-	imagesbuttonsactivation(current_n);
-
-	document.getElementById("currentimage").src = images_src_list[current_n];
-	document.getElementById("imagetitle").innerHTML = image_titles_list[current_n];
-	document.getElementById("button1").innerHTML = image_adj1_list[current_n];
-	document.getElementById("button2").innerHTML = image_adj2_list[current_n];
-
-	//createimagehistory(n);
-	//historical views don't push state to history because that leads to an infinite loop.
-}
-//function preload_images(src_array) {
-//	document.getElementById("preload1").src = src_array[1];
-//	document.getElementById("preload2").src = src_array[2];
-//	document.getElementById("preload3").src = src_array[3];
-//	document.getElementById("preload4").src = src_array[4];
-//}
-
-function nextimage(clickedbuttonid) {
-	// img1 vote -> img 2 vote -> img 3 vote -> back -> back -> contact page -> back (to img 1) -> then click next
-	// to do - click skip/next button on already voted image - take to next (voted) image or next image yet to be voted?
-	// consider - checking (similar to imagesbuttonsactivation) before taking action on next click ??
-	//
-	// list of 10 images. when n is 2, update 6-10, when n is 7, update 1-5. 
-	//
-	// updating includes sending the votes for those images to the server (create new array to store vote results)
-	// create server module to process votes and another to send new images. 
-	// function to check for value of n and send votes to server and get/process/update new images
-	//make_ajax_call(server);
-	//function to simply update images_src_list with this.response. 
-
-	current_n = get_image_serial();
-	//document.getElementById("button1").disabled=true;
-	recordvote(current_n, clickedbuttonid);
-
-	// get new set of images after every 5th image
-	// to do: send last 5 votes to server
-	// check if counter is multiple of 5, since array starts at 0. 
-	if ((image_counter + 1) % batchsize == 0) {
-		get_new_images("");
-		send_votes();
-	}
-
-	load_image_n(image_counter);
-	}
-function get_new_images(path){
-//req next (unseen) set of 5 images from server
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/getimages", false);
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			//console.log(this.response);
-			Y = this.response;
-			console.log(Y);
-			Z = JSON.parse(Y);
-			console.log(Z.picid);
-
-			console.log(Z.uri);
-			//preload_images(Z.uri);
-
-			images_id_list = images_id_list.concat(Z.picid);
-			images_src_list = images_src_list.concat(Z.uri);
-			image_adj1_list = image_adj1_list.concat(Z.adj1);
-			image_adj1_id_list = image_adj1_id_list.concat(Z.adj1_id);
-			image_adj2_list = image_adj2_list.concat(Z.adj2);
-			image_adj2_id_list = image_adj2_id_list.concat(Z.adj2_id);
-			
-			console.log(images_id_list);
-			console.log(images_src_list);
-				}
-		else if (xhr.status !== 200) {
-			console.log(this.response);
-				}
-	};
-	var data = new FormData();
-	data.append("votes", path);
-	xhr.send(data);
-}
-function createimagehistory(n){
-	if (n == 0) {
-		history.pushState({url:homeurl+"images/"+images_id_list[n]}, null, homeurl+"images/"+images_id_list[n]);
-	} else {
-		history.pushState({url: images_id_list[n]}, null, images_id_list[n]);
-	}
-}
-
-function recordvote(current_n, clickedbuttonid){
-	if (current_n == image_counter) {
-		voted_images_id_list.push(images_id_list[image_counter]);
-		voted_adj1_list.push(image_adj1_id_list[image_counter]);
-		voted_adj2_list.push(image_adj2_id_list[image_counter]);
-		voted_choice_list.push(clickedbuttonid);
-
-		console.log(voted_list);
-
-		voterecord[image_counter] = clickedbuttonid;
-		//alert(voterecord);
-		image_counter = image_counter + 1;
-	}
-}
-function send_votes(){
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/sendvotes");
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			console.log(this.response);
-			reset_new_votes_list();
-		}
-		else if (xhr.status !== 200) {
-			console.log(this.response);
-		}
-	};
-	var data = new FormData();
-	data.append("votes", JSON.stringify(voted_list));
-	xhr.send(data);
-}
-function reset_new_votes_list(){
-	voted_images_id_list.splice(0,batchsize);
-	voted_adj1_list.splice(0,batchsize);
-	voted_adj2_list.splice(0,batchsize);
-	voted_choice_list.splice(0,batchsize);
-}
-
-function imagesbuttonsactivation(n){
-	if (n < image_counter) {
-		// to do: try using getelementbyclass instead of id
-		document.getElementById("button1").disabled = true;
-		document.getElementById("button2").disabled = true;
-		//document.getElementById("button3").disabled = true;
-	} else {
-		document.getElementById("button1").disabled = false;
-		document.getElementById("button2").disabled = false;
-		//document.getElementById("button3").disabled = false;
-	}
-}
-function imagesbuttonsdeactivation(){
-		document.getElementById("button1").disabled = true;
-		document.getElementById("button2").disabled = true;
-}
-
-function get_image_id_from_url(){
-	//get image Id from the url form /images/xxxx
-	patharray = window.location.pathname.split("/");
-	if (patharray[1] == "images"){
-		return patharray[2];
-	}
-}
-function get_image_serial(){
-	id = get_image_id_from_url();
-	for (var i = images_id_list.length; i >= 0; i--) {
-		if (id == images_id_list[i]){
-			return i;
-		}
-	}
-
-}
-
-// send message
-function show_contact_form(){
-	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
-	history.pushState({url:contacturl}, null, contacturl);
-	document.getElementById("show-upload-button").style.display = "none";
-	document.getElementById("contact-form-div").style.display = "block";
-	document.getElementById("show-contact-button").style.display = "none";
-	document.getElementById("send-message-button-div").style.display = "block";
-	document.getElementById("show-upload-button-div").style.display = "none";
-	hide_upload_form();
-	hide_image_voting();
-}
-function show_contact_form_hist(){
-	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
-	document.getElementById("show-upload-button").style.display = "none";
-	document.getElementById("contact-form-div").style.display = "block";
-	document.getElementById("show-contact-button").style.display = "none";
-	document.getElementById("send-message-button-div").style.display = "block";
-	document.getElementById("show-upload-button-div").style.display = "none";
-	hide_upload_form();
-	hide_image_voting();
-}
-function hide_contact_form(){
-	clear_contact_form();
-	document.getElementById("contact-form-div").style.display = "none";
-	document.getElementById("show-contact-button").style.display = "block";
-	document.getElementById("send-message-button-div").style.display = "none";
-	document.getElementById("show-upload-button-div").style.display = "block";
-}
-function clear_contact_form(){
-	document.getElementById("text-name").value="";
-	document.getElementById("text-email").value="";
-	document.getElementById("textarea-message").textContent="Hi there...";
-
-}
-function send_message() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/messagehandler");
-	xhr.onload = function() {
-		hide_contact_form();
-		if (xhr.status === 200) {
-			//document.getElementById("message-content").innerHTML=this.response;
-			alert(this.response);
-			window.history.go(-1);
-			//window.history.go(+1);
-		}
-		else {
-			//alert('Message sending failed.  Returned status of ' + xhr.status);
-			alert('Message sending failed.  Returned status of ' + xhr.responseText);
-		}
-
-	};
-	var data = new FormData();
-	data.append("sender-name", document.getElementById("text-name").value);
-	data.append("sender-email", document.getElementById("text-email").value)
-	//the line below gets the content from a text box using .value
-	//data.append("message-content", document.getElementById("textarea-message").value)
-	//the line below gets the content from a adjustable content span using .innerhtml
-	//the advantage of using a span is its size adjusts automatically to given input.
-	//but a text box needs jquery for its size to adjust to input
-	data.append("message-content", document.getElementById("textarea-message").innerHTML);
-
-	//document.getElementById("contactform").reset();
-	//hide_contact_form();
-	//show_image_voting();
-	xhr.send(data);
-}	
-function cancel_message() {
-	hide_contact_form();
-	window.history.go(-1);
-}
-
-function send_message_prelogin() {
-	var xhr = new XMLHttpRequest;
-	xhr.open('POST', "/messagehandler");
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			//document.getElementById("message-content").innerHTML=this.response;
-			alert(this.response);
-			//window.history.go(-1);
-			location.reload();
-			//window.history.go(+1);
-		}
-		else {
-			//alert('Message sending failed.  Returned status of ' + xhr.status);
-			alert('Message sending failed.  Returned status of ' + xhr.responseText);
-		}
-
-	};
-	var data = new FormData();
-	data.append("sender-name", document.getElementById("text-name-prelogin").value);
-	data.append("sender-email", document.getElementById("text-email-prelogin").value)
-	data.append("message-content", document.getElementById("textarea-message-prelogin").innerHTML);
-
-	//document.getElementById("contactform").reset();
-	hide_contact_form();
-	//show_image_voting();
-	xhr.send(data);
-}	
-function show_contact_form_prelogin(){
-	//history.pushState({url:contacturl.substr(1)}, null, contacturl);
-	//history.pushState({url:contacturl}, null, contacturl);
-	//document.getElementById("show-upload-button").style.display = "none";
-	document.getElementById("contact-form-div-prelogin").style.display = "block";
-	document.getElementById("show-contact-button-prelogin").style.display = "none";
-	document.getElementById("email-and-password-entry").style.display = "none";
-	document.getElementById("faq-prelogin-div").style.display = "none";
-	document.getElementById("contact-prelogin-div").style.display = "none";
-	document.getElementById("send-message-button-div-prelogin").style.display = "block";
-	//document.getElementById("show-upload-button-div").style.display = "none";
-	hide_upload_form();
-	hide_image_voting();
-	window.scrollTo(0, 0);
-}
-function cancel_message_prelogin() {
-	location.reload();
-}
-
-// upload image
-function show_upload_form(){
-	// send empty GET to check for cookies
-	var xhr = new XMLHttpRequest;
-	xhr.open('GET', "/login");
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-//			var path = window.location.pathname;
-//			js_routing(path);
-			history.pushState({url: uploadurl}, null, uploadurl);
-			hide_image_voting();
-			hide_contact_form();
-			document.getElementById("show-contact-button").style.display = "none";
-			document.getElementById("imagetoupload").src = "";
-			document.getElementById("upload-form-div").style.display = "block";
-			document.getElementById("show-upload-button").style.display = "none";
-			document.getElementById("upload-image-button-div").style.display = "block";
-			document.getElementById("imagetoupload").style.display = "block";
-				}
-		else if (xhr.status !== 200) {
-			overlay_on();
-				}
-	};
-	xhr.send();
-}
-function show_upload_form_hist(){
-	// send empty GET to check for cookies
-	var xhr = new XMLHttpRequest;
-	xhr.open('GET', "/login");
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-//			var path = window.location.pathname;
-//			js_routing(path);
-//			history.pushState({url: uploadurl}, null, uploadurl);
-			hide_image_voting();
-			hide_contact_form();
-			document.getElementById("show-contact-button").style.display = "none";
-			document.getElementById("imagetoupload").src = "";
-			document.getElementById("upload-form-div").style.display = "block";
-			document.getElementById("show-upload-button").style.display = "none";
-			document.getElementById("upload-image-button-div").style.display = "block";
-			document.getElementById("imagetoupload").style.display = "block";
-				}
-		else if (xhr.status !== 200) {
-			overlay_on();
-				}
-	};
-	xhr.send();
-}
-function hide_upload_form(){
-	document.getElementById("upload-form-div").style.display = "none";
-	document.getElementById("show-upload-button").style.display = "block";
-	document.getElementById("upload-image-button-div").style.display = "none";
-	document.getElementById("imagetoupload").style.display = "none";
-	clear_upload_form();
-}
-function clear_upload_form(){
-	document.getElementById("text-adj-1").value="";
-	document.getElementById("text-adj-2").value="";
-	document.getElementById("userinputfile").value="";
-	document.querySelector('#imagetoupload').setAttribute("src", "");
-	document.getElementById("imagetoupload").setAttribute("src", "#");
-}
-function upload_image() {
-	// send empty GET to /login to check for session cookie before uploading  
-	// alternatively, check session status serverside only: current approach
-//	var xhr = new XMLHttpRequest;
-//	xhr.open('GET', "/login");
-//	xhr.onload = function() {
-//		if (xhr.status === 200) {
-			//alert("in upload_image func");
-			var xhr1 = new XMLHttpRequest;
-			xhr1.open('POST', "/uploadhandler");
-			xhr1.onload = function() {
-				//clear_upload_form();
-			    //alert(this.response);
-				if (xhr1.status === 200) {
-					clear_upload_form();
-					alert('Upload successful');
-					window.history.go(-1);
-				}
-				else {
-					alert(this.response);
-					//alert('upload failed. try again.' );
-					if (xhr1.status === 400) {
-						clear_upload_form();
-						alert('Your session has expired, please log in again');
-						clear_login_form();
-						overlay_on();
-					}
-				}
-			};
-			var data = new FormData();
-			data.append("inputfile", file);
-			data.append("adj1", document.getElementById("text-adj-1").value);
-			data.append("adj2", document.getElementById("text-adj-2").value);
-			xhr1.send(data);
-//			}
-//		else if (xhr.status !== 200) {
-//			alert('Your session has expired, please log in again');
-//			clear_login_form();
-//			overlay_on();
-//				}
-//	};
-//	xhr.send();
-}	
-function cancel_upload() {
-	clear_upload_form();
-	hide_upload_form();
-	window.history.go(-1);
-}
-
-//UNUSED - upload file on submit button click
-//document.addEventListener('DOMContentLoaded',function() {
-//	document.querySelector('#uploadimagebutton').addEventListener('click', function () {
-//			alert("button clicked");
-//		    //var files = this.files;
-//			//console.log(files);
-//			uploadFile(file); // call the function to upload the file
-//	}, false)}
-//	, false);
-//
-//function uploadFile(file){
-//	var url =  "/uploadhandler";
-//	var xhr = new XMLHttpRequest();
-//	var fd = new FormData();
-//	xhr.open("POST", url, true);
-//	xhr.onreadystatechange = function() {
-//		if (xhr.readyState === 4 && xhr.status === 200) {
-//			// Every thing ok, file uploaded
-//			 console.log(xhr.responseText); // handle response.
-//			 } else if(xhr.readyState == 4){
-//			 // with some error
-//			 console.log(xhr.responseText); // handle response.
-//			 }
-//		 };
-//	fd.append("inputfile", file);
-//	fd.append("adj1", document.getElementById("text-adj-1").value);
-//	fd.append("adj2", document.getElementById("text-adj-2").value);
-//	xhr.send(fd);
-// }
-//
-
-
-	</script>
 
 </body>
 
