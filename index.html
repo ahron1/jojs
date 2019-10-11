@@ -173,7 +173,7 @@
 					<div id="infinite-mode-div" class="ui-grid-solo" style="display:block; position:relative; text-align: center; max-height:40vh; max-width:100vw; "> <!-- padding:1em 1em 4em 4em;-->
 						<img src="includes/voting_booth_icon.png" alt="background text" style=" max-width:100%; max-height:25vh; " onclick="start_slideshow()">
 						<p style="max-height:15vh;">
-							Watch a show. And cast your votes! <!--Enter the Voting Booth-->
+							Watch a show. And vote it in! <!--Enter the Voting Booth-->
 						</p>
 					</div>
 					<br><br>
@@ -339,28 +339,69 @@
 						</div>
 						<br> 
 						<h4 style="margin-left:5%;">
-							And, write two adjectives you think can be used to describe the image. 
+							And, choose two adjectives to describe the image. 
 						</h4>
 						<br>
-					    <label for="text-adj-1">Adjective 1:</label>
-						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
-						    <input type="text" name="text-adj-1" id="text-adj-1" value="">
+						<div id="adj-selectors" style="">
+							<!--
+							<div id="adj-textbox">
+								<p>Adjective 1:</p>
+								<label for="text-adj-1">Adjective 1:</label> 
+								<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+								    <input type="text" name="text-adj-1" id="text-adj-1" value="">
+								</div> 
+
+								<br> 
+								<label for="text-adj-2">Adjective 2:</label> 
+								<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
+								    <input type="text" name="text-adj-2" id="text-adj-2" value="">
+								</div>
+							</div>
+							-->
+							<div id="adj-dropdown">
+								<div id="adj-dropdown-1">
+									<label for="adj-select-1">Choose an adjective:</label>
+									<br>
+									<select class="adj-select" id="adj-select-1" onchange="adj_choose(this);" >
+										<option value="choose" disabled selected>Choose an adjective..</option>
+										<option value="vibrant">Vibrant</option>
+										<option value="conservative">Conservative</option>
+										<option value="preppy">Preppy</option>
+										<option value="chic">Chic</option>
+										<option value="glamorous">Glamorous</option>
+									</select>
+									<!-- <div class="adj-refresh" onclick="showalert();">refresh</div> -->
+								</div>
+
+								<br>
+								<div id="adj-dropdown-2">
+									<label for="adj-select-2">Choose a second adjective:</label>
+									<br>
+									<select class="adj-select" id="adj-select-2" onchange="adj_choose(this);" >
+										<option value="choose" disabled selected>Choose an adjective..</option>
+										<option value="muted">Muted</option>
+										<option value="bold">Bold</option>
+										<option value="carefree">Carefree</option>
+										<option value="traditional">Traditional</option>
+										<option value="homely">Homely</option>
+									</select>
+								<!-- <div class="adj-refresh" onclick="showalert();">refresh</div> -->
+								</div>
+							</div>
+						</div>	
+
+						<div id="upload-image-button-div" class="ui-grid-solo" style="text-align:left;" >
+							<div class="ui-block-a" style="text-align:left;">
+								<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
+								<br><br>
+								<a id="upload-image-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload now</i></a>  
+								<a id="cancel-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="cancel_upload()" ><i>Cancel </i></a>
+							</div> 
 						</div>
-						<br> 
-					    <label for="text-adj-2">Adjective 2:</label>
-						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear ui-mini" style="width:60vw" >
-						    <input type="text" name="text-adj-2" id="text-adj-2" value="">
-						</div>
+
 					</form>
 
-					<div id="upload-image-button-div" class="ui-grid-solo" >
-						<div class="ui-block-a">
-							<!--in the button below, using a button tag prevents hiding and showing via js. using the a tag has the same visual output but also allows hiding/showing via js -->
-							<br>
-							<a id="upload-image-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all" onclick="upload_image()" ><i>Upload now</i></a>  
-							<a id="cancel-upload-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="cancel_upload()" ><i>Cancel </i></a>
-						</div> 
-					</div>
+					
 				</div>
 			</div>
 		</div>

@@ -234,7 +234,7 @@
 		xhr.open('POST', "/login");
 		xhr.onload = function() {
 			clear_login_form();
-			alert(this.response);
+			//alert(this.response);
 			if (xhr.status === 200) {
 				//send new req to server to get images list. 
 				overlay_off();
@@ -435,6 +435,10 @@
 		if ((image_counter + 1) % batchsize == 0) {
 			get_new_images("");
 			send_votes();
+			if (image_counter > 10) {
+				alert ("Thank you for voting!");
+				show_home_page();
+			}
 		}
 
 		load_image_n(image_counter);
@@ -736,8 +740,8 @@
 		clear_upload_form();
 	}
 	function clear_upload_form(){
-		document.getElementById("text-adj-1").value="";
-		document.getElementById("text-adj-2").value="";
+		//document.getElementById("text-adj-1").value="";
+		//document.getElementById("text-adj-2").value="";
 		document.getElementById("userinputfile").value="";
 		document.querySelector('#imagetoupload').setAttribute("src", "");
 		document.getElementById("imagetoupload").setAttribute("src", "#");
@@ -773,9 +777,21 @@
 				};
 				var data = new FormData();
 				data.append("inputfile", file);
-				data.append("adj1", document.getElementById("text-adj-1").value);
-				data.append("adj2", document.getElementById("text-adj-2").value);
+
+				var select1 = (document.getElementById("adj-select-1"));
+				var choice1 = select1.options[select1.selectedIndex].value;
+				var select2 = (document.getElementById("adj-select-2"));
+				var choice2 = select2.options[select2.selectedIndex].value;
+
+				var adj1 = choice1;
+				var adj2 = choice2;
+		//		var adj2 =  document.getElementById("text-adj-2").value;
+		//		var adj1 =  document.getElementById("text-adj-1").value;
+
+				data.append("adj1", adj1);
+				data.append("adj2", adj2);
 				xhr1.send(data);
+		
 	//			}
 	//		else if (xhr.status !== 200) {
 	//			alert('Your session has expired, please log in again');
@@ -790,6 +806,19 @@
 		hide_upload_form();
 		window.history.go(-1);
 		wait_and_scroll_up(50);
+	}
+	function adj_choose(choice){
+		var x = choice.options[choice.selectedIndex].text;
+		var select1 = (document.getElementById("adj-select-1"));
+		var choice1 = select1.options[select1.selectedIndex].value;
+		//alert(choice1);
+		var select2 = (document.getElementById("adj-select-2"));
+		var choice2 = select2.options[select2.selectedIndex].value;
+		//alert(choice2);
+		if (choice1 == choice2) {
+			alert("Please select different adjectives..");
+			select2.selectedIndex = 0;
+		}
 	}
 
 	/// miscellaneous functions
