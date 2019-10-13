@@ -165,9 +165,10 @@
 
 		//overlay_on();
 		overlay_off();
-		var path = window.location.pathname;
-		get_new_images(path);
-		js_routing(path);
+		show_home_page();
+//		var path = window.location.pathname;
+//		get_new_images(path);
+//		js_routing(path);
 		wait_and_scroll_up(50);
 
 
@@ -180,12 +181,12 @@
 			if (xhr.status === 200) {
 				//var path = window.location.pathname.substr(1);
 				//call the js_routing fun to load the path submitted in the address bar
-//				var path = window.location.pathname;
+				var path = window.location.pathname;
 				//get_new_images("");
-//				get_new_images(path);
-//				js_routing(path);
+				get_new_images(path);
+				js_routing(path);
 //				overlay_off();
-//				wait_and_scroll_up(50);
+				wait_and_scroll_up(50);
 				console.log("home page loaded ok");
 			}
 			else if (xhr.status !== 200) {
