@@ -760,10 +760,10 @@
 	function upload_image() {
 		// send empty GET to /login to check for session cookie before uploading  
 		// alternatively, check session status serverside only: current approach
-	//	var xhr = new XMLHttpRequest;
-	//	xhr.open('GET', "/login");
-	//	xhr.onload = function() {
-	//		if (xhr.status === 200) {
+		//	var xhr = new XMLHttpRequest;
+		//	xhr.open('GET', "/login");
+		//	xhr.onload = function() {
+		//		if (xhr.status === 200) {
 				//alert("in upload_image func");
 				var xhr1 = new XMLHttpRequest;
 				xhr1.open('POST', "/uploadhandler");
@@ -790,18 +790,25 @@
 				data.append("inputfile", file);
 
 				var select1 = (document.getElementById("adj-select-1"));
-				var choice1 = select1.options[select1.selectedIndex].value;
+				var text_choice1 = select1.options[select1.selectedIndex].text;
+				var value1 = select1.options[select1.selectedIndex].value;
 				var select2 = (document.getElementById("adj-select-2"));
-				var choice2 = select2.options[select2.selectedIndex].value;
+				var text_choice2 = select2.options[select2.selectedIndex].text;
+				var value2 = select2.options[select2.selectedIndex].value;
 
-				var adj1 = choice1;
-				var adj2 = choice2;
+				var adj1 = text_choice1;
+				var adj2 = text_choice2;
 		//		var adj2 =  document.getElementById("text-adj-2").value;
 		//		var adj1 =  document.getElementById("text-adj-1").value;
 
-				data.append("adj1", adj1);
-				data.append("adj2", adj2);
-				xhr1.send(data);
+				if (value1 != 0 && value2 != 0 && file ) {
+					data.append("adj1", adj1);
+					data.append("adj2", adj2);
+					xhr1.send(data);
+				}  else {
+					alert ("Please select a photo and an adjective before uploading...");
+				}
+
 		
 	//			}
 	//		else if (xhr.status !== 200) {
@@ -822,13 +829,14 @@
 		var x = choice.options[choice.selectedIndex].text;
 		var select1 = (document.getElementById("adj-select-1"));
 		var choice1 = select1.options[select1.selectedIndex].value;
-		//alert(choice1);
 		var select2 = (document.getElementById("adj-select-2"));
 		var choice2 = select2.options[select2.selectedIndex].value;
-		//alert(choice2);
-		if (choice1 == choice2) {
-			alert("Please select different adjectives..");
-			select2.selectedIndex = 0;
+		
+		if (choice2 == "0" && choice1 != "0") {
+			document.getElementById("adj-select-2").value = document.getElementById("adj-select-1").value;
+		}
+		if (choice1 == "0" && choice2 != "0") {
+			document.getElementById("adj-select-1").value = document.getElementById("adj-select-2").value;
 		}
 	}
 
