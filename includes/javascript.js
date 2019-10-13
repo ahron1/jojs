@@ -246,6 +246,7 @@
 			else {
 				clear_login_form();
 				//alert('Request failed.  Returned status of ' + xhr.status);
+				alert(this.response);
 			}
 		};
 
@@ -436,7 +437,7 @@
 			get_new_images("");
 			send_votes();
 			if (image_counter > 10) {
-				alert ("Thank you for voting!");
+				alert ("Hope you enjoyed the show. Thank you for voting!");
 				show_home_page();
 			}
 		}
