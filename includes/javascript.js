@@ -164,11 +164,11 @@
 		hide_image_voting();
 
 		//overlay_on();
-				var path = window.location.pathname;
-				get_new_images(path);
-				js_routing(path);
-				overlay_off();
-				wait_and_scroll_up(50);
+		overlay_off();
+		var path = window.location.pathname;
+		get_new_images(path);
+		js_routing(path);
+		wait_and_scroll_up(50);
 
 
 		//console.log(window.location.pathname);
