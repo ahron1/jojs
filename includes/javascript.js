@@ -162,7 +162,14 @@
 		// hide all the "below-fold" divs
 		hide_below_fold();
 		hide_image_voting();
-		overlay_on();
+
+		//overlay_on();
+				var path = window.location.pathname;
+				get_new_images(path);
+				js_routing(path);
+				overlay_off();
+				wait_and_scroll_up(50);
+
 
 		//console.log(window.location.pathname);
 
@@ -173,15 +180,17 @@
 			if (xhr.status === 200) {
 				//var path = window.location.pathname.substr(1);
 				//call the js_routing fun to load the path submitted in the address bar
-				var path = window.location.pathname;
+//				var path = window.location.pathname;
 				//get_new_images("");
-				get_new_images(path);
-				js_routing(path);
-				overlay_off();
-				wait_and_scroll_up(50);
-					}
-	//		else if (xhr.status !== 200) {
-	//				}
+//				get_new_images(path);
+//				js_routing(path);
+//				overlay_off();
+//				wait_and_scroll_up(50);
+				console.log("home page loaded ok");
+			}
+			else if (xhr.status !== 200) {
+				overlay_on();
+			}
 		};
 		xhr.send();
 	}
