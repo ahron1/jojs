@@ -705,6 +705,7 @@
 				hide_image_voting();
 				hide_contact_form();
 				hide_home_page();
+				adj_reload();
 				document.getElementById("show-contact-button").style.display = "none";
 				document.getElementById("imagetoupload").src = "";
 				document.getElementById("upload-form-div").style.display = "block";
@@ -832,12 +833,70 @@
 		var select2 = (document.getElementById("adj-select-2"));
 		var choice2 = select2.options[select2.selectedIndex].value;
 		
-		if (choice2 == "0" && choice1 != "0") {
+		if (choice2 == 0 && choice1 != 0) {
 			document.getElementById("adj-select-2").value = document.getElementById("adj-select-1").value;
 		}
-		if (choice1 == "0" && choice2 != "0") {
+		if (choice1 == 0 && choice2 != 0) {
 			document.getElementById("adj-select-1").value = document.getElementById("adj-select-2").value;
 		}
+	}
+	function adj_reload() {
+		var option_values_array = [ //
+			[0, 1, 2, 3, 4, 5, 6]
+			,[0, 1, 2, 3, 4, 5]
+		];
+		var option1_words_array = [ //
+			["Choose a word", "Vibrant", "Traditional", "Classy", "Chic", "Glamorous", "Sexy"]
+			,["Choose an opinion", "Yes", "May be", "I agree", "Yay", "Fuck yeah!"]
+		];
+		var option2_words_array = [ //
+			["Choose a second word", "Muted", "Trendy", "Casual", "Pedestrian", "Plain", "Homely"]
+			,["Choose a second opinion", "No", "May be not", "I disagree", "Nay", "Hell no!"]
+		];
+
+		var dropdown1 = document.getElementById("adj-select-1"); 
+		var dropdown2 = document.getElementById("adj-select-2"); 
+
+		var dropdown1_length = dropdown1.length;
+		var dropdown2_length = dropdown2.length;
+
+		for(var i = 0; i < dropdown2_length; i++) {
+			dropdown2.remove(dropdown2.i);
+		}
+
+		for(var i = 0; i < dropdown1_length; i++) {
+			dropdown1.remove(dropdown1.i);
+		}
+
+		var randomnumber = random_number_between(0,1); //
+		var option_values = option_values_array[randomnumber];
+		var option1_words = option1_words_array[randomnumber];
+		var option2_words = option2_words_array[randomnumber];
+
+		var options_length = option_values.length;
+
+		for(var i = 0; i < options_length; i++){
+			var val = option_values[i];
+
+			var txt1 = option1_words[i];
+			var txt2 = option2_words[i];
+
+			var el1 = document.createElement("option");
+			var el2 = document.createElement("option");
+
+			el1.value = val;
+			el2.value = val;
+			el1.textContent = txt1;
+			el2.textContent = txt2;
+
+			dropdown1.options.add(el1);
+			dropdown2.options.add(el2);
+		}
+		dropdown1.selectedIndex = 0;
+		dropdown2.selectedIndex = 0;
+
+		dropdown1.options[0].disabled = true;
+		dropdown2.options[0].disabled = true;
 	}
 
 	/// miscellaneous functions
@@ -875,6 +934,10 @@
 		  //shareBtn.style.display = 'none';
 	  }
 	});
+	//get random number between min and max
+	function random_number_between(min, max) { // min and max included 
+	  return Math.floor(Math.random() * (max - min + 1) + min);
+	}
 
 	//UNUSED - upload file on submit button click
 	//document.addEventListener('DOMContentLoaded',function() {

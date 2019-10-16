@@ -339,7 +339,7 @@
 						</div>
 						<br> 
 						<h4 style="margin-left:5%;">
-							And, choose two adjectives to describe the image. 
+							And, choose two words to describe the image. 
 						</h4>
 						<br>
 						<div id="adj-selectors" style="">
@@ -360,9 +360,10 @@
 							-->
 							<div id="adj-dropdown">
 								<div id="adj-dropdown-1">
-									<label for="adj-dropdown-1">Choose an adjective:</label>
+									<label for="adj-dropdown-1">Choose the first word:</label>
 									<br>
 									<select class="adj-select" id="adj-select-1" onchange="adj_choose(this);" >
+										<!--
 										<option value="0" disabled selected>Choose an adjective..</option>
 										<option value="1">Vibrant</option> 
 										<option value="2">Traditional</option>
@@ -370,15 +371,15 @@
 										<option value="4">Chic</option>
 										<option value="5">Glamorous</option>
 										<option value="6">Sexy</option>
+										-->
 									</select>
-									<!-- <div class="adj-refresh" onclick="showalert();">refresh</div> -->
 								</div>
-
 								<br>
 								<div id="adj-dropdown-2">
-									<label for="adj-dropdown-2">Choose a second adjective:</label>
+									<label for="adj-dropdown-2">Choose the second word:</label>
 									<br>
 									<select class="adj-select" id="adj-select-2" onchange="adj_choose(this);" >
+										<!--
 										<option value="0" disabled selected>Choose an adjective..</option>
 										<option value="1">Muted</option>
 										<option value="2">Trendy</option>
@@ -386,9 +387,16 @@
 										<option value="4">Pedestrian</option>
 										<option value="5">Plain</option>
 										<option value="6">Homely</option>
+										-->
 									</select>
 								<!-- <div class="adj-refresh" onclick="showalert();">refresh</div> -->
 								</div>
+							</div>
+							<br>
+							<div id="reload-words" class="ui-grid-b ui-mini" style="" >
+								<div class="ui-block-a " style="">
+									<a id="reload-words-button" class="image-button ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="adj_reload()" ><i>Reload words </i></a>
+								</div> 
 							</div>
 						</div>	
 
