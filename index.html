@@ -21,6 +21,8 @@
 		<link rel="manifest" href="manifest.json" />
 		
 		<script type="text/javascript" src="includes/javascript.js"></script>
+		<script type="text/javascript" src="includes/client.min.js"></script>
+		<script type="text/javascript" src="includes/fingerprint2.js"></script>
 		<link rel="stylesheet" href="includes/jquery.mobile.custom.structure.min.css" />
 		<link rel="stylesheet" href="includes/jquery.mobile.custom.theme.min.css" /> 
 		<link rel="stylesheet" href="includes/style.css" />
@@ -55,10 +57,9 @@
 					<p style="margin-left:2%;">Welcome to JoChoice, an exclusive platform for designers and fashionistas.</p> 
 				</div>
 			</div>
-
+				 
 			<div id="email-and-password-entry" style="margin-left:2%; position:absolute; top:25vh;">
-				<br>
-				
+				<p style="margin-left:2%;">Please login. If you don't have an account, please sign up - it is really just one simple step. Of course, you can always visit as a guest if you don't have/want an account...</p> 
 				<div id="sign-up-text" style="width:95vw;margin-left:2%; margin-right:5% ">
 				    <p>
 						We are currently in limited beta, and take in new members periodically. Please join the  waiting list, and we will create your account as soon as possible. 
@@ -78,12 +79,12 @@
 				</div>
 				<div class="ui-block-a " id="loginbutton">
 					<br>
-					<a id="login-button" class="ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_in()" style="width:75vw; margin-left:5%"><b>Check-in </b></a>
-					<a id="pw-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" style="width:77vw; margin-left:5%">I forgot my password... </a>
+					<a id="login-button" class="ui-btn ui-btn-a ui-shadow ui-corner-all " onclick="sign_in()" style="width:75vw; margin-left:5%"><b>Log in </b></a>
+					<a id="pw-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all ui-mini" onclick="forgot_pw()" style="width:77vw; margin-left:5%"><i>Sorry, I forgot my password... </i></a>
+					<a id="no-login-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all " onclick="guest_entry()" style="width:75vw; margin-left:5%"><b>Enter as guest..</b></a>
 				</div> 
 				<div class="ui-block-a " id="no-account-text" style="margin-left:5%;">
-					<br><br>
-				    <p>Don't have an account yet? Sign up...</p>
+				    <p>Don't have an account yet? Do sign up... It takes only a few seconds, and we will log you in right away.</p>
 					<a id="signup-button" class="image-button ui-btn ui-btn-a ui-shadow ui-corner-all ui-mini" onclick="show_signup()" style="width:77vw;"><b>Sign up now!</b></a>
 				</div> 
 			
@@ -414,6 +415,14 @@
 					
 				</div>
 			</div>
+
+			<div id="post-upload" class="overlay" style="background-color:black; color:#D3D3D3; display:none;" >
+
+				foobar
+				<a onclick="show_home_page()">baz</a>
+
+			</div>
+
 		</div>
 
 		<div id="bottom-buttons" class="ui-grid-a" >
@@ -441,7 +450,7 @@
 		<img id="preload2" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
 		<img id="preload3" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
 		<img id="preload4" style="display:block; position:relative; width:auto; margin-left: auto; margin-right:auto; width:1px; height:1px; overflow:hidden; object-fit:cover" class="userimage" src="" /> 
-	</div> --> 
+	</div> -->
 		<!-- </div> -->
 	    <hr class="brandbartopbottom" style="text-align:right;margin-right:0" />
 	</div>

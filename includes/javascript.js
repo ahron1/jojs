@@ -14,6 +14,8 @@
 	//	when it is a non votable image: vote buttons are deactivated. 
 
 	//global variables 
+	var fp; // fingerprint
+
 	var file;
 	var homeurl = "/";
 	var contacturl = "/contact";
@@ -162,6 +164,8 @@
 		// hide all the "below-fold" divs
 		hide_below_fold();
 		hide_image_voting();
+		console.log("on_page_load called");
+		fingerprint(); //this func involves a timeout, so calling it on page load ensures that the fp variable is already set for later use (e.g. sign_in)
 
 		//overlay_on();
 		overlay_off();
@@ -217,6 +221,9 @@
 		hide_contact_form();
 		hide_upload_form();
 	}
+	function hide_bottom_buttons(){
+		document.getElementById("bottom-buttons").style.display="none";
+	}
 	function show_home_page(){
 		hide_upload_form();
 		hide_contact_form();
@@ -252,6 +259,7 @@
 				var path = window.location.pathname;
 				//get_new_images(path);
 				js_routing(path);
+				console.log(this.response);
 			}
 			else {
 				clear_login_form();
@@ -267,13 +275,16 @@
 		var data = new FormData();
 		data.append("login-email", document.getElementById("login-email").value);
 		data.append("login-password", document.getElementById("login-password").value);
+		data.append("fingerprint", fp);
+		console.log("sending login req. fp is " + fp);
+
 		xhr.send(data);
 	}
 	function sign_out() {
 		var xhr = new XMLHttpRequest;
 		xhr.open('POST', "/logout");
 		xhr.onload = function() {
-			alert(this.response);
+			//alert(this.response);
 			if (xhr.status === 200) {
 				location.replace("/");
 			}
@@ -283,34 +294,53 @@
 		};
 		xhr.send();
 	}
+	function guest_entry(){
+		alert('Welcome, dear guest. We have created a temporary account just for you. Please note that guests accounts have limited functionality. We hope you enjoy the app, and sign up for an account. It is free and fun!')
+		sign_in();
+	}
 	function sign_up_now() {
 		var xhr = new XMLHttpRequest;
-		xhr.open('POST', "/join/new");
+		//sign up route can be "/join/new" (goes via confirmation/token email etc.) or "/join/spot" (instant signup and login)
+		//also check join_handler and html (show/hide appropriate fields) and (in this js) append appropriate fields
+		var sign_up_method = "spot"; //can be "new" or "spot"
+		xhr.open('POST', "/join/" + sign_up_method);
 		xhr.onload = function() {
-		  //alert(this.response);
-		  clear_login_form();
+			//alert(this.response);
+			clear_login_form();
 			if (xhr.status === 200) {
+				if (sign_up_method == "spot"){
+					overlay_off();
+					var path = window.location.pathname;
+					//get_new_images(path);
+					js_routing(path);
+					console.log(this.response);
+					alert(xhr.responseText);
+				} else if (sign_up_method = "new") {
+					alert(xhr.responseText);
+					location.reload(true);
+					//overlay_off();
+				}
+			}
+			else if (xhr.status !== 200) {
+				//alert('Request failed.  Returned status of ' + xhr.status);
 				alert(xhr.responseText);
 				location.reload(true);
-				//overlay_off();
-					}
-			else if (xhr.status !== 200) {
-				alert('Request failed.  Returned status of ' + xhr.status);
-					}
+			}
 		};
 		var data = new FormData();
 		data.append("login-email", document.getElementById("login-email").value);
+		data.append("login-password", document.getElementById("login-password").value);
 		data.append("first-name", document.getElementById("first-name").value);
 		xhr.send(data);
 	}
 	function show_signup(){
 		document.getElementById("sign-up-now-button").style.display = "block";
-		document.getElementById("sign-up-text").style.display = "block";
+		//document.getElementById("sign-up-text").style.display = "block";
 		document.getElementById("user-details").style.display = "block";
 		document.getElementById("loginbutton").style.display = "none";
 		document.getElementById("signup-button").style.display = "none";
 		document.getElementById("no-account-text").style.display = "none";
-		document.getElementById("password-entry").style.display = "none";
+		//document.getElementById("password-entry").style.display = "none";
 	}
 	function forgot_pw() {
 		var xhr = new XMLHttpRequest;
@@ -758,6 +788,11 @@
 		document.querySelector('#imagetoupload').setAttribute("src", "");
 		document.getElementById("imagetoupload").setAttribute("src", "#");
 	}
+	function show_uploaded_pic(){
+		hide_upload_form();
+		hide_bottom_buttons();
+		document.getElementById("post-upload").style.display="block";
+	}
 	function upload_image() {
 		// send empty GET to /login to check for session cookie before uploading  
 		// alternatively, check session status serverside only: current approach
@@ -774,7 +809,8 @@
 					if (xhr1.status === 200) {
 						clear_upload_form();
 						alert('Upload successful');
-						window.history.go(-1);
+						show_uploaded_pic();
+						//window.history.go(-1);
 					}
 					else {
 						alert(this.response);
@@ -937,6 +973,43 @@
 	//get random number between min and max
 	function random_number_between(min, max) { // min and max included 
 	  return Math.floor(Math.random() * (max - min + 1) + min);
+	}
+	//fingerprinting
+	function fingerprint(){
+//		// 1. using clientjs https://github.com/jackspirou/clientjs 
+//		// Create a new ClientJS object
+//		var client = new ClientJS();
+//		// Get the client's fingerprint id
+//		var fingerprint = client.getFingerprint();
+//		// Print the 32bit hash id to the console
+//		console.log(fingerprint);
+
+		//2. using fingerprintjs2 https://github.com/Valve/fingerprintjs2
+		var options = {};
+		var murmur;
+//		if (window.requestIdleCallback) {
+//			requestIdleCallback(function () {
+//				Fingerprint2.get(options, function (components) {
+//				  //console.log(components); // an array of components: {key: ..., value: ...}
+//				  var values = components.map(function (component) { return component.value });
+//				  murmur = Fingerprint2.x64hash128(values.join(''), 31);
+//				  console.log(murmur);
+//				  //alert(murmur);
+//				})
+//			})
+//		} else {
+			setTimeout(function () {
+				Fingerprint2.get(options, function (components) {
+				  //console.log(components); // an array of components: {key: ..., value: ...}
+				  var values = components.map(function (component) { return component.value });
+				  murmur = Fingerprint2.x64hash128(values.join(''), 31);
+				  //alert(murmur);
+				  console.log(murmur);
+				  //return murmur;
+				  fp = murmur;
+				})  
+			}, 500)
+		//}
 	}
 
 	//UNUSED - upload file on submit button click
