@@ -167,13 +167,14 @@
 		console.log("on_page_load called");
 		fingerprint(); //this func involves a timeout, so calling it on page load ensures that the fp variable is already set for later use (e.g. sign_in)
 
-		//overlay_on();
-		overlay_off();
-		show_home_page();
-//		var path = window.location.pathname;
-//		get_new_images(path);
-//		js_routing(path);
-		wait_and_scroll_up(50);
+		overlay_on();
+
+//		overlay_off();
+//		show_home_page();
+////		var path = window.location.pathname;
+////		get_new_images(path);
+////		js_routing(path);
+//		wait_and_scroll_up(50);
 
 
 		//console.log(window.location.pathname);
@@ -189,7 +190,7 @@
 				//get_new_images("");
 				get_new_images(path);
 				js_routing(path);
-//				overlay_off();
+				overlay_off();
 				wait_and_scroll_up(50);
 				console.log("home page loaded ok");
 			}
